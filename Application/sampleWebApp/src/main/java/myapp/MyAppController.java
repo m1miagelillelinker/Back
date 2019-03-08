@@ -12,5 +12,10 @@ public class MyAppController {
     public String index() {
         return "index.html";
     }
+
+    @RequestMapping("/test")
+    public String hello() {
+        return "hello";
+    }
     
 }
