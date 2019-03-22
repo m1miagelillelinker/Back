@@ -25,9 +25,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/get/{userId}")
-    public User getUserById(@PathVariable String userId){
-        return userService.getUserById(Integer.parseInt(userId));
+    @GetMapping("/{userId}")
+    public String getUserById(@PathVariable String userId){
+        System.out.println(userId);
+
+        String user = userService.
+                getUserById(Integer.parseInt(userId))
+                .toString();
+
+        return user;
+
+
     }
 
 }

@@ -61,7 +61,6 @@ public class User {
     }
 
     public User(){
-
     }
 
     @Override
@@ -81,6 +80,7 @@ public class User {
                 ", id_status=" + id_status +
                 '}';
     }
+
 
     public Integer getId() {
         return id;

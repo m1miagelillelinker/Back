@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Integer userId) {
         Optional<User> rep = userRepository.findById(userId);
+        System.out.println("JSUIS DANS LE COLO :"+rep.toString());
         return rep.get();
     }
 }
