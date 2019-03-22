@@ -23,14 +23,14 @@ public class UserController {
         this.userService = userService;
     }
 
+    @CrossOrigin
     @GetMapping("/get")
     @ResponseBody
-    public String getUserById(@RequestParam(required = false) String userId){
+    public User getUserById(@RequestParam(required = false) String userId){
         System.out.println(userId);
 
-        String user = userService.
-                getUserById(Integer.parseInt(userId))
-                .toString();
+        User user = userService.
+                getUserById(Integer.parseInt(userId));
 
         return user;
 
