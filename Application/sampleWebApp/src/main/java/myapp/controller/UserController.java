@@ -7,9 +7,7 @@ import myapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/user" , produces = MediaType.APPLICATION_JSON_VALUE )
@@ -25,8 +23,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{userId}")
-    public String getUserById(@PathVariable String userId){
+    @GetMapping("/get")
+    @ResponseBody
+    public String getUserById(@RequestParam(required = false) String userId){
         System.out.println(userId);
 
         String user = userService.
