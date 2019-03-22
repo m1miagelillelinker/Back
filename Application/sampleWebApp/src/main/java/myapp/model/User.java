@@ -4,22 +4,45 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="User")
+@Table(name="utilisateur")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     private Integer id;
+
+    @Column(name="firstname")
     private String firstName;
+
+    @Column(name="lastname")
     private String lastName;
+
+    @Column(name="gender")
     private Integer gender;
+
+    @Column(name="email")
     private String email;
+
+    @Column(name="type_user")
     private String type_user;
+
+    @Column(name="created_at")
     private Date create_at;
+
+    @Column(name="updated_at")
     private Date update_at;
+
+    @Column(name="pseudo")
     private String pseudo;
+
+    @Column(name="score")
     private Integer score;
+
+    @Column(name="password")
     private String password;
+
+    @Column(name="id_status")
     private Integer id_status;
 
     public User(Integer id, String firstName, String lastName, Integer gender, String email, String type_user, Date create_at, Date update_at, String pseudo, Integer score, String password, Integer id_status) {
@@ -35,6 +58,10 @@ public class User {
         this.score = score;
         this.password = password;
         this.id_status = id_status;
+    }
+
+    public User(){
+
     }
 
     @Override
