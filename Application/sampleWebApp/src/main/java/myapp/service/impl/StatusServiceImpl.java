@@ -1,6 +1,6 @@
 package myapp.service.impl;
 
-import myapp.service.ProduitService;
+import myapp.service.StatusService;
 
-public class StatusServiceImpl implements ProduitService {
+public class StatusServiceImpl implements StatusService {
 }
