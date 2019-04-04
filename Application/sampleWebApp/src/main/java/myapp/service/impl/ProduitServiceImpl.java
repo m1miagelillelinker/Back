@@ -53,4 +53,24 @@ public class ProduitServiceImpl implements ProduitService {
             return null; //a changer
         }
     }
+
+    @Override
+    public String getBookByIdFromReferentiel(String bookId) {
+        try{
+            httpRequestFilm = new HttpRequest("https://www.googleapis.com/books/v1/volumes?q=isbn:"+bookId);
+            String s = httpRequestFilm.request("GET");
+            System.out.println(s);
+            return s;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null; //a changer
+        }
+    }
+
+    @Override
+    public String getGameByIdFromReferentiel(String gameId) {
+        return null;
+    }
+
+
 }

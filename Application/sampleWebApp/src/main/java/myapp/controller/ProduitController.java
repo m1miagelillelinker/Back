@@ -40,4 +40,18 @@ public class ProduitController {
         return produitService.getFilmByTitleFromReferentiel(title);
     }
 
+    @CrossOrigin
+    @GetMapping("/getBookByIdFromReferentiel")
+    @ResponseBody
+    public String getBookByIdFromReferentiel(@RequestParam("bookId")String bookId){
+        return produitService.getBookByIdFromReferentiel(bookId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getGameByIdFromReferentiel")
+    @ResponseBody
+    public String getGameByIdFromReferentiel(@RequestParam("gameId")String gameId){
+        return produitService.getGameByIdFromReferentiel(gameId);
+    }
+
 }
