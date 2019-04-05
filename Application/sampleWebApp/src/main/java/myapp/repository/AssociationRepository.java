@@ -1,4 +1,9 @@
 package myapp.repository;
 
-public interface AssociationRepository {
+import myapp.model.Association;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AssociationRepository extends CrudRepository<Association,Integer> {
 }

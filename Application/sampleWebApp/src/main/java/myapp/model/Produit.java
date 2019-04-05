@@ -3,10 +3,6 @@ package myapp.model;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * TODO : remplir la classe
- */
-
 @Entity
 @Table(name="produit")
 public class Produit {

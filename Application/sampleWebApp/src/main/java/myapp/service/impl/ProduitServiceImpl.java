@@ -1,16 +1,11 @@
 package myapp.service.impl;
 
-import myapp.model.User;
+
 import myapp.repository.ProduitRepository;
-import myapp.repository.UserRepository;
 import myapp.service.ProduitService;
 import myapp.util.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class ProduitServiceImpl implements ProduitService {
