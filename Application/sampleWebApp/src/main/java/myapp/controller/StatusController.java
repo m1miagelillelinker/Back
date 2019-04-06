@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/status" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class StatusController {
 
-    @Autowired
-    private StatusBusiness statusBusiness;
+    private final StatusBusiness statusBusiness;
+    private final StatusService statusService;
 
     @Autowired
-    private StatusService statusService;
+    public StatusController(StatusBusiness statusBusiness, StatusService statusService) {
+        this.statusBusiness = statusBusiness;
+        this.statusService = statusService;
+    }
 }

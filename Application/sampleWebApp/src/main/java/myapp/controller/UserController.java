@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/user" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class UserController {
 
-	@Autowired
-    private UserBusiness userBusiness;
+    private final UserBusiness userBusiness;
+    private final UserService userService;
 
-	@Autowired
-	private UserService userService;
+
+    @Autowired
+    public UserController(UserBusiness userBusiness, UserService userService) {
+        this.userBusiness = userBusiness;
+        this.userService = userService;
+    }
 
     @CrossOrigin
     @GetMapping("/get")

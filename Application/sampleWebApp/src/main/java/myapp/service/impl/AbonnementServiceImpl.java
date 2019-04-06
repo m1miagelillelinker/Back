@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AbonnementServiceImpl implements AbonnementService {
 
-    @Autowired
-    private AbonnementRepository abonnementRepository;
+    private final AbonnementRepository abonnementRepository;
 
+    @Autowired
+    public AbonnementServiceImpl(AbonnementRepository abonnementRepository) {
+        this.abonnementRepository = abonnementRepository;
+    }
 }

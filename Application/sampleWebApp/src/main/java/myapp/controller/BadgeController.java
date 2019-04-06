@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/badge" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class BadgeController {
 
-    @Autowired
-    private BadgeBusiness badgeBusiness;
-    
-    @Autowired
-    private BadgeService badgeService;
+    private final BadgeBusiness badgeBusiness;
+    private final BadgeService badgeService;
 
+    @Autowired
+    public BadgeController(BadgeBusiness badgeBusiness, BadgeService badgeService) {
+        this.badgeBusiness = badgeBusiness;
+        this.badgeService = badgeService;
+    }
 }

@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/commentaire" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class CommentaireController {
 
-    @Autowired
-    private CommentaireBusiness commentaireBusiness;
+    private final CommentaireBusiness commentaireBusiness;
+    private final CommentaireService commentaireService;
 
     @Autowired
-    private CommentaireService commentaireService;
+    public CommentaireController(CommentaireBusiness commentaireBusiness, CommentaireService commentaireService) {
+        this.commentaireBusiness = commentaireBusiness;
+        this.commentaireService = commentaireService;
+    }
 }

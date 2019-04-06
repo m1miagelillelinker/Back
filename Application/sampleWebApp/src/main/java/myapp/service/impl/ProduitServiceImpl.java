@@ -7,10 +7,6 @@ import myapp.util.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * TODO : remove System.out.println
- *
- */
 @Service
 public class ProduitServiceImpl implements ProduitService {
 
@@ -19,8 +15,13 @@ public class ProduitServiceImpl implements ProduitService {
     private HttpRequest httpRequestSerie;
     private HttpRequest httpRequestLivres;
 
+    private final ProduitRepository produitRepository;
+
     @Autowired
-    private ProduitRepository produitRepository;
+    public ProduitServiceImpl(ProduitRepository produitRepository) {
+        this.produitRepository = produitRepository;
+    }
+
 
     @Override
     public String getFilmByIdFromReferentiel(String filmId) {

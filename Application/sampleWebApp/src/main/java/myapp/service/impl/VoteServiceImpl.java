@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class VoteServiceImpl implements VoteService {
 
-    @Autowired
-    private VoteRepository voteRepository;
+    private final VoteRepository voteRepository;
 
+    @Autowired
+    public VoteServiceImpl(VoteRepository voteRepository) {
+        this.voteRepository = voteRepository;
+    }
 }
