@@ -10,5 +10,7 @@ public class AssociationServiceImpl implements AssociationService {
 
     @Autowired
     private AssociationRepository associationRepository;
+    
+    
 
 }
