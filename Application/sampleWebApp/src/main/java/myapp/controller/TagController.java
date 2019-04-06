@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/tag" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class TagController {
 
-    private final TagBusiness tagBusiness;
-    private final TagService tagService;
+    @Autowired
+    private TagBusiness tagBusiness;
 
     @Autowired
-    public TagController(TagBusiness tagBusiness, TagService tagService) {
-        this.tagBusiness = tagBusiness;
-        this.tagService = tagService;
-    }
+    private TagService tagService;
+
 }

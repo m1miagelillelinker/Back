@@ -11,14 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/association" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class AssociationController {
 
-    private final AssociationBusiness associationBusiness;
-    private final AssociationService associationService;
+    @Autowired
+    private AssociationBusiness associationBusiness;
 
     @Autowired
-    public AssociationController(AssociationBusiness associationBusiness, AssociationService associationService) {
-        this.associationBusiness = associationBusiness;
-        this.associationService = associationService;
-    }
-
-
+    private AssociationService associationService;
 }

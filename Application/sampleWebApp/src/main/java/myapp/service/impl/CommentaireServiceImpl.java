@@ -7,12 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CommentaireServiceImpl implements CommentaireService {
-
-
-    private final CommentaireRepository commentaireRepository;
-
+	
     @Autowired
-    public CommentaireServiceImpl(CommentaireRepository commentaireRepository) {
-        this.commentaireRepository = commentaireRepository;
-    }
+    private CommentaireRepository commentaireRepository;
+
 }

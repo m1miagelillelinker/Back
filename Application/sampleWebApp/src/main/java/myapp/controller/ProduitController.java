@@ -15,16 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/product" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class ProduitController {
 
-    private final ProduitService produitService;
-    private final ProduitBusiness produitBusiness;
-
+    @Autowired
+    private ProduitService produitService;
 
     @Autowired
-    public ProduitController(ProduitService produitService, ProduitBusiness productBusiness) {
-        this.produitBusiness = productBusiness;
-        this.produitService = produitService;
-    }
-
+    private ProduitBusiness produitBusiness;
 
     @CrossOrigin
     @GetMapping("/getFilmByIdFromReferentiel")

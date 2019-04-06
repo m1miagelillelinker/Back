@@ -11,15 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/abonnement" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class AbonnementController {
 
-    private final AbonnementBusiness abonnementBusiness;
-    private final AbonnementService abonnementService;
-
-
     @Autowired
-    public AbonnementController(AbonnementBusiness abonnementBusiness, AbonnementService abonnementService){
-        this.abonnementBusiness = abonnementBusiness;
-        this.abonnementService = abonnementService;
-    }
-
+    private AbonnementBusiness abonnementBusiness;
+    
+    @Autowired
+    private AbonnementService abonnementService;
 
 }

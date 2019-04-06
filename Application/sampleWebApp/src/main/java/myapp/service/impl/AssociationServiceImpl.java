@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AssociationServiceImpl implements AssociationService {
 
-    private final AssociationRepository associationRepository;
-
     @Autowired
-    public AssociationServiceImpl(AssociationRepository associationRepository) {
-        this.associationRepository = associationRepository;
-    }
+    private AssociationRepository associationRepository;
+
 }
