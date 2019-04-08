@@ -18,10 +18,17 @@ public class AbonnementServiceImpl implements AbonnementService {
     private AbonnementRepository abonnementRepository;
     
     @Override
-    public List<Abonnement> getFollowersById(Integer userId) {
+    public List<Abonnement> getFollowersByFollows(Integer userId) {
         Optional<List<Abonnement>> rep = abonnementRepository.findAllByFollower(userId);
         System.out.println("test getFollowersById :"+rep.toString());
         return rep.get();
     }
+
+	@Override
+	public List<Abonnement> getFollowsByFollower(Integer userId) {
+        Optional<List<Abonnement>> rep = abonnementRepository.findAllByFollows(userId);
+        System.out.println("test getFollowersById :"+rep.toString());
+        return rep.get();
+	}
 
 }

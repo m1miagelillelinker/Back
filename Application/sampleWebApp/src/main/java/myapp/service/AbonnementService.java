@@ -6,5 +6,7 @@ import myapp.model.Abonnement;
 
 public interface AbonnementService {
 
-	List<Abonnement> getFollowersById(Integer userId);
+	List<Abonnement> getFollowersByFollows(Integer userId);
+	
+	List<Abonnement> getFollowsByFollower(Integer userId);
 }

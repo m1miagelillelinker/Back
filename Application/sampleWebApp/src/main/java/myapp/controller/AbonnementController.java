@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,24 +27,31 @@ public class AbonnementController {
     @Autowired
     private AbonnementService abonnementService;
     
+    // TODO : securise parsing
     @CrossOrigin
-    @GetMapping("/get")
+    @GetMapping("/getFollowersById")
     @ResponseBody
-    public List<Abonnement> getUserById(@RequestParam("userId") String userId){
+    public List<Abonnement> getFollowersById(@RequestParam("userId") String userId){
         System.out.println(userId);
 
-        List<Abonnement> abonnements = abonnementService.getFollowersById(Integer.parseInt(userId));
+        List<Abonnement> abonnements = abonnementService.getFollowersByFollows(Integer.parseInt(userId));
 
         return abonnements;
     }
     
-    // get all followers
+    // TODO : securise parsing
+    @CrossOrigin
+    @GetMapping("/getFollowsById")
+    @ResponseBody
+    public List<Abonnement> getFollowsById(@RequestParam("userId") String userId){
+        System.out.println(userId);
+
+        List<Abonnement> abonnements = abonnementService.getFollowsByFollower(Integer.parseInt(userId));
+
+        return abonnements;
+    }
     
-    // get all followed by
-    
-    // get A follow B
-    
-    // put A follow B 
+    // post A follow B
     
     // delete A follow B
 
