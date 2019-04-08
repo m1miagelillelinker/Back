@@ -1,11 +1,18 @@
 package myapp.controller;
 
 import myapp.business.TagBusiness;
+import myapp.model.Tag;
 import myapp.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "/tag" , produces = MediaType.APPLICATION_JSON_VALUE )
@@ -16,5 +23,18 @@ public class TagController {
 
     @Autowired
     private TagService tagService;
+    
+    @CrossOrigin
+    @GetMapping("/get")
+    @ResponseBody
+    public Tag getTagById(@RequestParam("tagId") String tagId){
+    	return tagService.getTagById(Integer.parseInt(tagId));
+    }
+
+    
+    @PutMapping("/newTag")
+    public Tag createTag(@RequestBody Tag tag){
+    	return tagService.createTag(tag);
+    }
 
 }
