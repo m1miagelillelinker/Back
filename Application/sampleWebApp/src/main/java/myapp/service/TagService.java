@@ -1,12 +1,18 @@
 package myapp.service;
 
+import java.util.List;
+
 import myapp.model.Tag;
 
 public interface TagService {
 
 	Tag getTagById(Integer id);
 	
-	Tag createTag(Tag tag);
+	Tag createTag(String tag);
+
+	List<Tag> getTagsByIds(List<Integer> ids);
+
+	Tag getTagByValue(String tagValue);
 	
 	/*
 	 * TODO : 
