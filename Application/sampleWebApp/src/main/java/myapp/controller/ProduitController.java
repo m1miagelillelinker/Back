@@ -29,28 +29,40 @@ public class ProduitController {
     @CrossOrigin
     @GetMapping("/getFilmByIdFromReferentiel")
     @ResponseBody
-    public String getFilmByIdFromReferentiel(@RequestParam("filmId") String filmId){
+    public String getFilmByIdFromReferentiel(@RequestParam("filmId") String filmId) throws Exception {
+        if(filmId == null || filmId.equals("")){
+            throw new Exception();
+        }
         return produitService.getFilmByIdFromReferentiel(filmId);
     }
 
     @CrossOrigin
     @GetMapping("/getFilmByTitleFromReferentiel")
     @ResponseBody
-    public String getFilmByTitleFromReferentiel(@RequestParam("title")String title){
+    public String getFilmByTitleFromReferentiel(@RequestParam("title")String title) throws Exception {
+        if(title == null || title.equals("")){
+            throw new Exception();
+        }
         return produitService.getFilmByTitleFromReferentiel(title);
     }
 
     @CrossOrigin
     @GetMapping("/getBookByIdFromReferentiel")
     @ResponseBody
-    public String getBookByIdFromReferentiel(@RequestParam("bookId")String bookId){
+    public String getBookByIdFromReferentiel(@RequestParam("bookId")String bookId) throws Exception {
+        if(bookId == null || bookId.equals("")){
+            throw new Exception();
+        }
         return produitService.getBookByIdFromReferentiel(bookId);
     }
 
     @CrossOrigin
     @GetMapping("/getGameByIdFromReferentiel")
     @ResponseBody
-    public String getGameByIdFromReferentiel(@RequestParam("gameId")String gameId){
+    public String getGameByIdFromReferentiel(@RequestParam("gameId")String gameId) throws Exception {
+        if(gameId == null || gameId.equals("")){
+            throw new Exception();
+        }
         return produitService.getGameByIdFromReferentiel(gameId);
     }
 

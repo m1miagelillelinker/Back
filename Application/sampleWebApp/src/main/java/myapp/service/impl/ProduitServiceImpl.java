@@ -24,44 +24,36 @@ public class ProduitServiceImpl implements ProduitService {
 
 
     @Override
-    public String getFilmByIdFromReferentiel(String filmId) {
+    public String getFilmByIdFromReferentiel(String filmId) throws Exception {
         try{
             httpRequestFilm = new HttpRequest("http://www.omdbapi.com/?i="+filmId+"&apikey=9b0bebec");
-            String s = httpRequestFilm.request("GET");
-            System.out.println(s);
-            return s;
+            return httpRequestFilm.request("GET");
         }catch(Exception e){
-            e.printStackTrace();
-            return null; //a changer
+            throw new Exception();
         }
     }
 
     @Override
-    public String getFilmByTitleFromReferentiel(String title) {
+    public String getFilmByTitleFromReferentiel(String title) throws Exception{
         try{
             httpRequestFilm = new HttpRequest("http://www.omdbapi.com/?t="+title+"&apikey=9b0bebec");
-            String s = httpRequestFilm.request("GET");
-            System.out.println(s);
-            return s;
+            return httpRequestFilm.request("GET");
         }catch(Exception e){
-            e.printStackTrace();
-            return null; //a changer
+            throw new Exception();
         }
     }
 
     @Override
-    public String getBookByIdFromReferentiel(String bookId) {
+    public String getBookByIdFromReferentiel(String bookId) throws Exception {
         try{
             httpRequestFilm = new HttpRequest("https://www.googleapis.com/books/v1/volumes?q=isbn:"+bookId);
-            String s = httpRequestFilm.request("GET");
-            System.out.println(s);
-            return s;
+            return httpRequestFilm.request("GET");
         }catch(Exception e){
-            e.printStackTrace();
-            return null; //a changer
+            throw new Exception();
         }
     }
 
+    // TODO : REQUEST L'API JEU VIDEO
     @Override
     public String getGameByIdFromReferentiel(String gameId) {
         return null;
