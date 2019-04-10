@@ -1,15 +1,12 @@
 package myapp.util;
 
-
-import org.springframework.web.bind.annotation.RequestMethod;
+import myapp.dto.ProductDTO;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Map;
 
-public class HttpRequest {
+public abstract class HttpRequest {
     HttpURLConnection con;
     URL url;
 
@@ -22,7 +19,7 @@ public class HttpRequest {
         }
     }
 
-    public String request(String requestMethod) throws Exception {
+    public ProductDTO request(String requestMethod) throws Exception {
         con.setRequestMethod(requestMethod);
         con.setDoOutput(true);
         con.setRequestProperty("Content-Type", "application/json");
@@ -43,7 +40,10 @@ public class HttpRequest {
                 content.append(inputLine);
             }
             in.close();
-            return content.toString();
+            return convert(content.toString());
         }
     }
+
+    protected abstract ProductDTO convert(String toString) throws Exception;
+
 }

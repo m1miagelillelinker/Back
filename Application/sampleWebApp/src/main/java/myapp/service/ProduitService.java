@@ -1,12 +1,14 @@
 package myapp.service;
 
+import myapp.dto.ProductDTO;
+
 public interface ProduitService {
 
-    String getFilmByIdFromReferentiel(String filmId) throws Exception;
+    ProductDTO getFilmByIdFromReferentiel(String filmId) throws Exception;
 
-    String getFilmByTitleFromReferentiel(String title) throws Exception;
+    ProductDTO getFilmByTitleFromReferentiel(String title) throws Exception;
 
-    String getBookByIdFromReferentiel(String bookId) throws Exception;
+    ProductDTO getBookByIdFromReferentiel(String bookId) throws Exception;
 
-    String getGameByIdFromReferentiel(String gameId);
+    ProductDTO getGameByIdFromReferentiel(String gameId);
 }
