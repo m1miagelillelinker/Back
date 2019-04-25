@@ -34,7 +34,7 @@ public class AbonnementController {
     public List<Abonnement> getFollowersById(@RequestParam("userId") String userId){
         System.out.println(userId);
 
-        List<Abonnement> abonnements = abonnementService.getFollowersByFollows(Integer.parseInt(userId));
+        List<Abonnement> abonnements = abonnementService.getFollowersByFollows(userId);
 
         return abonnements;
     }
@@ -46,13 +46,25 @@ public class AbonnementController {
     public List<Abonnement> getFollowsById(@RequestParam("userId") String userId){
         System.out.println(userId);
 
-        List<Abonnement> abonnements = abonnementService.getFollowsByFollower(Integer.parseInt(userId));
+        List<Abonnement> abonnements = abonnementService.getFollowsByFollower(userId);
 
         return abonnements;
     }
     
     // post A follow B
+    @CrossOrigin
+    @GetMapping("/follow")
+    @ResponseBody
+    public Abonnement follow(@RequestParam("follower") String follower, @RequestParam("follows") String follows){
+        return abonnementService.follow(follower, follows);
+    }
     
     // delete A follow B
+    @CrossOrigin
+    @GetMapping("/unfollow")
+    @ResponseBody
+    public void unfollow(@RequestParam("follower") String follower, @RequestParam("follows") String follows){
+        abonnementService.unfollow(follower, follows);
+    }
 
 }

@@ -2,19 +2,26 @@ package myapp.model;
 
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name="abonnement")
-public class Abonnement {
+public class Abonnement implements Serializable{
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+    @Column(name="follower")
+    String follower;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="follower")
-    int follower;
-
     @Column(name="follows")
-    int follows;
+    String follows;
 
     @Column(name="created_at")
     Date created_at;
@@ -22,7 +29,8 @@ public class Abonnement {
     @Column(name="updated_at")
     Date updated_at;
 
-    public Abonnement(int follows, Date created_at, Date updated_at) {
+    public Abonnement(String follower, String follows, Date created_at, Date updated_at) {
+    	this.follower = follower;
         this.follows = follows;
         this.created_at = created_at;
         this.updated_at = updated_at;
@@ -30,19 +38,19 @@ public class Abonnement {
 
     public Abonnement(){}
 
-    public int getFollower() {
+    public String getFollower() {
         return follower;
     }
 
-    public void setFollower(int follower) {
+    public void setFollower(String follower) {
         this.follower = follower;
     }
 
-    public int getFollows() {
+    public String getFollows() {
         return follows;
     }
 
-    public void setFollows(int follows) {
+    public void setFollows(String follows) {
         this.follows = follows;
     }
 
