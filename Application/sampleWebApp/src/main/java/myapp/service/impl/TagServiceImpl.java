@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class TagServiceImpl implements TagService {
 
-    private final TagRepository tagRepository;
+	private final TagRepository tagRepository;
 
     @Autowired
-    private TagRepository tagRepository;
+    public TagServiceImpl(TagRepository tagRepository) {
+        this.tagRepository = tagRepository;
+    }
 
 	@Override
 	public Tag getTagById(Integer id) {

@@ -22,11 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/tag" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class TagController {
 
-    private final TagBusiness tagBusiness;
+	private final TagBusiness tagBusiness;
     private final TagService tagService;
 
     @Autowired
-    private TagService tagService;
+    public TagController(TagBusiness tagBusiness, TagService tagService) {
+        this.tagBusiness = tagBusiness;
+        this.tagService = tagService;
+    }
     
     @CrossOrigin
     @GetMapping("/get")
