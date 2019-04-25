@@ -41,14 +41,6 @@ public class TagController {
     public Tag getTagByValue(@RequestParam("value") String tagValue){
     	return tagService.getTagByValue(tagValue);
     }
-    
-    @CrossOrigin
-    @GetMapping("/gets")
-    @ResponseBody
-    public List<Tag> getTagsByIds(@RequestParam("tagsIds") List<String> tagsIds){
-    	List<Integer> ids = tagsIds.stream().map(s -> Integer.parseInt(s)).collect(Collectors.toList());
-    	return tagService.getTagsByIds(ids);
-    }
 
     @PutMapping("/newTag")
     public Tag createTag(@RequestBody String tag){
