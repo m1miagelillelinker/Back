@@ -1,22 +1,26 @@
 package myapp.dto;
 
+import myapp.model.Association;
 import myapp.model.Tag;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ProductDTO {
 
-    Integer id;
+    String id;
     String title;
     String description;
     String country;
     String director;
     String year;
-    Tag genre;
+    List<Tag> genre;
+    List<Association> listProduits;
     String image;
     Date duration;
 
-    public ProductDTO(Integer id, String title, String description, String country, String director, String year, Tag genre, String image, Date duration) {
+    public ProductDTO(String id, String title, String description, String country, String director, String year, List<Tag> genre, List<Association> listProduits, String image, Date duration) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -24,18 +28,18 @@ public class ProductDTO {
         this.director = director;
         this.year = year;
         this.genre = genre;
+        this.listProduits = listProduits;
         this.image = image;
         this.duration = duration;
     }
 
-    public ProductDTO(){}
+    public ProductDTO() {};
 
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -79,12 +83,20 @@ public class ProductDTO {
         this.year = year;
     }
 
-    public Tag getGenre() {
+    public List<Tag> getGenre() {
         return genre;
     }
 
-    public void setGenre(Tag genre) {
+    public void setGenre(List<Tag> genre) {
         this.genre = genre;
+    }
+
+    public List<Association> getListProduits() {
+        return listProduits;
+    }
+
+    public void setListProduits(List<Association> listProduits) {
+        this.listProduits = listProduits;
     }
 
     public String getImage() {
@@ -103,20 +115,10 @@ public class ProductDTO {
         this.duration = duration;
     }
 
-    @Override
-    public String toString() {
-        return "ProductDTO{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", country='" + country + '\'' +
-                ", director='" + director + '\'' +
-                ", year='" + year + '\'' +
-                ", genre=" + genre +
-                ", image='" + image + '\'' +
-                ", duration=" + duration +
-                '}';
-    }
+
+
+
+
 
     public ProductDTO convertOmdbToProduct(OmdbDTO omdbDTO){
         ProductDTO productDTO = new ProductDTO();
@@ -126,7 +128,8 @@ public class ProductDTO {
         productDTO.setCountry(omdbDTO.getCountry());
         productDTO.setDirector(omdbDTO.getDirector());
         productDTO.setYear(omdbDTO.getYear());
-        productDTO.setGenre(omdbDTO.getGenre());
+        List<Tag> listTag = new ArrayList<>();
+        listTag.add(omdbDTO.getGenre());
         productDTO.setImage(omdbDTO.getImage());
         productDTO.setDuration(new Date());
         return productDTO;
@@ -140,7 +143,8 @@ public class ProductDTO {
         productDTO.setCountry("");
         productDTO.setDirector(googleBooksDTO.getAuthor());
         productDTO.setYear(googleBooksDTO.getYear());
-        productDTO.setGenre(googleBooksDTO.getGenre());
+        List<Tag> listTag = new ArrayList<>();
+        listTag.add(googleBooksDTO.getGenre());
         productDTO.setImage(googleBooksDTO.getImage());
         productDTO.setDuration(new Date());
         return productDTO;

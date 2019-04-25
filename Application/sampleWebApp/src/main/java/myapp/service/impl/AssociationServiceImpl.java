@@ -6,6 +6,8 @@ import myapp.service.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,19 +21,28 @@ public class AssociationServiceImpl implements AssociationService {
     }
 
     @Override
-    public Association getAssociationById(String id_association) throws Exception {
-        Optional<Association> association;
+    public List<Association> getAssociationsByIdProduct(String id_association) throws Exception {
+        List<Association> listAsso;
+
         try{
-            association = associationRepository.findById(Integer.parseInt(id_association));
+            listAsso = associationRepository.findAllById_produit_A(id_association);
         }catch (Exception e){
             throw new Exception();
         }
 
-        if(association.isPresent()){
-            return association.get();
-        }else{
-            throw  new Exception();
+        return listAsso;
+
+
+    }
+
+    @Override
+    public String deleteAssociation(String id_association) throws Exception {
+        try{
+            associationRepository.deleteById(id_association);
+        }catch (Exception e){
+            throw new Exception();
         }
+        return "Le delete a ete fait";
     }
 
 

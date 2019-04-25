@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OmdbDTO {
 
-    Integer id;
+    String id;
     String title;
     String Description;
     String country;
@@ -18,7 +18,8 @@ public class OmdbDTO {
     String duration;
     String nbSeasons;
 
-    public OmdbDTO(Integer id, String title, String description, String country, String director, String year, Tag genre, String image, String duration, String nbSeasons) {
+
+    public OmdbDTO(String id, String title, String description, String country, String director, String year, Tag genre, String image, String duration, String nbSeasons) {
         this.id = id;
         this.title = title;
         Description = description;
@@ -31,11 +32,11 @@ public class OmdbDTO {
         this.nbSeasons = nbSeasons;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

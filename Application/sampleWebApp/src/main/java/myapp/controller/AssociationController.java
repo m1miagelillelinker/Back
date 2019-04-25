@@ -26,38 +26,32 @@ public class AssociationController {
 
 
     @CrossOrigin
-    @GetMapping("/getAssociationById")
+    @GetMapping("/getAssociationsByIdProduct")
     @ResponseBody
-    public Association getAssociation (@RequestParam("id_association")String id_association) throws Exception {
+    public List<Association> getAssociationsByIdProduct(@RequestParam("id_association")String id_association) throws Exception {
         if(id_association == null || id_association.equals("")){
             throw new Exception();
         }
-        return associationService.getAssociationById(id_association);
+        return associationService.getAssociationsByIdProduct(id_association);
     }
 
     @CrossOrigin
-    @PostMapping("/createAssociation")
+    @PutMapping("/createAssociation")
     @ResponseBody
-    public Association createAssociation () throws Exception {
+    public Association createAssociation() throws Exception {
         return null;
     }
 
+
     @CrossOrigin
-    @PostMapping("/getAssociatedProducts")
+    @DeleteMapping("/deleteAssociation")
     @ResponseBody
-    public List<Produit> getAssociatedProducts(@RequestParam("id_product") String id_product) throws Exception{
-        if(id_product == null || id_product.equals("")){
+    public String deleteAssociation(@RequestParam("id_association") String id_association) throws Exception {
+        if(id_association == null || id_association.equals("")){
             throw new Exception();
         }
-
-        return associationBusiness.findAllAssociateProduct(id_product);
-
+        return associationService.deleteAssociation(id_association);
     }
-
-
-
-
-
 
 
 }

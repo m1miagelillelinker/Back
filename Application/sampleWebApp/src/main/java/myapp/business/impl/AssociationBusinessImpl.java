@@ -1,6 +1,7 @@
 package myapp.business.impl;
 
 import myapp.business.AssociationBusiness;
+import myapp.model.Association;
 import myapp.model.Produit;
 import myapp.service.AssociationService;
 import myapp.service.ProduitService;
@@ -23,11 +24,4 @@ public class AssociationBusinessImpl implements AssociationBusiness {
     }
 
 
-
-    @Override
-    public List<Produit> findAllAssociateProduct(String id_product) {
-        List<Produit> listProduit = new ArrayList<>();
-        return listProduit;
-
-    }
 }

@@ -2,12 +2,9 @@ package myapp.dto;
 
 import myapp.model.Tag;
 
-import java.util.Date;
-import java.util.List;
+public class GoogleBooksDTO{
 
-public class GoogleBooksDTO {
-
-    Integer id;
+    String id;
     String title;
     String description;
     String author;
@@ -15,7 +12,7 @@ public class GoogleBooksDTO {
     Tag genre;
     String image;
 
-    public GoogleBooksDTO(Integer id, String title, String description, String author, String year, Tag genre, String image) {
+    public GoogleBooksDTO(String id, String title, String description, String author, String year, Tag genre, String image) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -25,11 +22,11 @@ public class GoogleBooksDTO {
         this.image = image;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -4,16 +4,19 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="association")
+@Table(name="association_produit")
 public class Association {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
-    int id;
+    @Column(name="id_assoc")
+    String id;
 
-    @Column(name="visible")
-    int visible;
+    @Column(name="id_produit_A")
+    String id_produit_A;
+
+    @Column(name="id_produit_B")
+    String id_produit_B;
 
     @Column(name="created_at")
     Date created_at;
@@ -22,51 +25,45 @@ public class Association {
     Date updated_at;
 
 
-    public Association(){}
-
-    public Association(int visible, Date created_at, Date updated_at) {
-        this.visible = visible;
+    public Association(String id_produit_A, String id_produit_B, Date created_at, Date updated_at) {
+        this.id_produit_A = id_produit_A;
+        this.id_produit_B = id_produit_B;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
 
-    public int getId() {
+    public Association(){}
+
+    public String getId_produit_A() {
+        return id_produit_A;
+    }
+
+    public void setId_produit_A(String id_produit_A) {
+        this.id_produit_A = id_produit_A;
+    }
+
+    public String getId_produit_B() {
+        return id_produit_B;
+    }
+
+    public void setId_produit_B(String id_produit_B) {
+        this.id_produit_B = id_produit_B;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public int getVisible() {
-        return visible;
-    }
-
-    public void setVisible(int visible) {
-        this.visible = visible;
-    }
-
-    public Date getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
-    }
-
-    public Date getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
     }
 
     @Override
     public String toString() {
         return "Association{" +
-                "id=" + id +
-                ", visible=" + visible +
+                "id='" + id + '\'' +
+                ", id_produit_A='" + id_produit_A + '\'' +
+                ", id_produit_B='" + id_produit_B + '\'' +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
                 '}';

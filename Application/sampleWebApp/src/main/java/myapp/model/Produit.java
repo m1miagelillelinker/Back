@@ -10,7 +10,7 @@ public class Produit {
 
     @Id
     @Column(name="id")
-    private Integer id;
+    private String id;
 
     @Column(name="name")
     private String name;
@@ -21,18 +21,18 @@ public class Produit {
     @Column(name = "updated_at")
     private Date updated_at;
 
-    public Produit(int id,String name, Date created_at, Date updated_at) {
+    public Produit(String id,String name, Date created_at, Date updated_at) {
         this.id = id;
         this.name = name;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
