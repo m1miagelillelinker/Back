@@ -3,37 +3,34 @@ package myapp.model;
 
 import javax.persistence.*;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name="abonnement")
-public class Abonnement implements Serializable{
-
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Abonnement {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="idabonnement")
+    int idAbonnement;
+	
     @Column(name="follower")
     String follower;
 
-    @Id
     @Column(name="follows")
     String follows;
 
-    @Column(name="created_at")
-    Date created_at;
+    @Column(name="createdat")
+    Date createdAt;
 
-    @Column(name="updated_at")
-    Date updated_at;
+    @Column(name="updatedat")
+    Date updatedAt;
 
-    public Abonnement(String follower, String follows, Date created_at, Date updated_at) {
+    public Abonnement(String follower, String follows, Date createdAt, Date updatedAt) {
     	this.follower = follower;
         this.follows = follows;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Abonnement(){}
@@ -54,20 +51,20 @@ public class Abonnement implements Serializable{
         this.follows = follows;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -75,8 +72,8 @@ public class Abonnement implements Serializable{
         return "Abonnement{" +
                 "follower=" + follower +
                 ", follows=" + follows +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", updated_at=" + updatedAt +
                 '}';
     }
 }

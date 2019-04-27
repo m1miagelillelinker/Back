@@ -40,7 +40,7 @@ public class AbonnementServiceImpl implements AbonnementService {
 
 	@Override
 	public void unfollow(String follower, String follows) {
-		Abonnement abonnement = abonnementRepository.findByFollowerAndFollow(follower, follows).get();
+		Abonnement abonnement = abonnementRepository.findByFollowerAndFollows(follower, follows).get();
 		abonnementRepository.delete(abonnement);
 		
 	}
