@@ -19,4 +19,6 @@ public class BadgeController {
         this.badgeBusiness = badgeBusiness;
         this.badgeService = badgeService;
     }
+
+
 }

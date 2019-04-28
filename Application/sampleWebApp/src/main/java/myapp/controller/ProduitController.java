@@ -2,6 +2,7 @@ package myapp.controller;
 
 import myapp.business.ProduitBusiness;
 import myapp.business.UserBusiness;
+import myapp.dto.ProductDTO;
 import myapp.model.Produit;
 import myapp.model.User;
 import myapp.service.ProduitService;
@@ -29,28 +30,40 @@ public class ProduitController {
     @CrossOrigin
     @GetMapping("/getFilmByIdFromReferentiel")
     @ResponseBody
-    public String getFilmByIdFromReferentiel(@RequestParam("filmId") String filmId){
+    public ProductDTO getFilmByIdFromReferentiel(@RequestParam("filmId") String filmId) throws Exception {
+        if(filmId == null || filmId.equals("")){
+            throw new Exception();
+        }
         return produitService.getFilmByIdFromReferentiel(filmId);
     }
 
     @CrossOrigin
     @GetMapping("/getFilmByTitleFromReferentiel")
     @ResponseBody
-    public String getFilmByTitleFromReferentiel(@RequestParam("title")String title){
+    public ProductDTO getFilmByTitleFromReferentiel(@RequestParam("title")String title) throws Exception {
+        if(title == null || title.equals("")){
+            throw new Exception();
+        }
         return produitService.getFilmByTitleFromReferentiel(title);
     }
 
     @CrossOrigin
     @GetMapping("/getBookByIdFromReferentiel")
     @ResponseBody
-    public String getBookByIdFromReferentiel(@RequestParam("bookId")String bookId){
+    public ProductDTO getBookByIdFromReferentiel(@RequestParam("bookId")String bookId) throws Exception {
+        if(bookId == null || bookId.equals("")){
+            throw new Exception();
+        }
         return produitService.getBookByIdFromReferentiel(bookId);
     }
 
     @CrossOrigin
     @GetMapping("/getGameByIdFromReferentiel")
     @ResponseBody
-    public String getGameByIdFromReferentiel(@RequestParam("gameId")String gameId){
+    public ProductDTO getGameByIdFromReferentiel(@RequestParam("gameId")String gameId) throws Exception {
+        if(gameId == null || gameId.equals("")){
+            throw new Exception();
+        }
         return produitService.getGameByIdFromReferentiel(gameId);
     }
 

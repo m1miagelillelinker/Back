@@ -15,18 +15,19 @@ public class Badge {
     @Column(name="badge")
     String description;
 
-    @Column(name="created_at")
-    Date created_at;
+    @Column(name="createdat")
+    Date createdAt;
 
-    @Column(name="updated_at")
-    Date updated_at;
+    @Column(name="updatedat")
+    Date updatedAt;
 
     public Badge(){}
 
-    public Badge(String description, Date created_at, Date updated_at) {
+
+    public Badge(String description, Date createdAt, Date updatedAt) {
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {
@@ -45,29 +46,30 @@ public class Badge {
         this.description = description;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
+
 
     @Override
     public String toString() {
         return "Badge{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

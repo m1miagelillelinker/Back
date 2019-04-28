@@ -10,29 +10,31 @@ public class Produit {
 
     @Id
     @Column(name="id")
-    private Integer id;
+    private String id;
 
     @Column(name="name")
     private String name;
 
-    @Column(name="created_at")
-    private Date created_at;
+    @Column(name="createdat")
+    private Date createdAt;
 
-    @Column(name = "updated_at")
-    private Date updated_at;
+    @Column(name = "updatedat")
+    private Date updatedAt;
 
-    public Produit(int id,String name, Date created_at, Date updated_at) {
+    public Produit(String id, String name, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public Integer getId() {
+    public Produit(){}
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,19 +46,29 @@ public class Produit {
         this.name = name;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

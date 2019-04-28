@@ -11,29 +11,29 @@ public class Vote {
     @Column(name="id")
     int id;
 
-    @Column(name="id_assoc")
-    int id_assoc;
+    @Column(name="idassoc")
+    int idAssoc;
 
     @Column(name="vote")
     int vote;
 
-    @Column(name="id_user")
-    int id_user;
+    @Column(name="iduser")
+    int idUser;
 
-    @Column(name="created_at")
-    Date created_at;
+    @Column(name="createdat")
+    Date createdAt;
 
-    @Column(name="updated_at")
-    Date updated_at;
+    @Column(name="updatedat")
+    Date updatedAt;
 
     public Vote(){}
 
-    public Vote(int id_assoc, int vote, int id_user, Date created_at, Date updated_at) {
-        this.id_assoc = id_assoc;
+    public Vote(int idAssoc, int vote, int idUser, Date createdAt, Date updatedAt) {
+        this.idAssoc = idAssoc;
         this.vote = vote;
-        this.id_user = id_user;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.idUser = idUser;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {
@@ -44,12 +44,12 @@ public class Vote {
         this.id = id;
     }
 
-    public int getId_assoc() {
-        return id_assoc;
+    public int getIdAssoc() {
+        return idAssoc;
     }
 
-    public void setId_assoc(int id_assoc) {
-        this.id_assoc = id_assoc;
+    public void setIdAssoc(int idAssoc) {
+        this.idAssoc = idAssoc;
     }
 
     public int getVote() {
@@ -60,29 +60,39 @@ public class Vote {
         this.vote = vote;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "id=" + id +
+                ", idAssoc=" + idAssoc +
+                ", vote=" + vote +
+                ", idUser=" + idUser +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

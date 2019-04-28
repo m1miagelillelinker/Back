@@ -18,32 +18,32 @@ public class Commentaire {
     @Column(name="Note")
     int note;
 
-    @Column(name="id_user")
-    int id_user;
+    @Column(name="iduser")
+    int idUser;
 
-    @Column(name="id_assoc")
-    int id_assoc;
+    @Column(name="idassoc")
+    int idAssoc;
 
     @Column(name="status")
     int status;
 
-    @Column(name="created_at")
-    Date created_at;
+    @Column(name="createdat")
+    Date createdat;
 
-    @Column(name="updated_at")
-    Date updated_at;
+    @Column(name="updatedat")
+    Date updatedAt;
 
-    public Commentaire(){}
-
-    public Commentaire(String commentaire, int note, int id_user, int id_assoc, int status, Date created_at, Date updated_at) {
+    public Commentaire(String commentaire, int note, int idUser, int idAssoc, int status, Date createdat, Date updatedAt) {
         this.commentaire = commentaire;
         this.note = note;
-        this.id_user = id_user;
-        this.id_assoc = id_assoc;
+        this.idUser = idUser;
+        this.idAssoc = idAssoc;
         this.status = status;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdat = createdat;
+        this.updatedAt = updatedAt;
     }
+
+    public Commentaire(){}
 
     public int getId() {
         return id;
@@ -69,20 +69,20 @@ public class Commentaire {
         this.note = note;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public int getId_assoc() {
-        return id_assoc;
+    public int getIdAssoc() {
+        return idAssoc;
     }
 
-    public void setId_assoc(int id_assoc) {
-        this.id_assoc = id_assoc;
+    public void setIdAssoc(int idAssoc) {
+        this.idAssoc = idAssoc;
     }
 
     public int getStatus() {
@@ -93,20 +93,20 @@ public class Commentaire {
         this.status = status;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedat() {
+        return createdat;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -115,11 +115,11 @@ public class Commentaire {
                 "id=" + id +
                 ", commentaire='" + commentaire + '\'' +
                 ", note=" + note +
-                ", id_user=" + id_user +
-                ", id_assoc=" + id_assoc +
+                ", idUser=" + idUser +
+                ", idAssoc=" + idAssoc +
                 ", status=" + status +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", createdat=" + createdat +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

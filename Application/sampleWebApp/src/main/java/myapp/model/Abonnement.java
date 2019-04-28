@@ -2,38 +2,45 @@ package myapp.model;
 
 
 import javax.persistence.*;
-
 import java.util.Date;
 
 @Entity
 @Table(name="abonnement")
 public class Abonnement {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="idabonnement")
-    int idAbonnement;
-	
+    int idabonnement;
+
     @Column(name="follower")
     String follower;
 
     @Column(name="follows")
     String follows;
 
-    @Column(name="createdat")
-    Date createdAt;
+    @Column(name="createat")
+    Date createdat;
 
     @Column(name="updatedat")
     Date updatedAt;
 
-    public Abonnement(String follower, String follows, Date createdAt, Date updatedAt) {
-    	this.follower = follower;
+    public Abonnement(String follower, String follows, Date createdat, Date updatedAt) {
+        this.follower = follower;
         this.follows = follows;
-        this.createdAt = createdAt;
+        this.createdat = createdat;
         this.updatedAt = updatedAt;
     }
 
     public Abonnement(){}
+
+    public int getIdabonnement() {
+        return idabonnement;
+    }
+
+    public void setIdabonnement(int idabonnement) {
+        this.idabonnement = idabonnement;
+    }
 
     public String getFollower() {
         return follower;
@@ -51,12 +58,12 @@ public class Abonnement {
         this.follows = follows;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreatedat() {
+        return createdat;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
     }
 
     public Date getUpdatedAt() {
@@ -70,10 +77,11 @@ public class Abonnement {
     @Override
     public String toString() {
         return "Abonnement{" +
-                "follower=" + follower +
-                ", follows=" + follows +
-                ", created_at=" + createdAt +
-                ", updated_at=" + updatedAt +
+                "idabonnement=" + idabonnement +
+                ", follower='" + follower + '\'' +
+                ", follows='" + follows + '\'' +
+                ", createdat=" + createdat +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

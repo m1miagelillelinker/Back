@@ -26,12 +26,8 @@ public class UserController {
     @CrossOrigin
     @GetMapping("/get")
     @ResponseBody
-    public User getUserById(@RequestParam("userId") String userId){
-        System.out.println(userId);
-
-        User user = userService.getUserById(Integer.parseInt(userId));
-
-        return user;
+    public User getUserById(@RequestParam("userId") String userId) throws Exception {
+        return  userService.getUserById(Integer.parseInt(userId));
     }
 
 }

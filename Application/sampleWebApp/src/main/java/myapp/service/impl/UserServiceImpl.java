@@ -19,9 +19,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User getUserById(Integer userId) {
+    public User getUserById(Integer userId) throws Exception {
         Optional<User> rep = userRepository.findById(userId);
-        //System.out.println("JSUIS DANS LE COLO :"+rep.toString());
-        return rep.get();
+        if(rep.isPresent()){
+            return rep.get();
+        }else{
+            throw new Exception();
+        }
     }
 }

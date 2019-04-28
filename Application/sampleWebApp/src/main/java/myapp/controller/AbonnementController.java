@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/abonnement" , produces = MediaType.APPLICATION_JSON_VALUE )
@@ -31,7 +32,7 @@ public class AbonnementController {
         this.abonnementBusiness = abonnementBusiness;
         this.abonnementService = abonnementService;
     }
-    
+
     @CrossOrigin
     @GetMapping("/followers")
     @ResponseBody
@@ -42,7 +43,7 @@ public class AbonnementController {
 
         return abonnements;
     }
-    
+
     @CrossOrigin
     @GetMapping("/follows")
     @ResponseBody
@@ -53,7 +54,7 @@ public class AbonnementController {
 
         return abonnements;
     }
-    
+
     // post A follow B
     @CrossOrigin
     @PutMapping("/follow")
@@ -61,7 +62,7 @@ public class AbonnementController {
     public Abonnement follow(@RequestParam("follower") String follower, @RequestParam("follows") String follows){
         return abonnementService.follow(follower, follows);
     }
-    
+
     // delete A follow B
     @CrossOrigin
     @DeleteMapping("/unfollow")

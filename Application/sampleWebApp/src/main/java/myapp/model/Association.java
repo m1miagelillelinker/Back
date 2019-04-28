@@ -10,65 +10,77 @@ public class Association {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    int id;
+    Integer id;
 
-    @Column(name="visible")
-    int visible;
+    @Column(name="idproduitA")
+    String idproduitA;
 
-    @Column(name="created_at")
-    Date created_at;
+    @Column(name="idproduitB")
+    String idproduitB;
 
-    @Column(name="updated_at")
-    Date updated_at;
+    @Column(name="createdat")
+    Date createdat;
 
+    @Column(name="updatedat")
+    Date updatedat;
 
     public Association(){}
 
-    public Association(int visible, Date created_at, Date updated_at) {
-        this.visible = visible;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+    public Association(String idproduitA, String idproduitB, Date createdat, Date updatedat) {
+        this.idproduitA = idproduitA;
+        this.idproduitB = idproduitB;
+        this.createdat = createdat;
+        this.updatedat = updatedat;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getVisible() {
-        return visible;
+    public String getIdproduitA() {
+        return idproduitA;
     }
 
-    public void setVisible(int visible) {
-        this.visible = visible;
+    public void setIdproduitA(String idproduitA) {
+        this.idproduitA = idproduitA;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public String getIdproduitB() {
+        return idproduitB;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setIdproduitB(String idproduitB) {
+        this.idproduitB = idproduitB;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getCreatedat() {
+        return createdat;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
+    }
+
+    public Date getUpdatedat() {
+        return updatedat;
+    }
+
+    public void setUpdatedat(Date updatedat) {
+        this.updatedat = updatedat;
     }
 
     @Override
     public String toString() {
         return "Association{" +
                 "id=" + id +
-                ", visible=" + visible +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", idproduitA='" + idproduitA + '\'' +
+                ", idproduitB='" + idproduitB + '\'' +
+                ", createdat=" + createdat +
+                ", updatedat=" + updatedat +
                 '}';
     }
 }
