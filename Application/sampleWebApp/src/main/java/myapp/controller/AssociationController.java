@@ -38,8 +38,11 @@ public class AssociationController {
     @CrossOrigin
     @PutMapping("/createAssociation")
     @ResponseBody
-    public Association createAssociation() throws Exception {
-        return null;
+    public Association createAssociation(@RequestParam("id_association_1") String id_association_1, @RequestParam("id_association_2") String id_association_2) throws Exception {
+        if(id_association_1 == null || id_association_2 == null || id_association_1.equals("") || id_association_2.equals("")){
+            throw new Exception();
+        }
+        return associationService.createAssociation(id_association_1,id_association_2);
     }
 
 

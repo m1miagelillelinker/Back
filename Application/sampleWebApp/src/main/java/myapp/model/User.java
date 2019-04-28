@@ -10,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private Integer id;
+    private String id;
 
     @Column(name="firstname")
     private String firstName;
@@ -24,14 +24,8 @@ public class User {
     @Column(name="email")
     private String email;
 
-    @Column(name="type_user")
-    private String type_user;
-
-    @Column(name="created_at")
-    private Date create_at;
-
-    @Column(name="updated_at")
-    private Date update_at;
+    @Column(name="typeuser")
+    private String typeUser;
 
     @Column(name="pseudo")
     private String pseudo;
@@ -39,54 +33,55 @@ public class User {
     @Column(name="score")
     private Integer score;
 
-    @Column(name="password")
+    @Column(name= "password")
     private String password;
 
-    @Column(name="id_status")
-    private Integer id_status;
+    @Column(name = "idstatus")
+    private Integer idstatus;
 
-    public User(Integer id, String firstName, String lastName, Integer gender, String email, String type_user, Date create_at, Date update_at, String pseudo, Integer score, String password, Integer id_status) {
-        this.id = id;
+    @Column(name= "picture")
+    private String picture;
+
+    @Column(name="createdat")
+    private Date createdAt;
+
+    @Column(name="updatedat")
+    private Date updatedAt;
+
+    @Column(name="lastip")
+    private Date lastip;
+
+    @Column(name="lastlogin")
+    private Date lastlogin;
+
+    @Column(name="loginscount")
+    private Integer loginscount;
+
+    public User(String firstName, String lastName, Integer gender, String email, String typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, Date createdAt, Date updatedAt, Date lastip, Date lastlogin, Integer loginscount) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.email = email;
-        this.type_user = type_user;
-        this.create_at = create_at;
-        this.update_at = update_at;
+        this.typeUser = typeUser;
         this.pseudo = pseudo;
         this.score = score;
         this.password = password;
-        this.id_status = id_status;
+        this.idstatus = idstatus;
+        this.picture = picture;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.lastip = lastip;
+        this.lastlogin = lastlogin;
+        this.loginscount = loginscount;
     }
 
-    public User(){
-    }
+    public User(){}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gender=" + gender +
-                ", email='" + email + '\'' +
-                ", type_user='" + type_user + '\'' +
-                ", create_at=" + create_at +
-                ", update_at=" + update_at +
-                ", pseudo='" + pseudo + '\'' +
-                ", score=" + score +
-                ", password='" + password + '\'' +
-                ", id_status=" + id_status +
-                '}';
-    }
-
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -122,28 +117,12 @@ public class User {
         this.email = email;
     }
 
-    public String getType_user() {
-        return type_user;
+    public String getTypeUser() {
+        return typeUser;
     }
 
-    public void setType_user(String type_user) {
-        this.type_user = type_user;
-    }
-
-    public Date getCreate_at() {
-        return create_at;
-    }
-
-    public void setCreate_at(Date create_at) {
-        this.create_at = create_at;
-    }
-
-    public Date getUpdate_at() {
-        return update_at;
-    }
-
-    public void setUpdate_at(Date update_at) {
-        this.update_at = update_at;
+    public void setTypeUser(String typeUser) {
+        this.typeUser = typeUser;
     }
 
     public String getPseudo() {
@@ -170,12 +149,81 @@ public class User {
         this.password = password;
     }
 
-    public Integer getId_status() {
-        return id_status;
+    public Integer getIdstatus() {
+        return idstatus;
     }
 
-    public void setId_status(Integer id_status) {
-        this.id_status = id_status;
+    public void setIdstatus(Integer idstatus) {
+        this.idstatus = idstatus;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getLastip() {
+        return lastip;
+    }
+
+    public void setLastip(Date lastip) {
+        this.lastip = lastip;
+    }
+
+    public Date getLastlogin() {
+        return lastlogin;
+    }
+
+    public void setLastlogin(Date lastlogin) {
+        this.lastlogin = lastlogin;
+    }
+
+    public Integer getLoginscount() {
+        return loginscount;
+    }
+
+    public void setLoginscount(Integer loginscount) {
+        this.loginscount = loginscount;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", typeUser='" + typeUser + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", score=" + score +
+                ", password='" + password + '\'' +
+                ", idstatus=" + idstatus +
+                ", picture='" + picture + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", lastip=" + lastip +
+                ", lastlogin=" + lastlogin +
+                ", loginscount=" + loginscount +
+                '}';
+    }
 }

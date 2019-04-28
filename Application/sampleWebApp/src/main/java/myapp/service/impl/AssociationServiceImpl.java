@@ -6,9 +6,10 @@ import myapp.service.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AssociationServiceImpl implements AssociationService {
@@ -25,11 +26,10 @@ public class AssociationServiceImpl implements AssociationService {
         List<Association> listAsso;
 
         try{
-            listAsso = associationRepository.findAllById_produit_A(id_association);
+            listAsso = associationRepository.findAllByidproduitA(id_association);
         }catch (Exception e){
             throw new Exception();
         }
-
         return listAsso;
 
 
@@ -45,5 +45,22 @@ public class AssociationServiceImpl implements AssociationService {
         return "Le delete a ete fait";
     }
 
+    @Override
+    public Association createAssociation(String id_association_1, String id_association_2) throws Exception {
 
+        Date maintenant = new Date(System.currentTimeMillis());
+
+        Association asso = new Association();
+        asso.setIdproduitA(id_association_1);
+        asso.setIdproduitB(id_association_2);
+        asso.setCreatedat(maintenant);
+        asso.setUpdatedat(maintenant);
+
+        try{
+            associationRepository.save(asso);
+        }catch (Exception e){
+            throw new Exception();
+        }
+        return asso;
+    }
 }

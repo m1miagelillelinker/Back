@@ -4,68 +4,83 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="association_produit")
+@Table(name="association")
 public class Association {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_assoc")
-    String id;
+    @Column(name="id")
+    Integer id;
 
-    @Column(name="id_produit_A")
-    String id_produit_A;
+    @Column(name="idproduitA")
+    String idproduitA;
 
-    @Column(name="id_produit_B")
-    String id_produit_B;
+    @Column(name="idproduitB")
+    String idproduitB;
 
-    @Column(name="created_at")
-    Date created_at;
+    @Column(name="createdat")
+    Date createdat;
 
-    @Column(name="updated_at")
-    Date updated_at;
-
-
-    public Association(String id_produit_A, String id_produit_B, Date created_at, Date updated_at) {
-        this.id_produit_A = id_produit_A;
-        this.id_produit_B = id_produit_B;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
+    @Column(name="updatedat")
+    Date updatedat;
 
     public Association(){}
 
-    public String getId_produit_A() {
-        return id_produit_A;
+    public Association(String idproduitA, String idproduitB, Date createdat, Date updatedat) {
+        this.idproduitA = idproduitA;
+        this.idproduitB = idproduitB;
+        this.createdat = createdat;
+        this.updatedat = updatedat;
     }
 
-    public void setId_produit_A(String id_produit_A) {
-        this.id_produit_A = id_produit_A;
-    }
-
-    public String getId_produit_B() {
-        return id_produit_B;
-    }
-
-    public void setId_produit_B(String id_produit_B) {
-        this.id_produit_B = id_produit_B;
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getIdproduitA() {
+        return idproduitA;
+    }
+
+    public void setIdproduitA(String idproduitA) {
+        this.idproduitA = idproduitA;
+    }
+
+    public String getIdproduitB() {
+        return idproduitB;
+    }
+
+    public void setIdproduitB(String idproduitB) {
+        this.idproduitB = idproduitB;
+    }
+
+    public Date getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat(Date createdat) {
+        this.createdat = createdat;
+    }
+
+    public Date getUpdatedat() {
+        return updatedat;
+    }
+
+    public void setUpdatedat(Date updatedat) {
+        this.updatedat = updatedat;
     }
 
     @Override
     public String toString() {
         return "Association{" +
-                "id='" + id + '\'' +
-                ", id_produit_A='" + id_produit_A + '\'' +
-                ", id_produit_B='" + id_produit_B + '\'' +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                "id=" + id +
+                ", idproduitA='" + idproduitA + '\'' +
+                ", idproduitB='" + idproduitB + '\'' +
+                ", createdat=" + createdat +
+                ", updatedat=" + updatedat +
                 '}';
     }
 }
