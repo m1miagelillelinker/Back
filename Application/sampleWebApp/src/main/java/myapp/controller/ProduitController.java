@@ -12,6 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/product" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class ProduitController {
@@ -36,6 +39,17 @@ public class ProduitController {
         }
         return produitService.getFilmByIdFromReferentiel(filmId);
     }
+
+    @CrossOrigin
+    @GetMapping("/getFilmsByTitleFromReferentiel")
+    @ResponseBody
+    public List<ProductDTO> getFilmsByTitleFromReferentiel(@RequestParam("research") String research) throws Exception {
+        if(research == null || research.equals("")){
+            throw new Exception();
+        }
+        return produitService.getFilmsByTitleFromReferentiel(research);
+    }
+
 
     @CrossOrigin
     @GetMapping("/getFilmByTitleFromReferentiel")

@@ -2,13 +2,10 @@ package myapp.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import myapp.dto.GoogleBooksDTO;
-import myapp.dto.OmdbDTO;
 import myapp.dto.ProductDTO;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.util.List;
 
 public class HttpBookRequest extends HttpRequest {
 
@@ -22,10 +19,18 @@ public class HttpBookRequest extends HttpRequest {
         ObjectMapper mapper = new ObjectMapper();
         try {
             GoogleBooksDTO googleBooksDTO = mapper.readValue(toString, GoogleBooksDTO.class);
-            return productDTO.convertBooksToProduct(googleBooksDTO);
+            //return productDTO.convertBooksToProduct(googleBooksDTO);
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
             throw new Exception();
+        }
+    }
+
+    @Override
+    protected List<ProductDTO> convertMultiple(String toString) throws Exception {
+        while(true){
+            System.out.println(toString);
         }
     }
 

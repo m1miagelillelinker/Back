@@ -22,6 +22,9 @@ public class GoogleBooksDTO{
         this.image = image;
     }
 
+    public GoogleBooksDTO() {
+    }
+
     public String getId() {
         return id;
     }

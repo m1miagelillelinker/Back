@@ -10,6 +10,9 @@ import myapp.util.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ProduitServiceImpl implements ProduitService {
 
@@ -58,6 +61,17 @@ public class ProduitServiceImpl implements ProduitService {
     @Override
     public ProductDTO getGameByIdFromReferentiel(String gameId) {
         return null;
+    }
+
+    @Override
+    public List<ProductDTO> getFilmsByTitleFromReferentiel(String research) throws Exception {
+        try{
+            httpFilmRequest = new HttpFilmRequest("http://www.omdbapi.com/?s="+research+"&apikey=9b0bebec");
+            return httpFilmRequest.requestMultiple("GET");
+
+        }catch(Exception e){
+            throw new Exception();
+        }
     }
 
 
