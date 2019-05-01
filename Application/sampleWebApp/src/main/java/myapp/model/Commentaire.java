@@ -33,6 +33,9 @@ public class Commentaire {
     @Column(name="updatedat")
     Date updatedAt;
 
+    @Column(name="nbSignalement")
+    int nbSignalement;
+
     public Commentaire(String commentaire, int note, int idUser, int idAssoc, int status, Date createdat, Date updatedAt) {
         this.commentaire = commentaire;
         this.note = note;
@@ -41,6 +44,7 @@ public class Commentaire {
         this.status = status;
         this.createdat = createdat;
         this.updatedAt = updatedAt;
+        this.nbSignalement = nbSignalement;
     }
 
     public Commentaire(){}
@@ -109,6 +113,10 @@ public class Commentaire {
         this.updatedAt = updatedAt;
     }
 
+    public int getNbSignalement() { return nbSignalement; }
+
+    public void addNbSignalement() { this.nbSignalement ++; }
+
     @Override
     public String toString() {
         return "Commentaire{" +
@@ -120,6 +128,7 @@ public class Commentaire {
                 ", status=" + status +
                 ", createdat=" + createdat +
                 ", updatedAt=" + updatedAt +
+                ", nbSignalement=" + nbSignalement +
                 '}';
     }
 }
