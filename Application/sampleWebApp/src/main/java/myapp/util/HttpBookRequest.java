@@ -3,6 +3,8 @@ package myapp.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import myapp.dto.GoogleBooksDTO;
 import myapp.dto.ProductDTO;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,20 +18,30 @@ public class HttpBookRequest extends HttpRequest {
     @Override
     protected ProductDTO convert(String toString) throws Exception {
         ProductDTO productDTO = new ProductDTO();
-        ObjectMapper mapper = new ObjectMapper();
+        GoogleBooksDTO googleBooksDTO = new GoogleBooksDTO();
         try {
-            GoogleBooksDTO googleBooksDTO = mapper.readValue(toString, GoogleBooksDTO.class);
-            //return productDTO.convertBooksToProduct(googleBooksDTO);
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
+            JSONObject jsonObject = new JSONObject(toString);
+            JSONArray item = jsonObject.getJSONArray("items");
+            JSONObject json = item.getJSONObject(0);
+            JSONObject volumeInfo = json.getJSONObject("volumeInfo");
+
+            googleBooksDTO.setTitle(volumeInfo.get("title").toString());
+            googleBooksDTO.setDescription(volumeInfo.get("description").toString());
+            googleBooksDTO.setAuthor(volumeInfo.getJSONArray("authors").getString(0));
+            googleBooksDTO.setYear( volumeInfo.get("publishedDate").toString());
+            googleBooksDTO.setGenre(volumeInfo.getJSONArray("categories").get(0).toString());
+            googleBooksDTO.setImage(volumeInfo.getJSONObject("imageLinks").get("thumbnail").toString());
+            googleBooksDTO.setId(volumeInfo.getJSONArray("industryIdentifiers").getJSONObject(0).get("identifier").toString());
+            return productDTO.convertBooksToProduct(googleBooksDTO);
+        } catch (Exception e) {
             throw new Exception();
         }
+
     }
 
     @Override
     protected List<ProductDTO> convertMultiple(String toString) throws Exception {
-        while(true){
+        while (true) {
             System.out.println(toString);
         }
     }
