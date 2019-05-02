@@ -10,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private String id;
+    private Integer id;
 
     @Column(name="firstname")
     private String firstName;
@@ -48,9 +48,6 @@ public class User {
     @Column(name="updatedat")
     private Date updatedAt;
 
-    @Column(name="lastip")
-    private Date lastip;
-
     @Column(name="lastlogin")
     private Date lastlogin;
 
@@ -70,18 +67,17 @@ public class User {
         this.picture = picture;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.lastip = lastip;
         this.lastlogin = lastlogin;
         this.loginscount = loginscount;
     }
 
     public User(){}
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -181,14 +177,6 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    public Date getLastip() {
-        return lastip;
-    }
-
-    public void setLastip(Date lastip) {
-        this.lastip = lastip;
-    }
-
     public Date getLastlogin() {
         return lastlogin;
     }
@@ -221,7 +209,6 @@ public class User {
                 ", picture='" + picture + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", lastip=" + lastip +
                 ", lastlogin=" + lastlogin +
                 ", loginscount=" + loginscount +
                 '}';

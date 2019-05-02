@@ -15,6 +15,6 @@ public interface AbonnementRepository extends CrudRepository<Abonnement,Integer>
 
 	Optional<List<Abonnement>> findAllByFollows(String userId);
 	
-	Optional<Abonnement> findByFollowerAndFollows(String follower, String follows);
+	Optional<Abonnement> findByFollowerAndFollows(Integer follower, Integer follows);
 
 }

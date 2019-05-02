@@ -20,7 +20,7 @@ public class SignalementController {
         this.signalementBusiness = signalementBusiness;
         this.signalementService = signalementService;
     }
-    
+
     @CrossOrigin
     @GetMapping("/get")
     @ResponseBody

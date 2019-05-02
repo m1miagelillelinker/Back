@@ -4,34 +4,34 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="commentaire")
+@Table(name="signalement")
 public class Signalement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    int id;
+    Integer id;
 
     @Column(name="typeSignalement")
     String typeSignalement;
 
     @Column(name="signaledUserId")
-    int signaledUserId;
+    Integer signaledUserId;
 
     @Column(name="signaledCommentId")
-    int signaledCommentId;
+    Integer signaledCommentId;
 
     @Column(name="message")
     String message;
 
     @Column(name="iduser")
-    int idUser;
+    Integer idUser;
 
     @Column(name="status")
-    int status;
+    Integer status;
 
-    @Column(name="moderatorId")
-    int moderatorId;
+    @Column(name="moderatorid")
+    Integer moderatorId;
 
     @Column(name="createdat")
     Date createdat;
@@ -40,7 +40,7 @@ public class Signalement {
     Date updatedAt;
 
     //Signalement full
-    public Signalement(String typeSignalement, int signaledId, String message, int idUser, int status, int moderatorId, Date createdat, Date updatedAt) {
+    public Signalement(String typeSignalement, Integer signaledId, String message, Integer idUser, Integer status, Integer moderatorId, Date createdat, Date updatedAt) {
         this.typeSignalement = typeSignalement;
         switch (typeSignalement){
             case "utilisateur":
@@ -61,18 +61,18 @@ public class Signalement {
     }
 
     //Constructeur de création
-    public Signalement(String typeSignalement, int signaledId, String message, int idUser, int moderatorId) {
+    public Signalement(String typeSignalement, Integer signaledId, String message, Integer idUser, Integer moderatorId) {
         //appel du constructeur principal
         this(typeSignalement, signaledId, message, idUser, 1, moderatorId, new Date(), new Date());
     }
 
     public Signalement(){}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -84,19 +84,19 @@ public class Signalement {
         this.typeSignalement = typeSignalement;
     }
 
-    public int getSignaledUserId() {
+    public Integer getSignaledUserId() {
         return signaledUserId;
     }
 
-    public void setSignaledUserId(int signaledUserId) {
+    public void setSignaledUserId(Integer signaledUserId) {
         this.signaledUserId = signaledUserId;
     }
 
-    public int getSignaledCommentId() {
+    public Integer getSignaledCommentId() {
         return signaledCommentId;
     }
 
-    public void setSignaledCommentId(int signaledCommentId) {
+    public void setSignaledCommentId(Integer signaledCommentId) {
         this.signaledCommentId = signaledCommentId;
     }
 
@@ -108,27 +108,27 @@ public class Signalement {
         this.message = message;
     }
 
-    public int getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public int getModeratorId() {
+    public Integer getModeratorId() {
         return moderatorId;
     }
 
-    public void setModeratorId(int moderatorId) {
+    public void setModeratorId(Integer moderatorId) {
         this.moderatorId = moderatorId;
     }
 
