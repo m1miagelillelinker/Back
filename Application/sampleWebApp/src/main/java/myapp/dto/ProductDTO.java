@@ -9,18 +9,19 @@ import java.util.List;
 
 public class ProductDTO {
 
+    //TODO: ajouter un type
     String id;
     String title;
     String description;
     String country;
     String director;
     String year;
-    List<Tag> genre;
+    List<String> genre;
     List<Association> listProduits;
     String image;
-    Date duration;
+    String duration;
 
-    public ProductDTO(String id, String title, String description, String country, String director, String year, List<Tag> genre, List<Association> listProduits, String image, Date duration) {
+    public ProductDTO(String id, String title, String description, String country, String director, String year, List<String> genre, List<Association> listProduits, String image, String duration) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -83,11 +84,11 @@ public class ProductDTO {
         this.year = year;
     }
 
-    public List<Tag> getGenre() {
+    public List<String> getGenre() {
         return genre;
     }
 
-    public void setGenre(List<Tag> genre) {
+    public void setGenre(List<String> genre) {
         this.genre = genre;
     }
 
@@ -107,11 +108,11 @@ public class ProductDTO {
         this.image = image;
     }
 
-    public Date getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Date duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -128,25 +129,34 @@ public class ProductDTO {
         productDTO.setCountry(omdbDTO.getCountry());
         productDTO.setDirector(omdbDTO.getDirector());
         productDTO.setYear(omdbDTO.getYear());
-        List<Tag> listTag = new ArrayList<>();
-        listTag.add(omdbDTO.getGenre());
+
+        /**
+         * TODO : gestion des tags + liste produit associé
+         */
+        //List<Tag> listTag = new ArrayList<>();
+        //listTag.add(omdbDTO.getGenre());
         productDTO.setImage(omdbDTO.getImage());
-        productDTO.setDuration(new Date());
-        return productDTO;
+        productDTO.setDuration(omdbDTO.getDuration());
+            return productDTO;
     }
+
 
     public ProductDTO convertBooksToProduct(GoogleBooksDTO googleBooksDTO){
         ProductDTO productDTO = new ProductDTO();
         productDTO.setId(googleBooksDTO.getId());
         productDTO.setTitle(googleBooksDTO.getTitle());
         productDTO.setDescription(googleBooksDTO.getDescription());
-        productDTO.setCountry("");
+        productDTO.setCountry("FR");
         productDTO.setDirector(googleBooksDTO.getAuthor());
         productDTO.setYear(googleBooksDTO.getYear());
-        List<Tag> listTag = new ArrayList<>();
+        /**
+         * TODO : gestion des tags + liste produit associé
+         */
+        List<String> listTag = new ArrayList<>();
         listTag.add(googleBooksDTO.getGenre());
+        productDTO.setGenre(listTag);
         productDTO.setImage(googleBooksDTO.getImage());
-        productDTO.setDuration(new Date());
+        //productDTO.setDuration(new Date());
         return productDTO;
     }
 

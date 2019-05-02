@@ -31,6 +31,8 @@ public class Tag {
         this.updatedAt = updatedAt;
     }
 
+    //TODO: constructeur juste avec une value , status on gère comment?
+
     public Tag(){}
 
     public int getId() {

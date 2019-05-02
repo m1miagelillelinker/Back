@@ -9,20 +9,20 @@ public class OmdbDTO {
 
     String id;
     String title;
-    String Description;
+    String description;
     String country;
     String director;
     String year;
-    Tag genre;
+    String genre;
     String image;
     String duration;
     String nbSeasons;
 
 
-    public OmdbDTO(String id, String title, String description, String country, String director, String year, Tag genre, String image, String duration, String nbSeasons) {
+    public OmdbDTO(String id, String title, String description, String country, String director, String year, String genre, String image, String duration, String nbSeasons) {
         this.id = id;
         this.title = title;
-        Description = description;
+        this.description = description;
         this.country = country;
         this.director = director;
         this.year = year;
@@ -30,6 +30,9 @@ public class OmdbDTO {
         this.image = image;
         this.duration = duration;
         this.nbSeasons = nbSeasons;
+    }
+
+    public OmdbDTO() {
     }
 
     public String getId() {
@@ -49,11 +52,11 @@ public class OmdbDTO {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public String getCountry() {
@@ -80,11 +83,11 @@ public class OmdbDTO {
         this.year = year;
     }
 
-    public Tag getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(Tag genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
@@ -117,7 +120,7 @@ public class OmdbDTO {
         return "OmdbDTO{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", Description='" + Description + '\'' +
+                ", description='" + description + '\'' +
                 ", country='" + country + '\'' +
                 ", director='" + director + '\'' +
                 ", year='" + year + '\'' +

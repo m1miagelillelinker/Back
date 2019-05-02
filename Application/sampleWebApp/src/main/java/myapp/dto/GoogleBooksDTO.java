@@ -9,10 +9,10 @@ public class GoogleBooksDTO{
     String description;
     String author;
     String year;
-    Tag genre;
+    String genre;
     String image;
 
-    public GoogleBooksDTO(String id, String title, String description, String author, String year, Tag genre, String image) {
+    public GoogleBooksDTO(String id, String title, String description, String author, String year, String genre, String image) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -20,6 +20,9 @@ public class GoogleBooksDTO{
         this.year = year;
         this.genre = genre;
         this.image = image;
+    }
+
+    public GoogleBooksDTO() {
     }
 
     public String getId() {
@@ -62,11 +65,11 @@ public class GoogleBooksDTO{
         this.year = year;
     }
 
-    public Tag getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(Tag genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
