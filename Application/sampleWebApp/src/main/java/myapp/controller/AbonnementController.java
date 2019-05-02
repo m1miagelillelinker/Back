@@ -36,7 +36,7 @@ public class AbonnementController {
     @CrossOrigin
     @GetMapping("/followers")
     @ResponseBody
-    public List<Abonnement> getFollowersById(@RequestParam("userId") String userId){
+    public List<Abonnement> getFollowersById(@RequestParam("userId") int userId){
         System.out.println(userId);
 
         List<Abonnement> abonnements = abonnementService.getFollowersByFollows(userId);
@@ -47,7 +47,7 @@ public class AbonnementController {
     @CrossOrigin
     @GetMapping("/follows")
     @ResponseBody
-    public List<Abonnement> getFollowsById(@RequestParam("userId") String userId){
+    public List<Abonnement> getFollowsById(@RequestParam("userId") int userId){
         System.out.println(userId);
 
         List<Abonnement> abonnements = abonnementService.getFollowsByFollower(userId);
@@ -59,7 +59,7 @@ public class AbonnementController {
     @CrossOrigin
     @PutMapping("/follow")
     @ResponseBody
-    public Abonnement follow(@RequestParam("follower") String follower, @RequestParam("follows") String follows){
+    public Abonnement follow(@RequestParam("follower") int follower, @RequestParam("follows") int follows){
         return abonnementService.follow(follower, follows);
     }
 
@@ -67,7 +67,7 @@ public class AbonnementController {
     @CrossOrigin
     @DeleteMapping("/unfollow")
     @ResponseBody
-    public void unfollow(@RequestParam("follower") String follower, @RequestParam("follows") String follows){
+    public void unfollow(@RequestParam("follower") int follower, @RequestParam("follows") int follows){
         abonnementService.unfollow(follower, follows);
     }
 

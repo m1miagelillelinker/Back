@@ -23,27 +23,27 @@ public class AbonnementServiceImpl implements AbonnementService {
     }
     
     @Override
-    public List<Abonnement> getFollowersByFollows(String userId) {
+    public List<Abonnement> getFollowersByFollows(int userId) {
         Optional<List<Abonnement>> rep = abonnementRepository.findAllByFollower(userId);
         System.out.println("test getFollowersById :"+rep.toString());
         return rep.get();
     }
 
 	@Override
-	public List<Abonnement> getFollowsByFollower(String userId) {
+	public List<Abonnement> getFollowsByFollower(int userId) {
         Optional<List<Abonnement>> rep = abonnementRepository.findAllByFollows(userId);
         System.out.println("test getFollowersById :"+rep.toString());
         return rep.get();
 	}
 
 	@Override
-	public Abonnement follow(String follower, String follows) {
+	public Abonnement follow(int follower, int follows) {
 		Abonnement abonnement = new Abonnement(follower, follows, new Date(), new Date());
 		return abonnementRepository.save(abonnement);
 	}
 
 	@Override
-	public void unfollow(String follower, String follows) {
+	public void unfollow(int follower, int follows) {
 		Abonnement abonnement = abonnementRepository.findByFollowerAndFollows(follower, follows).get();
 		abonnementRepository.delete(abonnement);
 		

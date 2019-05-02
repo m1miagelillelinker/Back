@@ -15,7 +15,7 @@ public class UserAssociation {
     int idUserAssociation;
 	
 	@Column(name="iduser")
-    String idUser;
+    int idUser;
 
     @Column(name="idasso")
     String idAsso;
@@ -32,7 +32,7 @@ public class UserAssociation {
 	 * @param createdat
 	 * @param updatedAt
 	 */
-	public UserAssociation(String idUser, String idAsso, Date createdat, Date updatedAt) {
+	public UserAssociation(int idUser, String idAsso, Date createdat, Date updatedAt) {
 		this.idUser = idUser;
 		this.idAsso = idAsso;
 		this.createdat = createdat;
@@ -51,7 +51,7 @@ public class UserAssociation {
 	/**
 	 * @return the idUser
 	 */
-	public String getIdUser() {
+	public int getIdUser() {
 		return idUser;
 	}
 
@@ -86,7 +86,7 @@ public class UserAssociation {
 	/**
 	 * @param idUser the idUser to set
 	 */
-	public void setIdUser(String idUser) {
+	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
 

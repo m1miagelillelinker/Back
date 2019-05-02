@@ -6,11 +6,11 @@ import myapp.model.Abonnement;
 
 public interface AbonnementService {
 
-	List<Abonnement> getFollowersByFollows(String userId);
+	List<Abonnement> getFollowersByFollows(int userId);
 	
-	List<Abonnement> getFollowsByFollower(String userId);
+	List<Abonnement> getFollowsByFollower(int userId);
 	
-	Abonnement follow(String follower, String follows);
+	Abonnement follow(int follower, int follows);
 	
-	void unfollow(String follower, String follows);
+	void unfollow(int follower, int follows);
 }

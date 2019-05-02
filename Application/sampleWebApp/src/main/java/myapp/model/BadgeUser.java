@@ -14,7 +14,7 @@ public class BadgeUser {
 	int id;
 	
 	@Column(name="iduser")
-	String idUser;
+	int idUser;
 	
 	@Column(name="idbadge")
 	int idBadge;
@@ -33,7 +33,7 @@ public class BadgeUser {
 	 * @param createdat
 	 * @param updatedAt
 	 */
-	public BadgeUser(String idUser, int idBadge, Date createdat, Date updatedAt) {
+	public BadgeUser(int idUser, int idBadge, Date createdat, Date updatedAt) {
 		this.idUser = idUser;
 		this.idBadge = idBadge;
 		this.createdat = createdat;
@@ -52,7 +52,7 @@ public class BadgeUser {
 	/**
 	 * @return the idUser
 	 */
-	public String getIdUser() {
+	public int getIdUser() {
 		return idUser;
 	}
 
@@ -87,7 +87,7 @@ public class BadgeUser {
 	/**
 	 * @param idUser the idUser to set
 	 */
-	public void setIdUser(String idUser) {
+	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
 

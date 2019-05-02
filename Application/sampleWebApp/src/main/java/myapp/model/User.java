@@ -48,16 +48,13 @@ public class User {
     @Column(name="updatedat")
     private Date updatedAt;
 
-    @Column(name="lastip")
-    private Date lastip;
-
     @Column(name="lastlogin")
     private Date lastlogin;
 
     @Column(name="loginscount")
     private Integer loginscount;
 
-    public User(String firstName, String lastName, Integer gender, String email, String typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, Date createdAt, Date updatedAt, Date lastip, Date lastlogin, Integer loginscount) {
+    public User(String firstName, String lastName, Integer gender, String email, String typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, Date createdAt, Date updatedAt, Date lastlogin, Integer loginscount) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -70,7 +67,6 @@ public class User {
         this.picture = picture;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.lastip = lastip;
         this.lastlogin = lastlogin;
         this.loginscount = loginscount;
     }
@@ -181,14 +177,6 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    public Date getLastip() {
-        return lastip;
-    }
-
-    public void setLastip(Date lastip) {
-        this.lastip = lastip;
-    }
-
     public Date getLastlogin() {
         return lastlogin;
     }
@@ -221,7 +209,6 @@ public class User {
                 ", picture='" + picture + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", lastip=" + lastip +
                 ", lastlogin=" + lastlogin +
                 ", loginscount=" + loginscount +
                 '}';

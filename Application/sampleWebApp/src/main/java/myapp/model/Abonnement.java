@@ -14,10 +14,10 @@ public class Abonnement {
     int idabonnement;
 
     @Column(name="follower")
-    String follower;
+    int follower;
 
     @Column(name="follows")
-    String follows;
+    int follows;
 
     @Column(name="createat")
     Date createdat;
@@ -25,7 +25,7 @@ public class Abonnement {
     @Column(name="updatedat")
     Date updatedAt;
 
-    public Abonnement(String follower, String follows, Date createdat, Date updatedAt) {
+    public Abonnement(int follower, int follows, Date createdat, Date updatedAt) {
         this.follower = follower;
         this.follows = follows;
         this.createdat = createdat;
@@ -42,19 +42,19 @@ public class Abonnement {
         this.idabonnement = idabonnement;
     }
 
-    public String getFollower() {
+    public int getFollower() {
         return follower;
     }
 
-    public void setFollower(String follower) {
+    public void setFollower(int follower) {
         this.follower = follower;
     }
 
-    public String getFollows() {
+    public int getFollows() {
         return follows;
     }
 
-    public void setFollows(String follows) {
+    public void setFollows(int follows) {
         this.follows = follows;
     }
 
