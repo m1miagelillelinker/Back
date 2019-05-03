@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AbonnementRepository extends CrudRepository<Abonnement,Integer> {
 
-	Optional<List<Abonnement>> findAllByFollower(String userId);
+	Optional<List<Abonnement>> findAllByFollower(int userId);
 
-	Optional<List<Abonnement>> findAllByFollows(String userId);
+	Optional<List<Abonnement>> findAllByFollows(int userId);
 	
-	Optional<Abonnement> findByFollowerAndFollows(String follower, String follows);
+	Optional<Abonnement> findByFollowerAndFollows(int follower, int follows);
 
 }

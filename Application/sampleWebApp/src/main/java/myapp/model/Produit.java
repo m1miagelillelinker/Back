@@ -7,11 +7,14 @@ import java.util.Date;
 @Table(name="produit")
 public class Produit {
 
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private String id;
-
+    private int id;
+    
+    @Column(name="idProduit")
+    private String idProduit;
+    
     @Column(name="name")
     private String name;
 
@@ -21,7 +24,7 @@ public class Produit {
     @Column(name = "updatedat")
     private Date updatedAt;
 
-    public Produit(String id, String name, Date createdAt, Date updatedAt) {
+    public Produit(int id, String name, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
@@ -30,11 +33,11 @@ public class Produit {
 
     public Produit(){}
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
