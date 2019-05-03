@@ -8,17 +8,17 @@ import java.util.Date;
 public class Signalement {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     Integer id;
 
-    @Column(name="typeSignalement")
+    @Column(name="typesignalement")
     String typeSignalement;
 
-    @Column(name="signaledUserId")
+    @Column(name="signaleduserid")
     Integer signaledUserId;
 
-    @Column(name="signaledCommentId")
+    @Column(name="signaledcommentid")
     Integer signaledCommentId;
 
     @Column(name="message")

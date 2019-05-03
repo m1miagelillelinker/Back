@@ -28,7 +28,9 @@ public class SignalementController {
     	return signalementService.getSignalementById(Integer.parseInt(signalementId));
     }
 
+    @CrossOrigin
     @PutMapping("/newSignalement")
+    @ResponseBody
     public Signalement createSignalement(@RequestBody Signalement signalement){
     	return signalementService.createSignalement(signalement);
     }
