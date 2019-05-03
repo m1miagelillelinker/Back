@@ -22,21 +22,14 @@ public class SignalementServiceImpl implements SignalementService {
     }
 
     @Override
-    public Signalement getSignalementById(Integer id) {
+    /*public Signalement getSignalementById(Integer id) {
         try{
-            Signalement t = signalementRepository.find
-        }
-    }
-
-    /*
-    public Signalement getSignalementById(Integer signalementId) throws Exception {
-        Optional<Signalement> rep = signalementRepository.findById(signalementId);
-        if(rep.isPresent()){
-            return rep.get();
-        }else{
-            throw new Exception();
+            Signalement t = signalementRepository.find;
         }
     }*/
+    public Signalement getSignalementById(Integer signalementId){
+        return signalementRepository.findById(signalementId).get();
+    }
 
 
 
