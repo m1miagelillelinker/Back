@@ -7,9 +7,9 @@ import java.util.Date;
 @Table(name="vote")
 public class Vote {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    int id;
+    Integer id;
 
     @Column(name="idassoc")
     int idAssoc;
@@ -36,11 +36,11 @@ public class Vote {
         this.updatedAt = updatedAt;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
