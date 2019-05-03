@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VoteRepository extends CrudRepository<Vote,Integer> {
 
-	Optional<List<Vote>> findAllByIdUser(String userId);
+	Optional<List<Vote>> findAllByIdUser(int userId);
 
-	Optional<List<Vote>> findAllByIdAssoc(String associationId);
+	Optional<List<Vote>> findAllByIdAssoc(int associationId);
 
 }

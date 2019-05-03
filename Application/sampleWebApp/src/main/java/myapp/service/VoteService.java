@@ -10,7 +10,7 @@ public interface VoteService {
 	
 	void deleteVote(Vote vote);
 	
-	List<Vote> getVotesByUser(String userId);
+	List<Vote> getVotesByUser(int userId);
 	
-	List<Vote> getVotesByAssociation(String associationId);
+	List<Vote> getVotesByAssociation(int associationId);
 }

@@ -48,14 +48,14 @@ public class VoteController{
     @CrossOrigin
     @GetMapping("/userVote")
     @ResponseBody
-    public List<Vote> getVotesByUser(@RequestParam("userId") String userId){
+    public List<Vote> getVotesByUser(@RequestParam("userId") int userId){
        return voteService.getVotesByUser(userId);
     }
     
     @CrossOrigin
     @GetMapping("/AssoVote")
     @ResponseBody
-    public List<Vote> getVotesByAssociation(@RequestParam("assoId") String assoId){
+    public List<Vote> getVotesByAssociation(@RequestParam("assoId") int assoId){
        return voteService.getVotesByAssociation(assoId);
     }
 }

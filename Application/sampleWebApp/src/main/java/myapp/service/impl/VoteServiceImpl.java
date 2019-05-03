@@ -23,18 +23,22 @@ public class VoteServiceImpl implements VoteService {
 	
 	@Override
 	public Vote upsertVote(Vote vote) {
-		Optional<Vote> voteOpt = voteRepository.findById(vote.getId());
-		if(voteOpt.isPresent()) {
-			Vote voteOld = voteOpt.get();
-			voteOld.setVote(vote.getVote());
-			voteOld.setUpdatedAt(new Date());
-			vote = voteOld;
+		if(vote.getId() != null) {
+			Optional<Vote> voteOpt = voteRepository.findById(vote.getId());
+			if(voteOpt.isPresent()) {
+				Vote voteOld = voteOpt.get();
+				voteOld.setVote(vote.getVote());
+				vote = voteOld;
+			}
+		} else {
+			vote.setCreatedAt(new Date());
 		}
 		
 		if(vote.getVote() == 0) {
 			voteRepository.delete(vote);
 			vote = null;
 		} else {
+			vote.setUpdatedAt(new Date());
 			voteRepository.save(vote);
 		}
 		
@@ -47,12 +51,12 @@ public class VoteServiceImpl implements VoteService {
 	}
 
 	@Override
-	public List<Vote> getVotesByUser(String userId) {
+	public List<Vote> getVotesByUser(int userId) {
 		return voteRepository.findAllByIdUser(userId).get();
 	}
 
 	@Override
-	public List<Vote> getVotesByAssociation(String associationId) {
+	public List<Vote> getVotesByAssociation(int associationId) {
 		return voteRepository.findAllByIdAssoc(associationId).get();
 	}
 }
