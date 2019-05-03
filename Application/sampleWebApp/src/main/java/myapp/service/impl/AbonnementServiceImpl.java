@@ -37,13 +37,13 @@ public class AbonnementServiceImpl implements AbonnementService {
 	}
 
 	@Override
-	public Abonnement follow(int follower, int follows) {
+	public Abonnement follow(Integer follower, Integer follows) {
 		Abonnement abonnement = new Abonnement(follower, follows, new Date(), new Date());
 		return abonnementRepository.save(abonnement);
 	}
 
 	@Override
-	public void unfollow(int follower, int follows) {
+	public void unfollow(Integer follower, Integer follows) {
 		Abonnement abonnement = abonnementRepository.findByFollowerAndFollows(follower, follows).get();
 		abonnementRepository.delete(abonnement);
 		

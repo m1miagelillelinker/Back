@@ -10,7 +10,7 @@ public interface AbonnementService {
 	
 	List<Abonnement> getFollowsByFollower(int userId);
 	
-	Abonnement follow(int follower, int follows);
+	Abonnement follow(Integer follower, Integer follows);
 	
-	void unfollow(int follower, int follows);
+	void unfollow(Integer follower, Integer follows);
 }

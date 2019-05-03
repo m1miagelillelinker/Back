@@ -59,7 +59,7 @@ public class AbonnementController {
     @CrossOrigin
     @PutMapping("/follow")
     @ResponseBody
-    public Abonnement follow(@RequestParam("follower") int follower, @RequestParam("follows") int follows){
+    public Abonnement follow(@RequestParam("follower") Integer follower, @RequestParam("follows") Integer follows){
         return abonnementService.follow(follower, follows);
     }
 
@@ -67,7 +67,7 @@ public class AbonnementController {
     @CrossOrigin
     @DeleteMapping("/unfollow")
     @ResponseBody
-    public void unfollow(@RequestParam("follower") int follower, @RequestParam("follows") int follows){
+    public void unfollow(@RequestParam("follower") Integer follower, @RequestParam("follows") Integer follows){
         abonnementService.unfollow(follower, follows);
     }
 
