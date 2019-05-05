@@ -3,6 +3,9 @@ package com.hicouch.back.core.controller;
 import com.hicouch.back.core.business.SignalementBusiness;
 import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.service.SignalementService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -33,6 +36,13 @@ public class SignalementController {
     @ResponseBody
     public Signalement createSignalement(@RequestBody Signalement signalement){
     	return signalementService.createSignalement(signalement);
+    }
+    
+    @CrossOrigin
+    @GetMapping("/list")
+    @ResponseBody
+    public List<Signalement> getSignalementByStatus(@RequestParam("status") int status){
+    	return signalementService.findAllSignalementsInStatus(status);
     }
 
 }

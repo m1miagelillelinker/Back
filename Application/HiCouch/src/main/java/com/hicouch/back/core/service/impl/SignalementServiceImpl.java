@@ -3,6 +3,9 @@ package com.hicouch.back.core.service.impl;
 import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.repository.SignalementRepository;
 import com.hicouch.back.core.service.SignalementService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +43,9 @@ public class SignalementServiceImpl implements SignalementService {
         Signalement result = signalementRepository.save(signalement);
         return result;
     }
+
+	@Override
+	public List<Signalement> findAllSignalementsInStatus(int status) {
+		return signalementRepository.findAllByStatus(status);
+	}
 }
