@@ -27,24 +27,11 @@ public class TagController {
         this.tagBusiness = tagBusiness;
         this.tagService = tagService;
     }
-    
+        
     @CrossOrigin
-    @GetMapping("/get")
-    @ResponseBody
-    public Tag getTagById(@RequestParam("tagId") String tagId){
-    	return tagService.getTagById(Integer.parseInt(tagId));
-    }
-    
-    @CrossOrigin
-    @GetMapping("/getByValue")
-    @ResponseBody
-    public Tag getTagByValue(@RequestParam("value") String tagValue){
-    	return tagService.getTagByValue(tagValue);
-    }
-
-    @PutMapping("/newTag")
-    public Tag createTag(@RequestBody String tag){
-    	return tagService.createTag(tag);
+    @PutMapping("/tagOnProduct")
+    public void setTagOnProduct(@RequestParam("idProduit") String idProduit, @RequestParam("tag") String tag) {
+    	tagBusiness.setTagOnProduct(tag, idProduit);
     }
 
 }
