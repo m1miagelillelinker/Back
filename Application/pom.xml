@@ -3,17 +3,17 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.microsoft</groupId>
-	<artifactId>ROOT</artifactId>
+    <groupId>com.hicouch</groupId>
+	<artifactId>BACK</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
-	<name>Sample Spring App With Tests</name>
+	<name>HiCouch Spring App With Tests</name>
 
 
 
     <modules>        <!-- child modules to be executed as part of this build -->
-        <module>sampleWebApp</module>
-        <module>sampleWebApp.FunctionalTests</module>
+        <module>HiCouch</module>
+        <module>HiCouch.FunctionalTests</module>
     </modules>
 
 </project>
