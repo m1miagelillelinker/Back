@@ -3,11 +3,11 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.microsoft</groupId>
+    <groupId>com.hicouch</groupId>
 	<artifactId>ROOT</artifactId>
-	<version>1.0</version>
+	<version>0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Sample Spring App With Tests</name>
+	<name>HiCouch Spring App With Tests</name>
 
 
 
