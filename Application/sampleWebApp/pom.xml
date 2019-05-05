@@ -4,16 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.microsoft</groupId>
+        <groupId>com.hicouch</groupId>
         <artifactId>ROOT</artifactId>
         <relativePath>..</relativePath>
-        <version>1.0</version>
+        <version>0.3.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.microsoft.sampleWebApp</groupId>
-    <artifactId>sampleWebApp</artifactId>
+    <groupId>com.hicouch.back.core</groupId>
+    <artifactId>HiCouchWebApp</artifactId>
     <packaging>war</packaging>
-    <name>Sample Spring App</name>
+    <name>HoCouch Spring App</name>
 
     <dependencies>
         <dependency>
@@ -102,7 +102,7 @@
     </properties>
 
     <build>
-	<finalName>ROOT</finalName>
+	<finalName>HiCouchWebApp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
