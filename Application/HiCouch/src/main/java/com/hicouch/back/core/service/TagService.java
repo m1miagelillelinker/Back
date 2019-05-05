@@ -20,4 +20,6 @@ public interface TagService {
 	 * suppression de tags
 	 * 
 	 */
+	
+	Tag setTagStatus(int tagId, int status);
 }

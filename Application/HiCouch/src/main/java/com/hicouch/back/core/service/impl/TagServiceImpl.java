@@ -39,7 +39,7 @@ public class TagServiceImpl implements TagService {
 		if(existing.isPresent()) {
 			result = existing.get();
 		} else {
-			result = tagRepository.save(new Tag(tag, 0, new Date(), new Date()));
+			result = tagRepository.save(new Tag(tag, 1, new Date(), new Date()));
 		}
 		
 		return result;
@@ -48,6 +48,18 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public Tag getTagByValue(String tagValue) {
 		return tagRepository.findAllByValue(tagValue);
+	}
+
+	@Override
+	public Tag setTagStatus(int tagId, int status) {
+		// TODO Auto-generated method stub
+		Optional<Tag> tagFound = tagRepository.findById(tagId);
+		Tag tag = null;
+		if(tagFound.isPresent()) {
+			tag = tagFound.get();
+			tag.setStatus(status);
+		}
+		return tag;
 	}
 
 }

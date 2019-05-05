@@ -1,6 +1,7 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.TagBusiness;
+import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.model.Tag;
 import com.hicouch.back.core.service.TagService;
 
@@ -8,12 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "/tag" , produces = MediaType.APPLICATION_JSON_VALUE )
@@ -27,24 +25,23 @@ public class TagController {
         this.tagBusiness = tagBusiness;
         this.tagService = tagService;
     }
-    
+        
     @CrossOrigin
-    @GetMapping("/get")
-    @ResponseBody
-    public Tag getTagById(@RequestParam("tagId") String tagId){
-    	return tagService.getTagById(Integer.parseInt(tagId));
+    @PutMapping("/tagOnProduct")
+    public void setTagOnProduct(@RequestParam("idProduit") String idProduit, @RequestParam("tag") String tag) {
+    	tagBusiness.setTagOnProduct(tag, idProduit);
     }
     
     @CrossOrigin
-    @GetMapping("/getByValue")
-    @ResponseBody
-    public Tag getTagByValue(@RequestParam("value") String tagValue){
-    	return tagService.getTagByValue(tagValue);
+    @PutMapping("/validateTag")
+    public Tag setTagStatusOK(@RequestParam("idTad") int idTag) {
+    	return tagService.setTagStatus(idTag, StatusEnum.OK);
     }
-
-    @PutMapping("/newTag")
-    public Tag createTag(@RequestBody String tag){
-    	return tagService.createTag(tag);
+    
+    @CrossOrigin
+    @PutMapping("/refuseTag")
+    public Tag setTagStatusBlocked(@RequestParam("idTad") int idTag) {
+    	return tagService.setTagStatus(idTag, StatusEnum.BLOCKED);
     }
 
 }
