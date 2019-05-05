@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hicouch</groupId>
-	<artifactId>ROOT</artifactId>
+	<artifactId>BACK</artifactId>
 	<version>0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>HiCouch Spring App With Tests</name>
