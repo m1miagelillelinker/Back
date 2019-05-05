@@ -17,6 +17,9 @@ public class Association {
 
     @Column(name="idproduitB")
     String idproduitB;
+    
+    @Column(name="idpair")
+    Integer idPair;
 
     @Column(name="createdat")
     Date createdat;
@@ -26,9 +29,10 @@ public class Association {
 
     public Association(){}
 
-    public Association(String idproduitA, String idproduitB, Date createdat, Date updatedat) {
+    public Association(String idproduitA, String idproduitB, int idPair, Date createdat, Date updatedat) {
         this.idproduitA = idproduitA;
         this.idproduitB = idproduitB;
+        this.idPair = idPair;
         this.createdat = createdat;
         this.updatedat = updatedat;
     }
@@ -83,4 +87,18 @@ public class Association {
                 ", updatedat=" + updatedat +
                 '}';
     }
+
+	/**
+	 * @return the idPair
+	 */
+	public Integer getIdPair() {
+		return idPair;
+	}
+
+	/**
+	 * @param idPair the idPair to set
+	 */
+	public void setIdPair(Integer idPair) {
+		this.idPair = idPair;
+	}
 }
