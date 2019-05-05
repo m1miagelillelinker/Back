@@ -1,5 +1,7 @@
 package com.hicouch.back.core.service;
 
+import java.util.List;
+
 import com.hicouch.back.core.model.Signalement;
 
 public interface SignalementService {
@@ -16,4 +18,6 @@ public interface SignalementService {
      * maj de signalements
      *
      */
+    
+    List<Signalement> findAllSignalementsInStatus(int status);
 }
