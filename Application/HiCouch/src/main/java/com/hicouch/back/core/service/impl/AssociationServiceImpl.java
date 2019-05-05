@@ -9,14 +9,19 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 @Service
 public class AssociationServiceImpl implements AssociationService {
 
     private final AssociationRepository associationRepository;
+    private final EntityManager entityManager;
 
     @Autowired
-    public AssociationServiceImpl(AssociationRepository associationRepository) {
+    public AssociationServiceImpl(AssociationRepository associationRepository, EntityManager entityManager) {
         this.associationRepository = associationRepository;
+        this.entityManager = entityManager;
     }
 
     @Override
@@ -47,15 +52,20 @@ public class AssociationServiceImpl implements AssociationService {
 
         Date maintenant = new Date(System.currentTimeMillis());
 
+        Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
+        int idPair = (Integer)q.getSingleResult();
+
         Association asso = new Association();
         asso.setIdproduitA(idProductA);
         asso.setIdproduitB(idProductB);
+        asso.setIdPair(idPair);
         asso.setCreatedat(maintenant);
         asso.setUpdatedat(maintenant);
         
         Association assoMirror = new Association();
         assoMirror.setIdproduitA(idProductB);
         assoMirror.setIdproduitB(idProductA);
+        assoMirror.setIdPair(idPair);
         assoMirror.setCreatedat(maintenant);
         assoMirror.setUpdatedat(maintenant);
 
