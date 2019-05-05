@@ -7,7 +7,7 @@ import java.util.List;
 public interface AssociationService {
     List<Association> getAssociationsByIdProduct(String id_association) throws Exception;
 
-    String deleteAssociation(String id_association) throws Exception;
+    String deleteAssociation(int idAssociation) throws Exception;
 
-    Association createAssociation(String id_association_1, String id_association_2) throws Exception;
+    Association createAssociation(String idProduitA, String idProduitB) throws Exception;
 }

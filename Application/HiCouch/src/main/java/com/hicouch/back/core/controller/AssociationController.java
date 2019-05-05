@@ -25,34 +25,30 @@ public class AssociationController {
 
 
     @CrossOrigin
-    @GetMapping("/getAssociationsByIdProduct")
+    @GetMapping("/byProduct")
     @ResponseBody
-    public List<Association> getAssociationsByIdProduct(@RequestParam("id_association")String id_association) throws Exception {
-        if(id_association == null || id_association.equals("")){
+    public List<Association> getAssociationsByIdProduct(@RequestParam("idProduct")String idProduct) throws Exception {
+        if(idProduct == null || idProduct.equals("")){
             throw new Exception();
         }
-        return associationService.getAssociationsByIdProduct(id_association);
+        return associationService.getAssociationsByIdProduct(idProduct);
     }
 
     @CrossOrigin
-    @PutMapping("/createAssociation")
+    @PutMapping("/create")
     @ResponseBody
-    public Association createAssociation(@RequestParam("id_association_1") String id_association_1, @RequestParam("id_association_2") String id_association_2) throws Exception {
-        if(id_association_1 == null || id_association_2 == null || id_association_1.equals("") || id_association_2.equals("")){
+    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idProductB") String idProductB) throws Exception {
+        if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("")){
             throw new Exception();
         }
-        return associationService.createAssociation(id_association_1,id_association_2);
+        return associationService.createAssociation(idProductA,idProductB);
     }
 
-
     @CrossOrigin
-    @DeleteMapping("/deleteAssociation")
+    @DeleteMapping("/delete")
     @ResponseBody
-    public String deleteAssociation(@RequestParam("id_association") String id_association) throws Exception {
-        if(id_association == null || id_association.equals("")){
-            throw new Exception();
-        }
-        return associationService.deleteAssociation(id_association);
+    public String deleteAssociation(@RequestParam("idAssociation") int idAssociation) throws Exception {
+        return associationService.deleteAssociation(idAssociation);
     }
 
 

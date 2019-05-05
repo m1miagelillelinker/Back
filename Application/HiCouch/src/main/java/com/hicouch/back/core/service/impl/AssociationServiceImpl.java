@@ -20,23 +20,22 @@ public class AssociationServiceImpl implements AssociationService {
     }
 
     @Override
-    public List<Association> getAssociationsByIdProduct(String id_association) throws Exception {
+    public List<Association> getAssociationsByIdProduct(String idProduct) throws Exception {
         List<Association> listAsso;
 
         try{
-            listAsso = associationRepository.findAllByidproduitA(id_association);
+            listAsso = associationRepository.findAllByidproduitA(idProduct);
         }catch (Exception e){
             throw new Exception();
         }
         return listAsso;
 
-
     }
 
     @Override
-    public String deleteAssociation(String id_association) throws Exception {
+    public String deleteAssociation(int idAssociation) throws Exception {
         try{
-            associationRepository.deleteById(id_association);
+            associationRepository.deleteById(idAssociation);
         }catch (Exception e){
             throw new Exception();
         }
@@ -44,19 +43,27 @@ public class AssociationServiceImpl implements AssociationService {
     }
 
     @Override
-    public Association createAssociation(String id_association_1, String id_association_2) throws Exception {
+    public Association createAssociation(String idProductA, String idProductB) throws Exception {
 
         Date maintenant = new Date(System.currentTimeMillis());
 
         Association asso = new Association();
-        asso.setIdproduitA(id_association_1);
-        asso.setIdproduitB(id_association_2);
+        asso.setIdproduitA(idProductA);
+        asso.setIdproduitB(idProductB);
         asso.setCreatedat(maintenant);
         asso.setUpdatedat(maintenant);
+        
+        Association assoMirror = new Association();
+        assoMirror.setIdproduitA(idProductB);
+        assoMirror.setIdproduitB(idProductA);
+        assoMirror.setCreatedat(maintenant);
+        assoMirror.setUpdatedat(maintenant);
 
         try{
             associationRepository.save(asso);
+            associationRepository.save(assoMirror);
         }catch (Exception e){
+        	e.printStackTrace();
             throw new Exception();
         }
         return asso;
