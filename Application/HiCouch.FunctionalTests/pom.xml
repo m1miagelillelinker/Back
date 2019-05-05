@@ -9,7 +9,7 @@
 	</parent>
 
 	<groupId>com.hicouch.back.test</groupId>
-	<artifactId>HiCouchWebApp</artifactId>
+	<artifactId>HiCouchTestWebApp</artifactId>
 	<packaging>jar</packaging>
 	<name>HoCouch Spring App test</name>
 
