@@ -13,6 +13,8 @@ public interface ProduitService {
     ProductDTO getBookByIdFromReferentiel(String bookId) throws Exception;
 
     ProductDTO getGameByIdFromReferentiel(String gameId);
+    
+    ProductDTO getProductByIdFromReferentiel(String productId, String referentiel) throws Exception;
 
     List<ProductDTO> getFilmsByTitleFromReferentiel(String research) throws Exception;
 }
