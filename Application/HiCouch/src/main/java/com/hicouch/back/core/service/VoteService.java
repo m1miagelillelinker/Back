@@ -13,4 +13,6 @@ public interface VoteService {
 	List<Vote> getVotesByUser(int userId);
 	
 	List<Vote> getVotesByAssociation(int associationId);
+	
+	Vote getVoteByUserOnAsso(int userId, int associationId);
 }

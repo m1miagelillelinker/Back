@@ -56,7 +56,13 @@ public class VoteServiceImpl implements VoteService {
 	}
 
 	@Override
-	public List<Vote> getVotesByAssociation(int associationId) {
-		return voteRepository.findAllByIdAssoc(associationId).get();
+	public List<Vote> getVotesByAssociation(int pairId) {
+		return voteRepository.findAllByIdPair(pairId).get();
+	}
+
+	@Override
+	public Vote getVoteByUserOnAsso(int userId, int pairId) {
+		Optional<Vote> vote = voteRepository.findOneByIdUserAndIdPair(userId, pairId);
+		return vote.isPresent() ? vote.get() : null; 
 	}
 }

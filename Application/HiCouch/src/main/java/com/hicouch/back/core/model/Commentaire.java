@@ -10,19 +10,19 @@ public class Commentaire {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    int id;
+    Integer id;
 
     @Column(name="Commentaire")
     String commentaire;
 
     @Column(name="Note")
-    int note;
+    Integer note;
 
     @Column(name="iduser")
     int idUser;
 
-    @Column(name="idassoc")
-    int idAssoc;
+    @Column(name="idpair")
+    int idPair;
 
     @Column(name="status")
     int status;
@@ -33,11 +33,11 @@ public class Commentaire {
     @Column(name="updatedat")
     Date updatedAt;
 
-    public Commentaire(String commentaire, int note, int idUser, int idAssoc, int status, Date createdat, Date updatedAt) {
+    public Commentaire(String commentaire, Integer note, int idUser, int idPair, int status, Date createdat, Date updatedAt) {
         this.commentaire = commentaire;
         this.note = note;
         this.idUser = idUser;
-        this.idAssoc = idAssoc;
+        this.idPair = idPair;
         this.status = status;
         this.createdat = createdat;
         this.updatedAt = updatedAt;
@@ -45,11 +45,11 @@ public class Commentaire {
 
     public Commentaire(){}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -61,11 +61,11 @@ public class Commentaire {
         this.commentaire = commentaire;
     }
 
-    public int getNote() {
+    public Integer getNote() {
         return note;
     }
 
-    public void setNote(int note) {
+    public void setNote(Integer note) {
         this.note = note;
     }
 
@@ -77,12 +77,12 @@ public class Commentaire {
         this.idUser = idUser;
     }
 
-    public int getIdAssoc() {
-        return idAssoc;
+    public int getIdPair() {
+        return idPair;
     }
 
-    public void setIdAssoc(int idAssoc) {
-        this.idAssoc = idAssoc;
+    public void setIdPair(int idPair) {
+        this.idPair = idPair;
     }
 
     public int getStatus() {
@@ -116,7 +116,7 @@ public class Commentaire {
                 ", commentaire='" + commentaire + '\'' +
                 ", note=" + note +
                 ", idUser=" + idUser +
-                ", idAssoc=" + idAssoc +
+                ", idPair=" + idPair +
                 ", status=" + status +
                 ", createdat=" + createdat +
                 ", updatedAt=" + updatedAt +

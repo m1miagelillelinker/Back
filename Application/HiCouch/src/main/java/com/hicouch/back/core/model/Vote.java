@@ -11,8 +11,8 @@ public class Vote {
     @Column(name="id")
     Integer id;
 
-    @Column(name="idassoc")
-    int idAssoc;
+    @Column(name="idpair")
+    int idPair;
 
     @Column(name="vote")
     int vote;
@@ -29,7 +29,7 @@ public class Vote {
     public Vote(){}
 
     public Vote(int idAssoc, int vote, int idUser, Date createdAt, Date updatedAt) {
-        this.idAssoc = idAssoc;
+        this.idPair = idAssoc;
         this.vote = vote;
         this.idUser = idUser;
         this.createdAt = createdAt;
@@ -44,12 +44,12 @@ public class Vote {
         this.id = id;
     }
 
-    public int getIdAssoc() {
-        return idAssoc;
+    public int getIdPair() {
+        return idPair;
     }
 
-    public void setIdAssoc(int idAssoc) {
-        this.idAssoc = idAssoc;
+    public void setIdPair(int idPair) {
+        this.idPair = idPair;
     }
 
     public int getVote() {
@@ -88,7 +88,7 @@ public class Vote {
     public String toString() {
         return "Vote{" +
                 "id=" + id +
-                ", idAssoc=" + idAssoc +
+                ", idAssoc=" + idPair +
                 ", vote=" + vote +
                 ", idUser=" + idUser +
                 ", createdAt=" + createdAt +
