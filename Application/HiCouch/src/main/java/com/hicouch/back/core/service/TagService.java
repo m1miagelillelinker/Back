@@ -2,24 +2,18 @@ package com.hicouch.back.core.service;
 
 import java.util.List;
 
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Tag;
 
 public interface TagService {
 
-	Tag getTagById(Integer id);
+	Tag getTagById(Integer id) throws NoResultException;
 	
-	Tag createTag(String tag);
+	Tag createOrGetTag(String tag);
 
 	List<Tag> getTagsByIds(List<Integer> ids);
 
-	Tag getTagByValue(String tagValue);
+	List<Tag> getTagByValue(String tagValue);
 	
-	/*
-	 * TODO : 
-	 * validation de tags
-	 * suppression de tags
-	 * 
-	 */
-	
-	Tag setTagStatus(int tagId, int status);
+	Tag setTagStatus(int tagId, int status) throws NoResultException;
 }

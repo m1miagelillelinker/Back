@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.dto.ProductDTO;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.model.Vote;
@@ -32,21 +33,20 @@ public class AssociationFactory {
 	
 	public AssociationDTO getAssociationDTO(Association association) {
 		AssociationDTO associationDTO = new AssociationDTO();
-		ProductDTO productDTO = null;
+		associationDTO.setAssociation(association);
 		
 		try {
-			productDTO = productService.getProductByIdFromReferentiel(association.getIdproduitB(), association.getIdfournB());
+			ProductDTO productDTO = productService.getProductByIdFromReferentiel(association.getIdproduitB(), association.getIdfournB());
+			associationDTO.setProductDTO(productDTO);
+			// TODO : fetch user
+			Vote vote = voteService.getVoteByUserOnAsso(1, association.getId());
+			associationDTO.setVote(vote);
+			
+			List<Commentaire> commentaires = commentaireService.getCommentaireByAsso(association.getId());
+			associationDTO.setCommentaires(commentaires);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		// TODO : get user id
-		Vote vote = voteService.getVoteByUserOnAsso(1, association.getId());
-		List<Commentaire> commentaires = commentaireService.getCommentaireByAsso(association.getId());
-		
-		associationDTO.setProductDTO(productDTO);
-		associationDTO.setCommentaires(commentaires);
-		associationDTO.setVote(vote);
 		
 		return associationDTO;
 	}

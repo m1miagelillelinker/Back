@@ -19,70 +19,61 @@ import javax.persistence.Query;
 @Service
 public class AssociationServiceImpl implements AssociationService {
 
-    private final AssociationRepository associationRepository;
-    private final EntityManager entityManager;
-    private final AssociationFactory associationFactory;
+	private final AssociationRepository associationRepository;
+	private final EntityManager entityManager;
+	private final AssociationFactory associationFactory;
 
-    @Autowired
-    public AssociationServiceImpl(AssociationRepository associationRepository, EntityManager entityManager, AssociationFactory associationFactory) {
-        this.associationRepository = associationRepository;
-        this.entityManager = entityManager;
-        this.associationFactory = associationFactory;
-    }
+	@Autowired
+	public AssociationServiceImpl(AssociationRepository associationRepository, EntityManager entityManager,
+			AssociationFactory associationFactory) {
+		this.associationRepository = associationRepository;
+		this.entityManager = entityManager;
+		this.associationFactory = associationFactory;
+	}
 
-    @Override
-    public List<AssociationDTO> getAssociationsByIdProduct(String idProduct) throws Exception {
-    	List<Association> listAsso;
+	@Override
+	public List<AssociationDTO> getAssociationsByIdProduct(String idProduct) throws Exception {
+		return associationRepository.findAllByIdproduitA(idProduct)
+				.stream()
+				.map(associationFactory::getAssociationDTO)
+				.collect(Collectors.toList());
+	}
 
-        try{
-            listAsso = associationRepository.findAllByidproduitA(idProduct);
-        }catch (Exception e){
-            throw new Exception();
-        }
-        
-        return listAsso.stream().map(associationFactory::getAssociationDTO).collect(Collectors.toList());
+	@Override
+	public String deleteAssociation(int idAssociation) {
+		associationRepository.deleteById(idAssociation);
+		return "Le delete a ete fait";
+	}
 
-    }
+	@Override
+	public Association createAssociation(String idProductA, String idProductB) throws Exception {
 
-    @Override
-    public String deleteAssociation(int idAssociation) throws Exception {
-        try{
-            associationRepository.deleteById(idAssociation);
-        }catch (Exception e){
-            throw new Exception();
-        }
-        return "Le delete a ete fait";
-    }
+		Date maintenant = new Date(System.currentTimeMillis());
 
-    @Override
-    public Association createAssociation(String idProductA, String idProductB) throws Exception {
+		Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
+		int idPair = (Integer) q.getSingleResult();
 
-        Date maintenant = new Date(System.currentTimeMillis());
+		Association asso = new Association();
+		asso.setIdproduitA(idProductA);
+		asso.setIdproduitB(idProductB);
+		asso.setIdPair(idPair);
+		asso.setCreatedat(maintenant);
+		asso.setUpdatedat(maintenant);
 
-        Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
-        int idPair = (Integer)q.getSingleResult();
+		Association assoMirror = new Association();
+		assoMirror.setIdproduitA(idProductB);
+		assoMirror.setIdproduitB(idProductA);
+		assoMirror.setIdPair(idPair);
+		assoMirror.setCreatedat(maintenant);
+		assoMirror.setUpdatedat(maintenant);
 
-        Association asso = new Association();
-        asso.setIdproduitA(idProductA);
-        asso.setIdproduitB(idProductB);
-        asso.setIdPair(idPair);
-        asso.setCreatedat(maintenant);
-        asso.setUpdatedat(maintenant);
-        
-        Association assoMirror = new Association();
-        assoMirror.setIdproduitA(idProductB);
-        assoMirror.setIdproduitB(idProductA);
-        assoMirror.setIdPair(idPair);
-        assoMirror.setCreatedat(maintenant);
-        assoMirror.setUpdatedat(maintenant);
-
-        try{
-            associationRepository.save(asso);
-            associationRepository.save(assoMirror);
-        }catch (Exception e){
-        	e.printStackTrace();
-            throw new Exception();
-        }
-        return asso;
-    }
+		try {
+			associationRepository.save(asso);
+			associationRepository.save(assoMirror);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
+		return asso;
+	}
 }

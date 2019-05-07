@@ -2,6 +2,7 @@ package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.repository.TagRepository;
 import com.hicouch.back.core.service.TagService;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Tag;
 
 import java.util.Date;
@@ -22,8 +23,8 @@ public class TagServiceImpl implements TagService {
     }
 
 	@Override
-	public Tag getTagById(Integer id) {
-		return tagRepository.findById(id).get();
+	public Tag getTagById(Integer id) throws NoResultException {
+		return tagRepository.findById(id).orElseThrow(NoResultException::new);
 	}
 	
 	@Override
@@ -32,34 +33,21 @@ public class TagServiceImpl implements TagService {
 	}
 
 	@Override
-	public Tag createTag(String tag) {
-		Tag result;
+	public Tag createOrGetTag(String tag) {
 		Optional<Tag> existing = tagRepository.findOneByValue(tag);
-		
-		if(existing.isPresent()) {
-			result = existing.get();
-		} else {
-			result = tagRepository.save(new Tag(tag, 1, new Date(), new Date()));
-		}
-		
-		return result;
+		return existing.isPresent() ? existing.get() : tagRepository.save(new Tag(tag, 1, new Date(), new Date()));
 	}
 
 	@Override
-	public Tag getTagByValue(String tagValue) {
+	public List<Tag> getTagByValue(String tagValue) {
 		return tagRepository.findAllByValue(tagValue);
 	}
 
 	@Override
-	public Tag setTagStatus(int tagId, int status) {
-		// TODO Auto-generated method stub
-		Optional<Tag> tagFound = tagRepository.findById(tagId);
-		Tag tag = null;
-		if(tagFound.isPresent()) {
-			tag = tagFound.get();
-			tag.setStatus(status);
-		}
-		return tag;
+	public Tag setTagStatus(int tagId, int status) throws NoResultException {
+		Tag tag = tagRepository.findById(tagId).orElseThrow(NoResultException::new);
+		tag.setStatus(status);
+		return tagRepository.save(tag);
 	}
 
 }

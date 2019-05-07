@@ -10,5 +10,5 @@ import java.util.List;
 public interface AssociationRepository extends CrudRepository<Association,Integer> {
     void deleteById(int id);
 
-    List<Association>  findAllByidproduitA(String id);
+    List<Association>  findAllByIdproduitA(String id);
 }

@@ -1,11 +1,11 @@
 package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.repository.UserRepository;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,14 +17,8 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public User getUserById(Integer userId) throws Exception {
-        Optional<User> rep = userRepository.findById(userId);
-        if(rep.isPresent()){
-            return rep.get();
-        }else{
-            throw new Exception();
-        }
+        return userRepository.findById(userId).orElseThrow(NoResultException::new);
     }
 }
