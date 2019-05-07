@@ -1,6 +1,7 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.AssociationBusiness;
+import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.service.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class AssociationController {
     @CrossOrigin
     @GetMapping("/byProduct")
     @ResponseBody
-    public List<Association> getAssociationsByIdProduct(@RequestParam("idProduct")String idProduct) throws Exception {
+    public List<AssociationDTO> getAssociationsByIdProduct(@RequestParam("idProduct")String idProduct) throws Exception {
         if(idProduct == null || idProduct.equals("")){
             throw new Exception();
         }

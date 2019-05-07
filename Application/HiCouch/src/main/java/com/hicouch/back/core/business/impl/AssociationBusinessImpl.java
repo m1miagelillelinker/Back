@@ -18,5 +18,4 @@ public class AssociationBusinessImpl implements AssociationBusiness {
         this.produitService = produitService;
     }
 
-
 }

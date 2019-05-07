@@ -3,6 +3,9 @@ package com.hicouch.back.core.service.impl;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.repository.CommentaireRepository;
 import com.hicouch.back.core.service.CommentaireService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,14 +31,15 @@ public class CommentaireServiceImpl implements CommentaireService {
     }
 
     @Override
-    public List<Commentaire> findAllByIdAssoc(int idAssoc) {
-        Optional<List<Commentaire>> listCommentaires = commentaireRepository.findAllByIdAssoc(idAssoc);
-        return listCommentaires.get().size() != 0 ? listCommentaires.get() : new ArrayList<>();
-    }
-
-    @Override
     public Commentaire findById(int id) {
         Optional<Commentaire> commentaire = commentaireRepository.findById(id);
         return commentaire.orElse(null);
     }
+
+	@Override
+	public List<Commentaire> getCommentaireByAsso(int idPair) {
+		return this.commentaireRepository.findAllByIdPair(idPair);
+	}
+    
+    
 }

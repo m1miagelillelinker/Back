@@ -14,9 +14,18 @@ public class Association {
 
     @Column(name="idproduitA")
     String idproduitA;
+    
+    @Column(name="idfournA")
+    String idfournA;
 
     @Column(name="idproduitB")
     String idproduitB;
+    
+    @Column(name="idfournB")
+    String idfournB;
+    
+    @Column(name="idpair")
+    Integer idPair;
 
     @Column(name="createdat")
     Date createdat;
@@ -26,9 +35,12 @@ public class Association {
 
     public Association(){}
 
-    public Association(String idproduitA, String idproduitB, Date createdat, Date updatedat) {
+    public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, int idPair, Date createdat, Date updatedat) {
         this.idproduitA = idproduitA;
+        this.idfournA = idfournA;
         this.idproduitB = idproduitB;
+        this.idfournB = idfournB;
+        this.idPair = idPair;
         this.createdat = createdat;
         this.updatedat = updatedat;
     }
@@ -73,14 +85,55 @@ public class Association {
         this.updatedat = updatedat;
     }
 
-    @Override
-    public String toString() {
-        return "Association{" +
-                "id=" + id +
-                ", idproduitA='" + idproduitA + '\'' +
-                ", idproduitB='" + idproduitB + '\'' +
-                ", createdat=" + createdat +
-                ", updatedat=" + updatedat +
-                '}';
-    }
+	/**
+	 * @return the idPair
+	 */
+	public Integer getIdPair() {
+		return idPair;
+	}
+
+	/**
+	 * @param idPair the idPair to set
+	 */
+	public void setIdPair(Integer idPair) {
+		this.idPair = idPair;
+	}
+
+	/**
+	 * @return the idfournA
+	 */
+	public String getIdfournA() {
+		return idfournA;
+	}
+
+	/**
+	 * @return the idfournB
+	 */
+	public String getIdfournB() {
+		return idfournB;
+	}
+
+	/**
+	 * @param idfournA the idfournA to set
+	 */
+	public void setIdfournA(String idfournA) {
+		this.idfournA = idfournA;
+	}
+
+	/**
+	 * @param idfournB the idfournB to set
+	 */
+	public void setIdfournB(String idfournB) {
+		this.idfournB = idfournB;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Association [id=" + id + ", idproduitA=" + idproduitA + ", idfournA=" + idfournA + ", idproduitB="
+				+ idproduitB + ", idfournB=" + idfournB + ", idPair=" + idPair + ", createdat=" + createdat
+				+ ", updatedat=" + updatedat + "]";
+	}
 }

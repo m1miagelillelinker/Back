@@ -73,4 +73,31 @@ public class ProduitServiceImpl implements ProduitService {
     }
 
 
+    /**
+     * TODO : refacto
+     * @throws Exception 
+     */
+	@Override
+	public ProductDTO getProductByIdFromReferentiel(String productId, String referentiel) throws Exception {
+		// TODO Auto-generated method stub
+		ProductDTO result = null;
+		switch(referentiel) {
+		case "film":
+			result = getFilmByIdFromReferentiel(productId);
+			break;
+		case "book":
+			result = getBookByIdFromReferentiel(productId);
+			break;
+		case "serie":
+			break;
+		case "game":
+			break;
+		default:
+			break;
+			
+		}
+		return result;
+	}
+
+
 }
