@@ -10,7 +10,6 @@ import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.model.Vote;
-import com.hicouch.back.core.repository.VoteRepository;
 import com.hicouch.back.core.service.CommentaireService;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.service.VoteService;
@@ -51,7 +50,5 @@ public class AssociationFactory {
 		
 		return associationDTO;
 	}
-	
-	
 	
 }

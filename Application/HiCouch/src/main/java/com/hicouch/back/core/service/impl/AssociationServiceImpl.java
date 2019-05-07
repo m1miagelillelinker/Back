@@ -33,7 +33,6 @@ public class AssociationServiceImpl implements AssociationService {
     @Override
     public List<AssociationDTO> getAssociationsByIdProduct(String idProduct) throws Exception {
     	List<Association> listAsso;
-    	List<AssociationDTO> listAssoDTO;
 
         try{
             listAsso = associationRepository.findAllByidproduitA(idProduct);
