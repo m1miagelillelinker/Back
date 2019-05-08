@@ -12,6 +12,7 @@ public class OmdbDTO {
     String image;
     String duration;
     String nbSeasons;
+    String type;
 
 
     public OmdbDTO(String id, String title, String description, String country, String director, String year, String genre, String image, String duration, String nbSeasons) {
