@@ -37,7 +37,7 @@ public class AssociationFactory {
 		
 		try {
 			ProductDTO productDTO = productService.getProductByIdFromReferentiel(association.getIdproduitB(), association.getIdfournB());
-			associationDTO.setProductDTO(productDTO);
+			associationDTO.setProduct(productDTO);
 			// TODO : fetch user
 			Vote vote = voteService.getVoteByUserOnAsso(1, association.getId());
 			associationDTO.setVote(vote);
