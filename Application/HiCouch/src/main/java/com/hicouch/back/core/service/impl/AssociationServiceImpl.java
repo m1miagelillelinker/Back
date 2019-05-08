@@ -46,7 +46,7 @@ public class AssociationServiceImpl implements AssociationService {
 	}
 
 	@Override
-	public Association createAssociation(String idProductA, String idProductB) throws Exception {
+	public Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB) throws Exception {
 
 		Date maintenant = new Date(System.currentTimeMillis());
 
@@ -55,14 +55,18 @@ public class AssociationServiceImpl implements AssociationService {
 
 		Association asso = new Association();
 		asso.setIdproduitA(idProductA);
+		asso.setIdfournA(idfournA);
 		asso.setIdproduitB(idProductB);
+		asso.setIdfournB(idfournB);
 		asso.setIdPair(idPair);
 		asso.setCreatedat(maintenant);
 		asso.setUpdatedat(maintenant);
 
 		Association assoMirror = new Association();
 		assoMirror.setIdproduitA(idProductB);
+		assoMirror.setIdfournA(idfournB);
 		assoMirror.setIdproduitB(idProductA);
+		assoMirror.setIdfournB(idfournA);
 		assoMirror.setIdPair(idPair);
 		assoMirror.setCreatedat(maintenant);
 		assoMirror.setUpdatedat(maintenant);

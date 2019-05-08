@@ -10,5 +10,6 @@ public interface AssociationService {
 
     String deleteAssociation(int idAssociation) throws Exception;
 
-    Association createAssociation(String idProduitA, String idProduitB) throws Exception;
+	Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB)
+			throws Exception;
 }
