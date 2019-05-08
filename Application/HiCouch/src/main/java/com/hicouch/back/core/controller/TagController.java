@@ -2,6 +2,7 @@ package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.TagBusiness;
 import com.hicouch.back.core.enumeration.StatusEnum;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Tag;
 import com.hicouch.back.core.service.TagService;
 
@@ -34,13 +35,13 @@ public class TagController {
     
     @CrossOrigin
     @PutMapping("/validateTag")
-    public Tag setTagStatusOK(@RequestParam("idTad") int idTag) {
+    public Tag setTagStatusOK(@RequestParam("idTad") int idTag) throws NoResultException {
     	return tagService.setTagStatus(idTag, StatusEnum.OK);
     }
     
     @CrossOrigin
     @PutMapping("/refuseTag")
-    public Tag setTagStatusBlocked(@RequestParam("idTad") int idTag) {
+    public Tag setTagStatusBlocked(@RequestParam("idTad") int idTag) throws NoResultException {
     	return tagService.setTagStatus(idTag, StatusEnum.BLOCKED);
     }
 

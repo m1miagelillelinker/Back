@@ -1,6 +1,7 @@
 package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.repository.VoteRepository;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Vote;
 import com.hicouch.back.core.service.VoteService;
 
@@ -52,17 +53,16 @@ public class VoteServiceImpl implements VoteService {
 
 	@Override
 	public List<Vote> getVotesByUser(int userId) {
-		return voteRepository.findAllByIdUser(userId).get();
+		return voteRepository.findAllByIdUser(userId);
 	}
 
 	@Override
 	public List<Vote> getVotesByAssociation(int pairId) {
-		return voteRepository.findAllByIdPair(pairId).get();
+		return voteRepository.findAllByIdPair(pairId);
 	}
 
 	@Override
-	public Vote getVoteByUserOnAsso(int userId, int pairId) {
-		Optional<Vote> vote = voteRepository.findOneByIdUserAndIdPair(userId, pairId);
-		return vote.isPresent() ? vote.get() : null; 
+	public Vote getVoteByUserOnAsso(int userId, int pairId) throws NoResultException {
+		return voteRepository.findOneByIdUserAndIdPair(userId, pairId).orElseThrow(NoResultException::new);
 	}
 }

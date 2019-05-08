@@ -1,5 +1,6 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.repository.SignalementRepository;
 import com.hicouch.back.core.service.SignalementService;
@@ -21,17 +22,13 @@ public class SignalementServiceImpl implements SignalementService {
     }
 
     @Override
-    /*public Signalement getSignalementById(Integer id) {
-        try{
-            Signalement t = signalementRepository.find;
-        }
-    }*/
-    public Signalement getSignalementById(Integer signalementId){
-        return signalementRepository.findById(signalementId).get();
+    public Signalement getSignalementById(Integer signalementId) throws NoResultException{
+        return signalementRepository.findById(signalementId).orElseThrow(NoResultException::new);
     }
 
-
-
+    /**
+     * TODO : implémenter
+     */
     @Override
     public Signalement createSignalement(String typeSignalement, int signaledId, String message, int idSignalement, int status, int moderatorId) {
         //Signalement result = signalementRepository.save(new Signalement(typeSignalement, signaledId, message, idSignalement, moderatorId));
@@ -40,8 +37,7 @@ public class SignalementServiceImpl implements SignalementService {
 
     @Override
     public Signalement createSignalement(Signalement signalement) {
-        Signalement result = signalementRepository.save(signalement);
-        return result;
+        return signalementRepository.save(signalement);
     }
 
 	@Override

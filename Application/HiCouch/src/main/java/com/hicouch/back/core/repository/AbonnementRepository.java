@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AbonnementRepository extends CrudRepository<Abonnement,Integer> {
 
-	Optional<List<Abonnement>> findAllByFollower(int userId);
+	List<Abonnement> findAllByFollower(int userId);
 
-	Optional<List<Abonnement>> findAllByFollows(int userId);
+	List<Abonnement> findAllByFollows(int userId);
 	
 	Optional<Abonnement> findByFollowerAndFollows(Integer follower, Integer follows);
 

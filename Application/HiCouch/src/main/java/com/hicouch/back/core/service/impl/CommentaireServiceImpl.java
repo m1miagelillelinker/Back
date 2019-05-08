@@ -1,5 +1,6 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.repository.CommentaireRepository;
 import com.hicouch.back.core.service.CommentaireService;
@@ -26,19 +27,17 @@ public class CommentaireServiceImpl implements CommentaireService {
 
     @Override
     public List<Commentaire> findAllByIdUser(int idUser) {
-        Optional<List<Commentaire>> listCommentaires = commentaireRepository.findAllByIdUser(idUser);
-        return listCommentaires.get().size() != 0 ? listCommentaires.get() : new ArrayList<>();
+    	return commentaireRepository.findAllByIdUser(idUser);
     }
 
     @Override
-    public Commentaire findById(int id) {
-        Optional<Commentaire> commentaire = commentaireRepository.findById(id);
-        return commentaire.orElse(null);
+    public Commentaire findById(int id) throws NoResultException {
+        return commentaireRepository.findById(id).orElseThrow(NoResultException::new);
     }
 
 	@Override
 	public List<Commentaire> getCommentaireByAsso(int idPair) {
-		return this.commentaireRepository.findAllByIdPair(idPair);
+		return commentaireRepository.findAllByIdPair(idPair);
 	}
     
     

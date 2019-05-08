@@ -1,6 +1,7 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.SignalementBusiness;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.service.SignalementService;
 
@@ -27,8 +28,8 @@ public class SignalementController {
     @CrossOrigin
     @GetMapping("/get")
     @ResponseBody
-    public Signalement getSignalementById(@RequestParam("signalementId") String signalementId){
-    	return signalementService.getSignalementById(Integer.parseInt(signalementId));
+    public Signalement getSignalementById(@RequestParam("signalementId") int signalementId) throws NoResultException{
+    	return signalementService.getSignalementById(signalementId);
     }
 
     @CrossOrigin

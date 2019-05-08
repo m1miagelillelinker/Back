@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface CommentaireRepository extends CrudRepository<Commentaire,Integer> {
 
-    Optional<List<Commentaire>> findAllByIdUser (int idUser);
+    List<Commentaire> findAllByIdUser (int idUser);
 
     Optional<Commentaire> findById( int id);
 	

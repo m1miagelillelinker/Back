@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/association" , produces = MediaType.APPLICATION_JSON_VALUE )
+@RequestMapping(value = "/association" , produces = MediaType.APPLICATION_JSON_VALUE)
 public class AssociationController {
 
     private final AssociationBusiness associationBusiness;
@@ -38,11 +38,11 @@ public class AssociationController {
     @CrossOrigin
     @PutMapping("/create")
     @ResponseBody
-    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idProductB") String idProductB) throws Exception {
+    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idfournA") String idfournA, @RequestParam("idProductB") String idProductB, @RequestParam("idfournB") String idfournB) throws Exception {
         if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("")){
             throw new Exception();
         }
-        return associationService.createAssociation(idProductA,idProductB);
+        return associationService.createAssociation(idProductA,idfournA, idProductB, idfournB);
     }
 
     @CrossOrigin

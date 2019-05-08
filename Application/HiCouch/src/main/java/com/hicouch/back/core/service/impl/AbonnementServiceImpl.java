@@ -23,16 +23,12 @@ public class AbonnementServiceImpl implements AbonnementService {
     
     @Override
     public List<Abonnement> getFollowersByFollows(int userId) {
-        Optional<List<Abonnement>> rep = abonnementRepository.findAllByFollower(userId);
-        System.out.println("test getFollowersById :"+rep.toString());
-        return rep.get();
+    	return abonnementRepository.findAllByFollower(userId);
     }
 
 	@Override
 	public List<Abonnement> getFollowsByFollower(int userId) {
-        Optional<List<Abonnement>> rep = abonnementRepository.findAllByFollows(userId);
-        System.out.println("test getFollowersById :"+rep.toString());
-        return rep.get();
+        return abonnementRepository.findAllByFollows(userId);
 	}
 
 	@Override
