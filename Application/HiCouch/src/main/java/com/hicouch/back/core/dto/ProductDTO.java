@@ -18,8 +18,9 @@ public class ProductDTO {
     List<Association> listProduits;
     String image;
     String duration;
+    String type;
 
-    public ProductDTO(String id, String title, String description, String country, String director, String year, List<String> genre, List<Association> listProduits, String image, String duration) {
+    public ProductDTO(String id, String title, String description, String country, String director, String year, List<String> genre, List<Association> listProduits, String image, String duration, String type) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -30,6 +31,7 @@ public class ProductDTO {
         this.listProduits = listProduits;
         this.image = image;
         this.duration = duration;
+        this.type = type;
     }
 
     public ProductDTO() {};
@@ -114,11 +116,20 @@ public class ProductDTO {
         this.duration = duration;
     }
 
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
 
-
-
-
-
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+    
     public ProductDTO convertOmdbToProduct(OmdbDTO omdbDTO){
         ProductDTO productDTO = new ProductDTO();
         productDTO.setId(omdbDTO.getId());
@@ -127,6 +138,7 @@ public class ProductDTO {
         productDTO.setCountry(omdbDTO.getCountry());
         productDTO.setDirector(omdbDTO.getDirector());
         productDTO.setYear(omdbDTO.getYear());
+        productDTO.setType(omdbDTO.getType());
 
         /**
          * TODO : gestion des tags + liste produit associé
@@ -147,6 +159,7 @@ public class ProductDTO {
         productDTO.setCountry("FR");
         productDTO.setDirector(googleBooksDTO.getAuthor());
         productDTO.setYear(googleBooksDTO.getYear());
+        productDTO.setType("book");
         /**
          * TODO : gestion des tags + liste produit associé
          */
@@ -159,4 +172,5 @@ public class ProductDTO {
     }
 
     public ProductDTO convertGamesToProduct(){return new ProductDTO();}
+
 }

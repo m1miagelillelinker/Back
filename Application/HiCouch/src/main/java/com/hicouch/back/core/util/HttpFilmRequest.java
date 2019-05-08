@@ -29,7 +29,7 @@ public class HttpFilmRequest extends HttpRequest{
             omdbDTO.setGenre(jsonObject.getString("Genre"));
             omdbDTO.setImage(jsonObject.getString("Poster"));
             omdbDTO.setDuration(jsonObject.getString("Runtime"));
-            omdbDTO.setNbSeasons(jsonObject.getString("Type"));
+            omdbDTO.setType(jsonObject.getString("Type"));
 
             return productDTO.convertOmdbToProduct(omdbDTO);
         } catch (Exception e) {
