@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,18 @@ public class CommentaireServiceImpl implements CommentaireService {
 	public List<Commentaire> getCommentaireByAsso(int idPair) {
 		return commentaireRepository.findAllByIdPair(idPair);
 	}
-    
+
+	@Override
+	public Commentaire upsertCommentaire(Commentaire commentaire) throws NoResultException {
+		if(commentaire.getId() != null) {
+			Commentaire oldCommentaire = findById(commentaire.getId());
+			oldCommentaire.setCommentaire(commentaire.getCommentaire());
+			commentaire = oldCommentaire;
+		} else {
+			commentaire.setCreatedat(new Date());
+		}
+		commentaire.setUpdatedAt(new Date());
+		return commentaireRepository.save(commentaire);
+	}
     
 }

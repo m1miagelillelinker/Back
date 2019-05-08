@@ -9,5 +9,6 @@ public interface CommentaireService {
     List<Commentaire> findAllByIdUser(int idUser);
     Commentaire findById(int id) throws NoResultException;
 	List<Commentaire> getCommentaireByAsso(int idAsso);
+	Commentaire upsertCommentaire(Commentaire commentaire) throws NoResultException;
 	
 }
