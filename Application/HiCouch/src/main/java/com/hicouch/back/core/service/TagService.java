@@ -16,4 +16,6 @@ public interface TagService {
 	List<Tag> getTagByValue(String tagValue);
 	
 	Tag setTagStatus(int tagId, int status) throws NoResultException;
+	
+	Tag getTagByIdOrNull(Integer id);
 }

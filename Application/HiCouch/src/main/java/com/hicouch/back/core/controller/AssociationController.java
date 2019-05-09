@@ -52,5 +52,4 @@ public class AssociationController {
         return associationService.deleteAssociation(idAssociation);
     }
 
-
 }

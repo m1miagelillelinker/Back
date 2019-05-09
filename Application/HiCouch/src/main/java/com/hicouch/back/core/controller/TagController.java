@@ -6,10 +6,13 @@ import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Tag;
 import com.hicouch.back.core.service.TagService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,14 +37,20 @@ public class TagController {
     }
     
     @CrossOrigin
+    @GetMapping("/byProduct")
+    public List<Tag> getTagsByProduct(@RequestParam("idProduit") String idProduit) {
+    	return tagBusiness.getAllTagByProduct(idProduit);
+    }
+    
+    @CrossOrigin
     @PutMapping("/validateTag")
-    public Tag setTagStatusOK(@RequestParam("idTad") int idTag) throws NoResultException {
+    public Tag setTagStatusOK(@RequestParam("idTag") int idTag) throws NoResultException {
     	return tagService.setTagStatus(idTag, StatusEnum.OK);
     }
     
     @CrossOrigin
     @PutMapping("/refuseTag")
-    public Tag setTagStatusBlocked(@RequestParam("idTad") int idTag) throws NoResultException {
+    public Tag setTagStatusBlocked(@RequestParam("idTag") int idTag) throws NoResultException {
     	return tagService.setTagStatus(idTag, StatusEnum.BLOCKED);
     }
 
