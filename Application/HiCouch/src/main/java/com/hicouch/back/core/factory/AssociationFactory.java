@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.hicouch.back.core.business.ProduitBusiness;
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.exception.NoResultException;
@@ -22,13 +23,13 @@ public class AssociationFactory {
 
 	private CommentaireService commentaireService;
 	
-	private ProduitService productService;
+	private ProduitBusiness produitBusiness;
 	
 	@Autowired
-	public AssociationFactory(VoteService voteService, CommentaireService commentaireService, ProduitService productService) {
+	public AssociationFactory(VoteService voteService, CommentaireService commentaireService, ProduitBusiness produitBusiness) {
 		this.voteService = voteService;
 		this.commentaireService = commentaireService;
-		this.productService = productService;
+		this.produitBusiness = produitBusiness;
 	}
 	
 	public AssociationDTO getAssociationDTO(Association association) {
@@ -36,7 +37,7 @@ public class AssociationFactory {
 		associationDTO.setAssociation(association);
 		
 		try {
-			ProductDTO productDTO = productService.getProductByIdFromReferentiel(association.getIdproduitB(), association.getIdfournB());
+			ProductDTO productDTO = produitBusiness.getCompleteProduct(association.getIdproduitB(), association.getIdfournB());
 			associationDTO.setProduct(productDTO);
 			// TODO : fetch user
 			Vote vote = voteService.getVoteByUserOnAsso(1, association.getId());

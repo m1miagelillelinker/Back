@@ -3,19 +3,19 @@ package com.hicouch.back.core.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="No Result")  // 404
-public class NoResultException extends BusinessException {
+@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="No Result from referentiel")  // 404
+public class ReferentielRequestException extends BusinessException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public NoResultException() {
+	
+	public ReferentielRequestException() {
 		super();
 	}
 	
-	public NoResultException(String message) {
+	public ReferentielRequestException(String message) {
 		super(message);
 	}
 

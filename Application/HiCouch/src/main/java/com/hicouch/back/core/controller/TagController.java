@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "/tag" , produces = MediaType.APPLICATION_JSON_VALUE )
@@ -34,14 +35,23 @@ public class TagController {
     }
     
     @CrossOrigin
+    @GetMapping("/byProduct")
+    @ResponseBody
+    public List<Tag> getTagsByProduct(@RequestParam("idProduit") String idProduit) {
+    	return tagBusiness.getAllTagByProduct(idProduit);
+    }
+    
+    @CrossOrigin
     @PutMapping("/validateTag")
-    public Tag setTagStatusOK(@RequestParam("idTad") int idTag) throws NoResultException {
+    @ResponseBody
+    public Tag setTagStatusOK(@RequestParam("idTag") int idTag) throws NoResultException {
     	return tagService.setTagStatus(idTag, StatusEnum.OK);
     }
     
     @CrossOrigin
     @PutMapping("/refuseTag")
-    public Tag setTagStatusBlocked(@RequestParam("idTad") int idTag) throws NoResultException {
+    @ResponseBody
+    public Tag setTagStatusBlocked(@RequestParam("idTag") int idTag) throws NoResultException {
     	return tagService.setTagStatus(idTag, StatusEnum.BLOCKED);
     }
 

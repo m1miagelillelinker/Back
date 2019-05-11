@@ -1,6 +1,9 @@
 package com.hicouch.back.core.dto;
 
-public class GoogleBooksDTO{
+import java.util.ArrayList;
+import java.util.List;
+
+public class GoogleBooksDTO extends ProductDTOFromReferentiel {
 
     String id;
     String title;
@@ -18,6 +21,24 @@ public class GoogleBooksDTO{
         this.year = year;
         this.genre = genre;
         this.image = image;
+    }
+    
+    @Override
+    public ProductDTO toProductDTO(){
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(this.getId());
+        productDTO.setTitle(this.getTitle());
+        productDTO.setDescription(this.getDescription());
+        productDTO.setCountry("FR");
+        productDTO.setDirector(this.getAuthor());
+        productDTO.setYear(this.getYear());
+        productDTO.setType("book");
+        List<String> listTag = new ArrayList<>();
+        listTag.add(this.getGenre());
+        productDTO.setGenre(listTag);
+        productDTO.setImage(this.getImage());
+        //productDTO.setDuration(new Date());
+        return productDTO;
     }
 
     public GoogleBooksDTO() {

@@ -1,131 +1,144 @@
 package com.hicouch.back.core.dto;
 
-public class OmdbDTO {
+public class OmdbDTO extends ProductDTOFromReferentiel {
 
-    String id;
-    String title;
-    String description;
-    String country;
-    String director;
-    String year;
-    String genre;
-    String image;
-    String duration;
-    String nbSeasons;
-    String type;
+	String id;
+	String title;
+	String description;
+	String country;
+	String director;
+	String year;
+	String genre;
+	String image;
+	String duration;
+	String nbSeasons;
+	String type;
 
+	public OmdbDTO(String id, String title, String description, String country, String director, String year,
+			String genre, String image, String duration, String nbSeasons) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.country = country;
+		this.director = director;
+		this.year = year;
+		this.genre = genre;
+		this.image = image;
+		this.duration = duration;
+		this.nbSeasons = nbSeasons;
+	}
 
-    public OmdbDTO(String id, String title, String description, String country, String director, String year, String genre, String image, String duration, String nbSeasons) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.country = country;
-        this.director = director;
-        this.year = year;
-        this.genre = genre;
-        this.image = image;
-        this.duration = duration;
-        this.nbSeasons = nbSeasons;
-    }
+	@Override
+	public ProductDTO toProductDTO() {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setId(this.getId());
+		productDTO.setTitle(this.getTitle());
+		productDTO.setDescription(this.getDescription());
+		productDTO.setCountry(this.getCountry());
+		productDTO.setDirector(this.getDirector());
+		productDTO.setYear(this.getYear());
+		productDTO.setType(this.getType());
 
-    public OmdbDTO() {
-    }
+		/**
+		 * TODO : gestion des tags + liste produit associé
+		 */
+		// List<Tag> listTag = new ArrayList<>();
+		// listTag.add(omdbDTO.getGenre());
+		productDTO.setImage(this.getImage());
+		productDTO.setDuration(this.getDuration());
+		return productDTO;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public OmdbDTO() {
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+	public String getCountry() {
+		return country;
+	}
 
-    public String getDirector() {
-        return director;
-    }
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-    public void setDirector(String director) {
-        this.director = director;
-    }
+	public String getDirector() {
+		return director;
+	}
 
-    public String getYear() {
-        return year;
-    }
+	public void setDirector(String director) {
+		this.director = director;
+	}
 
-    public void setYear(String year) {
-        this.year = year;
-    }
+	public String getYear() {
+		return year;
+	}
 
-    public String getGenre() {
-        return genre;
-    }
+	public void setYear(String year) {
+		this.year = year;
+	}
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+	public String getGenre() {
+		return genre;
+	}
 
-    public String getImage() {
-        return image;
-    }
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+	public String getImage() {
+		return image;
+	}
 
-    public String getDuration() {
-        return duration;
-    }
+	public void setImage(String image) {
+		this.image = image;
+	}
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
+	public String getDuration() {
+		return duration;
+	}
 
-    public String getNbSeasons() {
-        return nbSeasons;
-    }
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 
-    public void setNbSeasons(String nbSeasons) {
-        this.nbSeasons = nbSeasons;
-    }
+	public String getNbSeasons() {
+		return nbSeasons;
+	}
 
-    @Override
-    public String toString() {
-        return "OmdbDTO{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", country='" + country + '\'' +
-                ", director='" + director + '\'' +
-                ", year='" + year + '\'' +
-                ", genre=" + genre +
-                ", image='" + image + '\'' +
-                ", duration='" + duration + '\'' +
-                ", nbSeasons='" + nbSeasons + '\'' +
-                '}';
-    }
+	public void setNbSeasons(String nbSeasons) {
+		this.nbSeasons = nbSeasons;
+	}
+
+	@Override
+	public String toString() {
+		return "OmdbDTO{" + "id=" + id + ", title='" + title + '\'' + ", description='" + description + '\''
+				+ ", country='" + country + '\'' + ", director='" + director + '\'' + ", year='" + year + '\''
+				+ ", genre=" + genre + ", image='" + image + '\'' + ", duration='" + duration + '\'' + ", nbSeasons='"
+				+ nbSeasons + '\'' + '}';
+	}
 
 	/**
 	 * @return the type

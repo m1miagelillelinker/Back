@@ -1,6 +1,7 @@
 package com.hicouch.back.core.dto;
 
 import com.hicouch.back.core.model.Association;
+import com.hicouch.back.core.model.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class ProductDTO {
     String year;
     List<String> genre;
     List<Association> listProduits;
+    List<Tag> tags;
     String image;
     String duration;
     String type;
@@ -129,48 +131,13 @@ public class ProductDTO {
 	public void setType(String type) {
 		this.type = type;
 	}
-    
-    public ProductDTO convertOmdbToProduct(OmdbDTO omdbDTO){
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setId(omdbDTO.getId());
-        productDTO.setTitle(omdbDTO.getTitle());
-        productDTO.setDescription(omdbDTO.getDescription());
-        productDTO.setCountry(omdbDTO.getCountry());
-        productDTO.setDirector(omdbDTO.getDirector());
-        productDTO.setYear(omdbDTO.getYear());
-        productDTO.setType(omdbDTO.getType());
 
-        /**
-         * TODO : gestion des tags + liste produit associé
-         */
-        //List<Tag> listTag = new ArrayList<>();
-        //listTag.add(omdbDTO.getGenre());
-        productDTO.setImage(omdbDTO.getImage());
-        productDTO.setDuration(omdbDTO.getDuration());
-            return productDTO;
-    }
+	public List<Tag> getTags() {
+		return tags;
+	}
 
-
-    public ProductDTO convertBooksToProduct(GoogleBooksDTO googleBooksDTO){
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setId(googleBooksDTO.getId());
-        productDTO.setTitle(googleBooksDTO.getTitle());
-        productDTO.setDescription(googleBooksDTO.getDescription());
-        productDTO.setCountry("FR");
-        productDTO.setDirector(googleBooksDTO.getAuthor());
-        productDTO.setYear(googleBooksDTO.getYear());
-        productDTO.setType("book");
-        /**
-         * TODO : gestion des tags + liste produit associé
-         */
-        List<String> listTag = new ArrayList<>();
-        listTag.add(googleBooksDTO.getGenre());
-        productDTO.setGenre(listTag);
-        productDTO.setImage(googleBooksDTO.getImage());
-        //productDTO.setDuration(new Date());
-        return productDTO;
-    }
-
-    public ProductDTO convertGamesToProduct(){return new ProductDTO();}
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
 
 }
