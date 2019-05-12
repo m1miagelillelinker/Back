@@ -13,7 +13,7 @@
     <groupId>com.hicouch.back.core</groupId>
     <artifactId>HiCouchWebApp</artifactId>
     <packaging>war</packaging>
-    <name>HoCouch Spring App</name>
+    <name>HiCouch Spring App</name>
 
     <dependencies>
         <dependency>
@@ -93,6 +93,12 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20180130</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>applicationinsights-web</artifactId>
+            <!-- or applicationinsights-core for bare API -->
+            <version>[2.0,)</version>
         </dependency>
     </dependencies>
 
