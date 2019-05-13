@@ -35,8 +35,6 @@ public class AbonnementController {
     @GetMapping("/followers")
     @ResponseBody
     public List<Abonnement> getFollowersById(@RequestParam("userId") int userId){
-        System.out.println(userId);
-
         List<Abonnement> abonnements = abonnementService.getFollowersByFollows(userId);
 
         return abonnements;
@@ -46,8 +44,6 @@ public class AbonnementController {
     @GetMapping("/follows")
     @ResponseBody
     public List<Abonnement> getFollowsById(@RequestParam("userId") int userId){
-        System.out.println(userId);
-
         List<Abonnement> abonnements = abonnementService.getFollowsByFollower(userId);
 
         return abonnements;
