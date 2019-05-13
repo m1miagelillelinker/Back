@@ -76,20 +76,6 @@ public abstract class HttpRequest {
 
     protected abstract ProductDTO convert(String toString) throws Exception;
 
-    protected List<ProductDTO> convertMultiple(String toString) throws Exception {
-        List <ProductDTO> productDTOs = new ArrayList<>();
-        try {
-            JSONObject jsonObject = new JSONObject(toString);
-            JSONArray jsonArray = jsonObject.getJSONArray("Search");
-
-            for( Object jo : jsonArray){
-                productDTOs.add(convert(jo.toString()));
-            }
-            return productDTOs;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new Exception();
-        }
-    }
+    protected abstract List<ProductDTO> convertMultiple(String toString) throws Exception;
 
 }

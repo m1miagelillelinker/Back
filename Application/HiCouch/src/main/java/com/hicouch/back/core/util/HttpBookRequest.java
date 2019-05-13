@@ -35,5 +35,10 @@ public class HttpBookRequest extends HttpRequest {
         }
 
     }
+    
+    @Override
+    protected List<ProductDTO> convertMultiple(String toString) throws Exception {
+        throw new Exception("HttpBookRequest.convertMultiple() is not implemented yet");
+    }
 
 }
