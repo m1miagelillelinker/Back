@@ -50,4 +50,9 @@ public class TagServiceImpl implements TagService {
 		return tagRepository.save(tag);
 	}
 
+	@Override
+	public Tag getTagByIdOrNull(Integer id) {
+		return tagRepository.findById(id).orElse(null);
+	}
+
 }
