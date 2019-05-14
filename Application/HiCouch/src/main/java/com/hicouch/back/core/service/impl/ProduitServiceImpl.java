@@ -3,6 +3,8 @@ package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.repository.ProduitRepository;
 import com.hicouch.back.core.dto.ProductDTO;
+import com.hicouch.back.core.enumeration.ProductTypeEnum;
+import com.hicouch.back.core.exception.ReferentielRequestException;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.util.HttpBookRequest;
 import com.hicouch.back.core.util.HttpFilmRequest;
@@ -26,32 +28,32 @@ public class ProduitServiceImpl implements ProduitService {
 
 
     @Override
-    public ProductDTO getFilmByIdFromReferentiel(String filmId) throws Exception {
+    public ProductDTO getFilmByIdFromReferentiel(String filmId) throws ReferentielRequestException {
         try{
             httpFilmRequest = new HttpFilmRequest("http://www.omdbapi.com/?i="+filmId+"&apikey=9b0bebec");
             return httpFilmRequest.request("GET");
         }catch(Exception e){
-            throw new Exception();
+            throw new ReferentielRequestException("idProduit : " + filmId);
         }
     }
 
     @Override
-    public ProductDTO getFilmByTitleFromReferentiel(String title) throws Exception{
+    public ProductDTO getFilmByTitleFromReferentiel(String title) throws ReferentielRequestException{
         try{
             httpFilmRequest = new HttpFilmRequest("http://www.omdbapi.com/?t="+title+"&apikey=9b0bebec");
             return httpFilmRequest.request("GET");
         }catch(Exception e){
-            throw new Exception();
+            throw new ReferentielRequestException("title : " + title);
         }
     }
 
     @Override
-    public ProductDTO getBookByIdFromReferentiel(String bookId) throws Exception {
+    public ProductDTO getBookByIdFromReferentiel(String bookId) throws ReferentielRequestException {
         try{
             httpBookRequest = new HttpBookRequest("https://www.googleapis.com/books/v1/volumes?q=isbn:"+bookId);
             return httpBookRequest.request("GET");
         }catch(Exception e){
-            throw new Exception();
+            throw new ReferentielRequestException("idProduit : " + bookId);
         }
     }
 
@@ -62,13 +64,13 @@ public class ProduitServiceImpl implements ProduitService {
     }
 
     @Override
-    public List<ProductDTO> getFilmsByTitleFromReferentiel(String research) throws Exception {
+    public List<ProductDTO> getFilmsByTitleFromReferentiel(String research) throws ReferentielRequestException {
         try{
             httpFilmRequest = new HttpFilmRequest("http://www.omdbapi.com/?s="+research+"&apikey=9b0bebec");
             return httpFilmRequest.requestMultiple("GET");
 
         }catch(Exception e){
-            throw new Exception();
+            throw new ReferentielRequestException();
         }
     }
 
@@ -81,20 +83,18 @@ public class ProduitServiceImpl implements ProduitService {
 	public ProductDTO getProductByIdFromReferentiel(String productId, String referentiel) throws Exception {
 		// TODO Auto-generated method stub
 		ProductDTO result = null;
-		switch(referentiel) {
-		case "film":
-			result = getFilmByIdFromReferentiel(productId);
+		switch (referentiel) {
+		case ProductTypeEnum.BOOK:
+			result = this.getBookByIdFromReferentiel(productId);
 			break;
-		case "book":
-			result = getBookByIdFromReferentiel(productId);
+		case ProductTypeEnum.SERIE:
+		case ProductTypeEnum.MOVIE:
+			result = this.getFilmByIdFromReferentiel(productId);
 			break;
-		case "serie":
-			break;
-		case "game":
-			break;
+		case ProductTypeEnum.GAME:
+			throw new Exception("Game not implemented yet");
 		default:
-			break;
-			
+			throw new Exception("No Referentiel Defined");
 		}
 		return result;
 	}

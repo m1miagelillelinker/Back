@@ -2,6 +2,7 @@ package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.ProduitBusiness;
 import com.hicouch.back.core.dto.ProductDTO;
+import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import com.hicouch.back.core.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -32,7 +33,7 @@ public class ProduitController {
         if(filmId == null || filmId.equals("")){
             throw new Exception();
         }
-        return produitService.getFilmByIdFromReferentiel(filmId);
+        return produitBusiness.getCompleteProduct(filmId, ProductTypeEnum.MOVIE);
     }
 
     @CrossOrigin
@@ -63,7 +64,7 @@ public class ProduitController {
         if(bookId == null || bookId.equals("")){
             throw new Exception();
         }
-        return produitService.getBookByIdFromReferentiel(bookId);
+        return produitBusiness.getCompleteProduct(bookId, ProductTypeEnum.BOOK);
     }
 
     @CrossOrigin
@@ -73,7 +74,7 @@ public class ProduitController {
         if(gameId == null || gameId.equals("")){
             throw new Exception();
         }
-        return produitService.getGameByIdFromReferentiel(gameId);
+        return produitBusiness.getCompleteProduct(gameId, ProductTypeEnum.GAME);
     }
 
 }

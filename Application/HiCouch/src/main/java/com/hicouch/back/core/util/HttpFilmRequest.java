@@ -17,7 +17,7 @@ public class HttpFilmRequest extends HttpRequest{
     @Override
     protected ProductDTO convert(String toString) throws Exception {
         OmdbDTO omdbDTO = new OmdbDTO();
-        ProductDTO productDTO = new ProductDTO();
+        
         try {
             JSONObject jsonObject = new JSONObject(toString);
             omdbDTO.setId(jsonObject.getString("imdbID"));
@@ -30,14 +30,13 @@ public class HttpFilmRequest extends HttpRequest{
             omdbDTO.setImage(jsonObject.getString("Poster"));
             omdbDTO.setDuration(jsonObject.getString("Runtime"));
             omdbDTO.setType(jsonObject.getString("Type"));
-
-            return productDTO.convertOmdbToProduct(omdbDTO);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new Exception();
         }
-    }
 
+        return omdbDTO.toProductDTO();
+    }
+    
     @Override
     protected List<ProductDTO> convertMultiple(String toString) throws Exception {
         List <ProductDTO> productDTOS = new ArrayList<>();
@@ -53,7 +52,7 @@ public class HttpFilmRequest extends HttpRequest{
                 omdbDTO.setYear(film.getString("Year"));
                 omdbDTO.setId(film.getString("imdbID"));
                 omdbDTO.setImage(film.getString("Poster"));
-                productDTOS.add(productDTO.convertOmdbToProduct(omdbDTO));
+                productDTOS.add(omdbDTO.toProductDTO());
             }
             return productDTOS;
         } catch (Exception e) {

@@ -5,11 +5,11 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tagproduit")
+@Table(name="tag_produit")
 public class TagProduit {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	int id;
 	
@@ -19,7 +19,7 @@ public class TagProduit {
 	@Column(name="idtag")
 	int idTag;
 	
-    @Column(name="createat")
+    @Column(name="createdat")
     Date createdat;
 
     @Column(name="updatedat")

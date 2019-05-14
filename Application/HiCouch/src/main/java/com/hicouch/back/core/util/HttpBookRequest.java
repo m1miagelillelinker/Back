@@ -15,7 +15,6 @@ public class HttpBookRequest extends HttpRequest {
 
     @Override
     protected ProductDTO convert(String toString) throws Exception {
-        ProductDTO productDTO = new ProductDTO();
         GoogleBooksDTO googleBooksDTO = new GoogleBooksDTO();
         try {
             JSONObject jsonObject = new JSONObject(toString);
@@ -30,18 +29,16 @@ public class HttpBookRequest extends HttpRequest {
             googleBooksDTO.setGenre(volumeInfo.getJSONArray("categories").get(0).toString());
             googleBooksDTO.setImage(volumeInfo.getJSONObject("imageLinks").get("thumbnail").toString());
             googleBooksDTO.setId(volumeInfo.getJSONArray("industryIdentifiers").getJSONObject(0).get("identifier").toString());
-            return productDTO.convertBooksToProduct(googleBooksDTO);
+            return googleBooksDTO.toProductDTO();
         } catch (Exception e) {
             throw new Exception();
         }
 
     }
-
+    
     @Override
     protected List<ProductDTO> convertMultiple(String toString) throws Exception {
-        while (true) {
-            System.out.println(toString);
-        }
+        throw new Exception("HttpBookRequest.convertMultiple() is not implemented yet");
     }
 
 }
