@@ -8,8 +8,8 @@
 		<version>1.0</version>
 	</parent>
 
-	<groupId>com.hicouch.back.test</groupId>
-	<artifactId>HiCouchTestWebApp</artifactId>
+	<groupId>com.hicouch.back.Test</groupId>
+	<artifactId>Test</artifactId>
 	<packaging>jar</packaging>
 	<name>HiCouch Spring App test</name>
 
