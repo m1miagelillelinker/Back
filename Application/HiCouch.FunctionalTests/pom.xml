@@ -11,7 +11,7 @@
 	<groupId>com.hicouch.back.test</groupId>
 	<artifactId>HiCouchTestWebApp</artifactId>
 	<packaging>jar</packaging>
-	<name>HoCouch Spring App test</name>
+	<name>HiCouch Spring App test</name>
 
 	<dependencies>
 		<dependency>
@@ -52,7 +52,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>SampleWebAppFunctionalTests</finalName>
+		<finalName>HiCouchFunctionalTests</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
