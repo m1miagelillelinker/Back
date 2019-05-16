@@ -1,30 +1,44 @@
 package unit_tests.controller;
 
 import com.hicouch.back.core.business.ProduitBusiness;
+import com.hicouch.back.core.controller.ProduitController;
 import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.model.Produit;
 import com.hicouch.back.core.service.ProduitService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(value= ProduitController.class, secure =false)
 public class ProduitControllerTest {
 
-    @MockBean
-    ProduitService produitService;
+    @Autowired
+    private MockMvc mockMvc;
 
     @MockBean
-    ProduitBusiness produitBusiness;
+    private ProduitService produitService;
+
+    @MockBean
+    private ProduitBusiness produitBusiness;
 
     ProductDTO productDTO;
-
     Produit product;
-
     List<ProductDTO> productDTOList;
 
 
@@ -63,4 +77,102 @@ public class ProduitControllerTest {
     public void testSample() {
         assertEquals(true, true);
     }
+
+    @Test
+    public void getFilmByIdFromReferentielOk() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String expected = "";
+
+        JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
+
+    }
+
+    @Test
+    public void getFilmByIdFromReferentielNull() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String expected = "";
+
+        JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
+
+    }
+
+    @Test
+    public void getFilmsByTitleFromReferentielNull() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String expected = "";
+
+        JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
+
+    }
+
+    @Test
+    public void getFilmsByTitleFromReferentielOk() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String expected = "";
+
+        JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
+
+    }
+
+    @Test
+    public void getFilmByTitleFromReferentielOk() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String expected = "";
+
+        JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
+
+    }
+
+
+    @Test
+    public void getFilmByTitleFromReferentielNull() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String expected = "";
+
+        JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
+
+    }
+
+    @Test
+    public void getBookByIdFromReferentielNull() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String expected = "";
+
+        JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
+
+    }
+
+    @Test
+    public void getBookByIdFromReferentielOk() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        String expected = "";
+
+        JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
+
+    }
+
 }

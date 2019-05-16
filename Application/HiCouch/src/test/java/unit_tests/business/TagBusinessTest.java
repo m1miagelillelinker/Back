@@ -20,13 +20,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 @WebMvcTest(value= TagBusiness.class, secure =false)
 public class TagBusinessTest {
 
+    //@Autowired
+    private TagBusiness tagBusiness;
+
     @MockBean
     private TagService tagService;
 
     @MockBean
     private TagProduitService tagProduitService;
-
-    private TagBusiness tagBusiness;
 
     private Tag tag;
     private TagProduit tagProduit;

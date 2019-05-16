@@ -1,19 +1,25 @@
 package unit_tests.controller;
 
 import com.hicouch.back.core.business.UserBusiness;
+import com.hicouch.back.core.controller.SignalementController;
 import com.hicouch.back.core.controller.UserController;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(SpringRunner.class)
+@WebMvcTest(value= SignalementController.class, secure =false)
 public class UserControllerTest {
 
     @MockBean
