@@ -1,5 +1,6 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.repository.CommentaireRepository;
@@ -38,6 +39,11 @@ public class CommentaireServiceImpl implements CommentaireService {
 	@Override
 	public List<Commentaire> getCommentaireByAsso(int idPair) {
 		return commentaireRepository.findAllByIdPair(idPair);
+	}
+
+	@Override
+	public List<Commentaire> getAllTagsToModerate() {
+		return commentaireRepository.findAllByStatus(StatusEnum.TO_MODERATE);
 	}
     
     
