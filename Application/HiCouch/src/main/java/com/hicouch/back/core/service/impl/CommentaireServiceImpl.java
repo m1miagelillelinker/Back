@@ -45,6 +45,13 @@ public class CommentaireServiceImpl implements CommentaireService {
 	public List<Commentaire> getAllTagsToModerate() {
 		return commentaireRepository.findAllByStatus(StatusEnum.TO_MODERATE);
 	}
+
+	@Override
+	public Commentaire setCommentaireStatus(int commentId, int status) throws NoResultException {
+		Commentaire commentaire = commentaireRepository.findById(commentId).orElseThrow(NoResultException::new);
+		commentaire.setStatus(status);
+		return commentaireRepository.save(commentaire);
+	}
     
     
 }

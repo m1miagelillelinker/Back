@@ -1,6 +1,8 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.CommentaireBusiness;
+import com.hicouch.back.core.enumeration.StatusEnum;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.CommentaireService;
 
@@ -11,7 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -25,6 +29,20 @@ public class CommentaireController {
     public CommentaireController(CommentaireBusiness commentaireBusiness, CommentaireService commentaireService) {
         this.commentaireBusiness = commentaireBusiness;
         this.commentaireService = commentaireService;
+    }
+
+    @CrossOrigin
+    @PutMapping("/validateCommentaire")
+    @ResponseBody
+    public Commentaire setTagStatusOK(@RequestParam("idComment") int idComment) throws NoResultException {
+    	return commentaireService.setCommentaireStatus(idComment, StatusEnum.OK);
+    }
+    
+    @CrossOrigin
+    @PutMapping("/refuseCommentaire")
+    @ResponseBody
+    public Commentaire setTagStatusBlocked(@RequestParam("idComment") int idComment) throws NoResultException {
+    	return commentaireService.setCommentaireStatus(idComment, StatusEnum.BLOCKED);
     }
     
     @CrossOrigin
