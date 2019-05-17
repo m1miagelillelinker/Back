@@ -1,11 +1,14 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.dto.SignalementDTO;
 import com.hicouch.back.core.exception.NoResultException;
+import com.hicouch.back.core.factory.SignalementFactory;
 import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.repository.SignalementRepository;
 import com.hicouch.back.core.service.SignalementService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +18,12 @@ public class SignalementServiceImpl implements SignalementService {
 
 
     private final SignalementRepository signalementRepository;
+	private final SignalementFactory signalementFactory;
 
     @Autowired
-    public SignalementServiceImpl(SignalementRepository signalementRepository) {
+    public SignalementServiceImpl(SignalementRepository signalementRepository, SignalementFactory signalementFactory) {
         this.signalementRepository = signalementRepository;
+        this.signalementFactory = signalementFactory;
     }
 
     @Override
@@ -41,7 +46,18 @@ public class SignalementServiceImpl implements SignalementService {
     }
 
 	@Override
-	public List<Signalement> findAllSignalementsInStatus(int status) {
-		return signalementRepository.findAllByStatus(status);
+	public List<SignalementDTO> findAllSignalementsInStatus(int status) {
+		return signalementRepository.findAllByStatus(status)
+				.stream()
+				.map(signalementFactory::getSignalementDTO)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<SignalementDTO> findAllSignalementsByTypeAndStatus(int status, String type) {
+		return signalementRepository.findAllByStatusAndType(status, type)
+				.stream()
+				.map(signalementFactory::getSignalementDTO)
+				.collect(Collectors.toList());
 	}
 }

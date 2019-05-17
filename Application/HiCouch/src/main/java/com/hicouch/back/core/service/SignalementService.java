@@ -2,6 +2,7 @@ package com.hicouch.back.core.service;
 
 import java.util.List;
 
+import com.hicouch.back.core.dto.SignalementDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Signalement;
 
@@ -19,6 +20,8 @@ public interface SignalementService {
      * maj de signalements
      *
      */
-    
-    List<Signalement> findAllSignalementsInStatus(int status);
+
+    List<SignalementDTO> findAllSignalementsInStatus(int status);
+
+	List<SignalementDTO> findAllSignalementsByTypeAndStatus(int status, String type);
 }

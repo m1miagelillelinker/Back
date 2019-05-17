@@ -1,6 +1,9 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.SignalementBusiness;
+import com.hicouch.back.core.dto.SignalementDTO;
+import com.hicouch.back.core.enumeration.SignalementTypeEnum;
+import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.service.SignalementService;
@@ -40,10 +43,17 @@ public class SignalementController {
     }
     
     @CrossOrigin
-    @GetMapping("/list")
+    @GetMapping("/toModerate/comment")
     @ResponseBody
-    public List<Signalement> getSignalementByStatus(@RequestParam("status") int status){
-    	return signalementService.findAllSignalementsInStatus(status);
+    public List<SignalementDTO> getSignaledCommentToModerate(){
+    	return signalementService.findAllSignalementsByTypeAndStatus(StatusEnum.TO_MODERATE, SignalementTypeEnum.COMMENTAIRE);
+    }
+    
+    @CrossOrigin
+    @GetMapping("/toModerate/user")
+    @ResponseBody
+    public List<SignalementDTO> getSignaledUserToModerate(){
+    	return signalementService.findAllSignalementsByTypeAndStatus(StatusEnum.TO_MODERATE, SignalementTypeEnum.UTILISATEUR);
     }
 
 }
