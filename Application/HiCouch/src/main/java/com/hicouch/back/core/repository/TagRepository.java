@@ -15,4 +15,6 @@ public interface TagRepository extends CrudRepository<Tag,Integer> {
 
 	List<Tag> findAllByValue(String tagValue);
 	
+	List<Tag> findAllByStatus(int status);
+	
 }

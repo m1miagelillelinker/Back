@@ -2,6 +2,7 @@ package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.repository.TagRepository;
 import com.hicouch.back.core.service.TagService;
+import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Tag;
 
@@ -53,6 +54,11 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public Tag getTagByIdOrNull(Integer id) {
 		return tagRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<Tag> getAllTagsToModerate() {
+		return tagRepository.findAllByStatus(StatusEnum.TO_MODERATE);
 	}
 
 }

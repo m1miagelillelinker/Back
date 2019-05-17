@@ -18,4 +18,6 @@ public interface TagService {
 	Tag setTagStatus(int tagId, int status) throws NoResultException;
 	
 	Tag getTagByIdOrNull(Integer id);
+	
+	List<Tag> getAllTagsToModerate();
 }
