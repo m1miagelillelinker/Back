@@ -6,7 +6,7 @@ import com.hicouch.back.core.model.Tag;
 
 public interface TagBusiness {
 	
-	void setTagOnProduct(String tag, String product);
+	Tag setTagOnProduct(String tag, String product);
 	
 	List<Tag> getAllTagByProduct(String idProduct);
 }

@@ -2,6 +2,7 @@ package com.hicouch.back.core.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,11 @@ public class TagProduitServiceImpl implements TagProduitService {
 	}
 
 	@Override
-	public TagProduit newTagProduit(int idTag, String idProduit) {
-		TagProduit tagProduit = new TagProduit(idProduit, idTag, new Date(), new Date());
+	public TagProduit createOrGetTagProduit(int idTag, String idProduit) {
+		Optional<TagProduit> oldTagProduit = tagProduitRepository.findByIdProduitAndIdTag(idProduit, idTag);
+		TagProduit tagProduit = oldTagProduit.isPresent() 
+				? tagProduit = oldTagProduit.get() 
+				: new TagProduit(idProduit, idTag, new Date(), new Date());
 		return tagProduitRepository.save(tagProduit);
 	}
 

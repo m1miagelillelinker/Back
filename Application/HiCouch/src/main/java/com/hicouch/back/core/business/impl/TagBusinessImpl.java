@@ -30,9 +30,10 @@ public class TagBusinessImpl implements TagBusiness {
 	}
 
 	@Override
-	public void setTagOnProduct(String tag, String product) {
+	public Tag setTagOnProduct(String tag, String product) {
 		Tag tagToSet = tagService.createOrGetTag(tag);
-		tagProduitService.newTagProduit(tagToSet.getId(), product);
+		tagProduitService.createOrGetTagProduit(tagToSet.getId(), product);
+		return tagToSet;
 	}
 
 	@Override

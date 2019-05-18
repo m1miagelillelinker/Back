@@ -33,8 +33,9 @@ public class TagController {
         
     @CrossOrigin
     @PutMapping("/tagOnProduct")
-    public void setTagOnProduct(@RequestParam("idProduit") String idProduit, @RequestParam("tag") String tag) {
-    	tagBusiness.setTagOnProduct(tag, idProduit);
+    @ResponseBody
+    public Tag setTagOnProduct(@RequestParam("idProduit") String idProduit, @RequestParam("tag") String tag) {
+    	return tagBusiness.setTagOnProduct(tag, idProduit);
     }
     
     @CrossOrigin
