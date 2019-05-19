@@ -13,7 +13,7 @@
     <groupId>com.hicouch.back.core</groupId>
     <artifactId>HiCouchWebApp</artifactId>
     <packaging>war</packaging>
-    <name>HoCouch Spring App</name>
+    <name>HiCouch Spring App</name>
 
     <dependencies>
         <dependency>
