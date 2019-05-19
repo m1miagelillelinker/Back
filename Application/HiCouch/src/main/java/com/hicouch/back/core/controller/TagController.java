@@ -59,4 +59,10 @@ public class TagController {
     	return tagService.setTagStatus(idTag, StatusEnum.BLOCKED);
     }
 
+    @CrossOrigin
+    @GetMapping("/toModerate")
+    @ResponseBody
+    public List<Tag> getTagsToModerate() {
+    	return tagService.getAllTagsToModerate();
+    }
 }

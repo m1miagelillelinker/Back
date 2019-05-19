@@ -1,6 +1,9 @@
 package com.hicouch.back.core.model;
 
 import javax.persistence.*;
+
+import com.hicouch.back.core.enumeration.SignalementTypeEnum;
+
 import java.util.Date;
 
 @Entity
@@ -43,11 +46,11 @@ public class Signalement {
     public Signalement(String typeSignalement, Integer signaledId, String message, Integer idUser, Integer status, Integer moderatorId, Date createdat, Date updatedAt) {
         this.typeSignalement = typeSignalement;
         switch (typeSignalement){
-            case "utilisateur":
+            case SignalementTypeEnum.UTILISATEUR:
                 this.signaledUserId = signaledId;
                 this.signaledCommentId = 0;
                 break;
-            case "comment":
+            case SignalementTypeEnum.COMMENTAIRE:
                 this.signaledCommentId = signaledId;
                 this.signaledUserId = 0;
                 break;

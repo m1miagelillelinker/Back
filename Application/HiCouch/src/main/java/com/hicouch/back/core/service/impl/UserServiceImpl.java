@@ -18,7 +18,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Integer userId) throws Exception {
+    public User getUserById(Integer userId) throws NoResultException {
         return userRepository.findById(userId).orElseThrow(NoResultException::new);
     }
+
+	@Override
+	public User setUserStatus(int userId, int status) throws NoResultException {
+		User user = userRepository.findById(userId).orElseThrow(NoResultException::new);
+		user.setIdstatus(status);
+		return userRepository.save(user);
+	}
 }
