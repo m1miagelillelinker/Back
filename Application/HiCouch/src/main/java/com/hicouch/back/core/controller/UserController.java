@@ -5,7 +5,10 @@ import com.hicouch.back.core.business.UserBusiness;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +31,14 @@ public class UserController {
     @ResponseBody
     public User getUserById(@RequestParam("userId") String userId) throws Exception {
         return  userService.getUserById(Integer.parseInt(userId));
+    }
+
+    @GetMapping
+    public ResponseEntity<User> getUser(){
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return  new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 }
