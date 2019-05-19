@@ -59,13 +59,14 @@ public class SignalementFactory {
 		if(signalement.getSignaledUserId() != null) {
 			try {
 				User user = userService.getUserById(signalement.getSignaledUserId());
+				System.out.println(user.toString());
 				signalementDTO.setSignaledUser(user);
 			} catch (NoResultException e) {
 				e.printStackTrace();
 			}
 		}
 		
-		return null;
+		return signalementDTO;
 	}
 
 }
