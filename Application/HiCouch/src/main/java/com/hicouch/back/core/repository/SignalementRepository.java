@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface SignalementRepository extends CrudRepository<Signalement,Integer> {
 	
 	List<Signalement> findAllByStatus(int status);
-	List<Signalement> findAllByStatusAndType(int status, String type);
+	List<Signalement> findAllByStatusAndTypeSignalement(int status, String type);
 }

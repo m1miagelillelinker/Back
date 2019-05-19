@@ -42,7 +42,7 @@ public class CommentaireServiceImpl implements CommentaireService {
 	}
 
 	@Override
-	public List<Commentaire> getAllTagsToModerate() {
+	public List<Commentaire> getAllCommentairesToModerate() {
 		return commentaireRepository.findAllByStatus(StatusEnum.TO_MODERATE);
 	}
 

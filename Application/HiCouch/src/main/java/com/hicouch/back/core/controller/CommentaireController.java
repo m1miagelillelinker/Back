@@ -31,24 +31,4 @@ public class CommentaireController {
         this.commentaireService = commentaireService;
     }
 
-    @CrossOrigin
-    @PutMapping("/validateCommentaire")
-    @ResponseBody
-    public Commentaire setTagStatusOK(@RequestParam("idComment") int idComment) throws NoResultException {
-    	return commentaireService.setCommentaireStatus(idComment, StatusEnum.OK);
-    }
-    
-    @CrossOrigin
-    @PutMapping("/refuseCommentaire")
-    @ResponseBody
-    public Commentaire setTagStatusBlocked(@RequestParam("idComment") int idComment) throws NoResultException {
-    	return commentaireService.setCommentaireStatus(idComment, StatusEnum.BLOCKED);
-    }
-    
-    @CrossOrigin
-    @GetMapping("/toModerate")
-    @ResponseBody
-    public List<Commentaire> getCommentairesToModerate() {
-    	return commentaireService.getAllTagsToModerate();
-    }
 }

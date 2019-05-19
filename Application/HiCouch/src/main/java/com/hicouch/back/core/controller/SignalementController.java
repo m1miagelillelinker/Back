@@ -55,5 +55,19 @@ public class SignalementController {
     public List<SignalementDTO> getSignaledUserToModerate(){
     	return signalementService.findAllSignalementsByTypeAndStatus(StatusEnum.TO_MODERATE, SignalementTypeEnum.UTILISATEUR);
     }
+    
+    @CrossOrigin
+    @PutMapping("/confirmeSignalement")
+    @ResponseBody
+    public SignalementDTO confirmeSignalement(@RequestParam("signalementId") int signalementId) throws NoResultException {
+    	return signalementBusiness.processSignalement(signalementId, StatusEnum.BLOCKED);
+    }
+    
+    @CrossOrigin
+    @PutMapping("/refuseSignalement")
+    @ResponseBody
+    public SignalementDTO refuseSignalement(@RequestParam("signalementId") int signalementId) throws NoResultException {
+    	return signalementBusiness.processSignalement(signalementId, StatusEnum.OK);
+    }
 
 }

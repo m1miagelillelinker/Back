@@ -27,7 +27,7 @@ public class SignalementServiceImpl implements SignalementService {
     }
 
     @Override
-    public Signalement getSignalementById(Integer signalementId) throws NoResultException{
+    public Signalement getSignalementById(Integer signalementId) throws NoResultException {
         return signalementRepository.findById(signalementId).orElseThrow(NoResultException::new);
     }
 
@@ -55,9 +55,16 @@ public class SignalementServiceImpl implements SignalementService {
 
 	@Override
 	public List<SignalementDTO> findAllSignalementsByTypeAndStatus(int status, String type) {
-		return signalementRepository.findAllByStatusAndType(status, type)
+		return signalementRepository.findAllByStatusAndTypeSignalement(status, type)
 				.stream()
 				.map(signalementFactory::getSignalementDTO)
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Signalement setSignalementStatus(int signalementId, int status) throws NoResultException {
+		Signalement signalement = signalementRepository.findById(signalementId).orElseThrow(NoResultException::new);
+		signalement.setStatus(status);
+		return signalementRepository.save(signalement);
 	}
 }

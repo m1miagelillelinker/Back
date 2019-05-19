@@ -10,7 +10,7 @@ public interface CommentaireService {
     List<Commentaire> findAllByIdUser(int idUser);
     Commentaire findById(int id) throws NoResultException;
 	List<Commentaire> getCommentaireByAsso(int idAsso);
-	List<Commentaire> getAllTagsToModerate();
+	List<Commentaire> getAllCommentairesToModerate();
 	Commentaire setCommentaireStatus(int commentId, int status) throws NoResultException;
 	
 }

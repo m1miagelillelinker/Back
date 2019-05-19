@@ -24,4 +24,6 @@ public interface SignalementService {
     List<SignalementDTO> findAllSignalementsInStatus(int status);
 
 	List<SignalementDTO> findAllSignalementsByTypeAndStatus(int status, String type);
+
+	Signalement setSignalementStatus(int signalementId, int status) throws NoResultException;
 }
