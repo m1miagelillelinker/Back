@@ -6,17 +6,13 @@ import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.CommentaireService;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/commentaire" , produces = MediaType.APPLICATION_JSON_VALUE )
@@ -30,5 +26,29 @@ public class CommentaireController {
         this.commentaireBusiness = commentaireBusiness;
         this.commentaireService = commentaireService;
     }
+
+    @CrossOrigin
+    @GetMapping("/newCommentaire/{idAsso}")
+    @ResponseBody
+    public String addCommentaire(@RequestBody Commentaire json) throws Exception {
+        if(json != null && !json.equals("")){
+            return commentaireService.addCommentaire(json);
+        }else{
+            throw new InvalidParameterException();
+        }
+    }
+
+    @CrossOrigin
+    @PostMapping("/updateCommentaire")
+    @ResponseBody
+    public Commentaire updateCommentaire(@RequestBody Commentaire json) throws NoResultException {
+        if(json != null && !json.equals("")){
+            return commentaireService.updateCommentaire(json);
+        }else{
+            throw new InvalidParameterException();
+        }
+    }
+
+
 
 }

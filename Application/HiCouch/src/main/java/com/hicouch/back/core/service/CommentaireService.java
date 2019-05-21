@@ -12,5 +12,10 @@ public interface CommentaireService {
 	List<Commentaire> getCommentaireByAsso(int idAsso);
 	List<Commentaire> getAllCommentairesToModerate();
 	Commentaire setCommentaireStatus(int commentId, int status) throws NoResultException;
-	
+
+    String addCommentaire(Commentaire json);
+
+    Commentaire updateCommentaire(Commentaire json) throws NoResultException;
+
+    Commentaire upsertCommentaire(Commentaire commentaire) throws NoResultException;
 }

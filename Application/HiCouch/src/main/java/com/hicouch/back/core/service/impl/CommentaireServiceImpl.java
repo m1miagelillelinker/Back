@@ -6,14 +6,12 @@ import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.repository.CommentaireRepository;
 import com.hicouch.back.core.service.CommentaireService;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CommentaireServiceImpl implements CommentaireService {
@@ -52,6 +50,37 @@ public class CommentaireServiceImpl implements CommentaireService {
 		commentaire.setStatus(status);
 		return commentaireRepository.save(commentaire);
 	}
-    
-    
+
+    @Override
+    public String addCommentaire(Commentaire json) {
+        try{
+            commentaireRepository.save(json);
+            return "Ok: commentaire ajouter";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return "Error : commentaire non ajouter";
+    }
+
+    @Override
+    public Commentaire updateCommentaire(Commentaire json) throws NoResultException {
+        return upsertCommentaire(json);
+
+    }
+
+    @Override
+    public Commentaire upsertCommentaire(Commentaire commentaire) throws NoResultException {
+        if(commentaire.getId() != null) {
+            Commentaire oldCommentaire = findById(commentaire.getId());
+            oldCommentaire.setCommentaire(commentaire.getCommentaire());
+            commentaire = oldCommentaire;
+        } else {
+            commentaire.setCreatedat(new Date());
+        }
+        commentaire.setUpdatedAt(new Date());
+        return commentaireRepository.save(commentaire);
+    }
+
+
 }
