@@ -40,6 +40,14 @@ public class AssociationServiceImpl implements AssociationService {
 	}
 
 	@Override
+	public List<AssociationDTO> getAssociationByIdPair(int idPair){
+		return associationRepository.findByIdPair(idPair)
+				.stream()
+				.map(associationFactory::getAssociationDTO)
+				.collect(Collectors.toList());
+	};
+
+	@Override
 	public String deleteAssociation(int idAssociation) {
 		associationRepository.deleteById(idAssociation);
 		return "Le delete a ete fait";

@@ -11,4 +11,6 @@ public interface AssociationRepository extends CrudRepository<Association,Intege
     void deleteById(int id);
 
     List<Association>  findAllByIdproduitA(String id);
+
+    List<Association>  findByIdPair(int id);
 }

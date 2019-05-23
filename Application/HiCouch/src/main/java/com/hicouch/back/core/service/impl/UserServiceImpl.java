@@ -1,5 +1,6 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.dto.UserDTO;
 import com.hicouch.back.core.repository.UserRepository;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;

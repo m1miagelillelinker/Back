@@ -1,7 +1,9 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.CommentaireBusiness;
+import com.hicouch.back.core.dto.CommentaireDTO;
 import com.hicouch.back.core.exception.NoResultException;
+import com.hicouch.back.core.factory.CommentaireFactory;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.CommentaireService;
 
@@ -22,20 +24,22 @@ public class CommentaireController {
 
     private final CommentaireBusiness commentaireBusiness;
     private final CommentaireService commentaireService;
+    private final CommentaireFactory commentaireFactory;
     private final static Logger logger = LoggerFactory.getLogger(CommentaireController.class);
 
     @Autowired
-    public CommentaireController(CommentaireBusiness commentaireBusiness, CommentaireService commentaireService) {
+    public CommentaireController(CommentaireBusiness commentaireBusiness, CommentaireService commentaireService,CommentaireFactory commentaireFactory) {
         this.commentaireBusiness = commentaireBusiness;
-        this.commentaireService = commentaireService;
+        this.commentaireService  = commentaireService;
+        this.commentaireFactory  = commentaireFactory;
     }
 
     @CrossOrigin
     @GetMapping("/ByUserId")
     @ResponseBody
-    public List<Commentaire> getCommentaireByUserId(@RequestParam("userId") Integer userId) throws Exception {
+    public List<CommentaireDTO> getCommentaireByUserId(@RequestParam("userId") Integer userId) throws Exception {
         logger.trace("getCommentaireByUserId:"+userId);
-        return commentaireService.findAllByIdUser(userId);
+        return commentaireFactory.convertCommentaires(commentaireService.findAllByIdUser(userId));
     }
 
     @CrossOrigin
@@ -47,7 +51,7 @@ public class CommentaireController {
     }
 
     @CrossOrigin
-    @GetMapping("/new/{idAsso}")
+    @PostMapping("/new/{idAsso}")
     @ResponseBody
     public String addCommentaire(@RequestBody Commentaire comm) throws Exception {
         logger.trace("addCommentaire:"+comm);

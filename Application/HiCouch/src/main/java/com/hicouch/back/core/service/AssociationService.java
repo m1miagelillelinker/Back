@@ -6,7 +6,9 @@ import com.hicouch.back.core.model.Association;
 import java.util.List;
 
 public interface AssociationService {
-    List<AssociationDTO> getAssociationsByIdProduct(String id_association) throws Exception;
+    List<AssociationDTO> getAssociationsByIdProduct(String idAssociation) throws Exception;
+
+    List<AssociationDTO> getAssociationByIdPair(int idPair);
 
     String deleteAssociation(int idAssociation) throws Exception;
 
