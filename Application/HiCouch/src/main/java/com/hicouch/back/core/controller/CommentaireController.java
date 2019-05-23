@@ -1,7 +1,6 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.CommentaireBusiness;
-import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.CommentaireService;
@@ -9,6 +8,9 @@ import com.hicouch.back.core.service.CommentaireService;
 import java.security.InvalidParameterException;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ public class CommentaireController {
 
     private final CommentaireBusiness commentaireBusiness;
     private final CommentaireService commentaireService;
+    private final static Logger logger = LoggerFactory.getLogger(CommentaireController.class);
 
     @Autowired
     public CommentaireController(CommentaireBusiness commentaireBusiness, CommentaireService commentaireService) {
@@ -28,18 +31,18 @@ public class CommentaireController {
     }
 
     @CrossOrigin
-    @GetMapping("/ByUserId/{userId}")
+    @GetMapping("/ByUserId")
     @ResponseBody
     public List<Commentaire> getCommentaireByUserId(@RequestParam("userId") Integer userId) throws Exception {
-        //TODO
+        logger.trace("getCommentaireByUserId:"+userId);
         return commentaireService.findAllByIdUser(userId);
     }
 
     @CrossOrigin
-    @GetMapping("/ByAssoPairId/{assoId}")
+    @GetMapping("/ByAssoPairId")
     @ResponseBody
     public List<Commentaire> getCommentaireByAssoPairId(@RequestParam("assoId") Integer assoId) throws Exception {
-        //TODO
+        logger.trace("getCommentaireByAssoPairId:"+assoId);
         return commentaireService.getCommentaireByAsso(assoId);
     }
 
@@ -47,6 +50,7 @@ public class CommentaireController {
     @GetMapping("/new/{idAsso}")
     @ResponseBody
     public String addCommentaire(@RequestBody Commentaire comm) throws Exception {
+        logger.trace("addCommentaire:"+comm);
         if( comm != null ){
             return commentaireService.addCommentaire(comm);
         }else{
@@ -58,6 +62,7 @@ public class CommentaireController {
     @GetMapping("/hide/")
     @ResponseBody
     public String hideCommentaire(@RequestBody Commentaire comm) throws Exception {
+        logger.trace("hideCommentaire:"+comm);
         if(comm != null ){
             return commentaireService.hideCommentaire(comm);
         }else{
@@ -68,9 +73,10 @@ public class CommentaireController {
     @CrossOrigin
     @PostMapping("/updateCommentaire")
     @ResponseBody
-    public Commentaire updateCommentaire(@RequestBody Commentaire json) throws NoResultException {
-        if(json != null && !json.equals("")){
-            return commentaireService.updateCommentaire(json);
+    public Commentaire updateCommentaire(@RequestBody Commentaire comm) throws NoResultException {
+        logger.trace("hideCommentaire:"+comm);
+        if(comm != null && !comm.equals("")){
+            return commentaireService.updateCommentaire(comm);
         }else{
             throw new InvalidParameterException();
         }
