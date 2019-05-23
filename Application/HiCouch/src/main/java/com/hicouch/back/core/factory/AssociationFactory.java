@@ -44,7 +44,6 @@ public class AssociationFactory {
 			associationDTO.setVote(vote);
 			
 			List<Commentaire> commentaires = commentaireService.getCommentaireByAsso(association.getId());
-			associationDTO.setCommentaires(commentaires);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

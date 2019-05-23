@@ -28,11 +28,38 @@ public class CommentaireController {
     }
 
     @CrossOrigin
-    @GetMapping("/newCommentaire/{idAsso}")
+    @GetMapping("/ByUserId/{userId}")
     @ResponseBody
-    public String addCommentaire(@RequestBody Commentaire json) throws Exception {
-        if(json != null && !json.equals("")){
-            return commentaireService.addCommentaire(json);
+    public List<Commentaire> getCommentaireByUserId(@RequestParam("userId") Integer userId) throws Exception {
+        //TODO
+        return commentaireService.findAllByIdUser(userId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/ByAssoPairId/{assoId}")
+    @ResponseBody
+    public List<Commentaire> getCommentaireByAssoPairId(@RequestParam("assoId") Integer assoId) throws Exception {
+        //TODO
+        return commentaireService.getCommentaireByAsso(assoId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/new/{idAsso}")
+    @ResponseBody
+    public String addCommentaire(@RequestBody Commentaire comm) throws Exception {
+        if( comm != null ){
+            return commentaireService.addCommentaire(comm);
+        }else{
+            throw new InvalidParameterException();
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/hide/")
+    @ResponseBody
+    public String hideCommentaire(@RequestBody Commentaire comm) throws Exception {
+        if(comm != null ){
+            return commentaireService.hideCommentaire(comm);
         }else{
             throw new InvalidParameterException();
         }

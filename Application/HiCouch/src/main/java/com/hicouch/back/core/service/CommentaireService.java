@@ -15,6 +15,8 @@ public interface CommentaireService {
 
     String addCommentaire(Commentaire json);
 
+    String hideCommentaire(Commentaire json) throws NoResultException;
+
     Commentaire updateCommentaire(Commentaire json) throws NoResultException;
 
     Commentaire upsertCommentaire(Commentaire commentaire) throws NoResultException;

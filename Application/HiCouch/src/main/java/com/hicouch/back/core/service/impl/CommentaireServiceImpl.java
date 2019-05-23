@@ -64,6 +64,19 @@ public class CommentaireServiceImpl implements CommentaireService {
     }
 
     @Override
+    public String hideCommentaire(Commentaire commentaire) throws NoResultException {
+        if(commentaire.getId() != null) {
+            Commentaire oldCommentaire = findById(commentaire.getId());
+            oldCommentaire.setStatus(StatusEnum.HIDDEN);
+            commentaire = oldCommentaire;
+            commentaire.setUpdatedAt(new Date());
+            commentaireRepository.save(commentaire);
+            return "Ok: commentaire hidden";
+        }
+        else return "Error : commentaire non caché";
+    }
+
+    @Override
     public Commentaire updateCommentaire(Commentaire json) throws NoResultException {
         return upsertCommentaire(json);
 

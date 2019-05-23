@@ -11,7 +11,6 @@ public class AssociationDTO {
 	private Association association;
 	private ProductDTO product;
 	private Vote vote;
-	private List<Commentaire> commentaires;
 	private int note;
 
 	/**
@@ -24,7 +23,6 @@ public class AssociationDTO {
 		this.association = association;
 		this.product = dto;
 		this.vote = vote;
-		this.commentaires = commentaires;
 		this.note = note;
 	}
 
@@ -50,13 +48,6 @@ public class AssociationDTO {
 	}
 
 	/**
-	 * @return the commentaires
-	 */
-	public List<Commentaire> getCommentaires() {
-		return commentaires;
-	}
-
-	/**
 	 * @param dto
 	 *            the dto to set
 	 */
@@ -70,14 +61,6 @@ public class AssociationDTO {
 	 */
 	public void setVote(Vote vote) {
 		this.vote = vote;
-	}
-
-	/**
-	 * @param commentaires
-	 *            the commentaires to set
-	 */
-	public void setCommentaires(List<Commentaire> commentaires) {
-		this.commentaires = commentaires;
 	}
 
 	/**
