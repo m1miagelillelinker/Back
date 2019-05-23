@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -25,6 +26,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -33,6 +35,7 @@ import static org.junit.Assert.assertEquals;
 @WebMvcTest(value= AbonnementController.class, secure =false)
 public class AbonnementControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
 
     @MockBean
@@ -72,6 +75,9 @@ public class AbonnementControllerTest {
         follower.setFollows(1);
         follower.setFollower(2);
 
+        listAbo = new ArrayList<>();
+        listAbo2 = new ArrayList<>();
+
         listAbo.add(follower);
         listAbo2.add(abonnement);
     }
@@ -85,11 +91,11 @@ public class AbonnementControllerTest {
 
     @Test
     public void getFollowersByIdOk() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/followers")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/abonnement/followers?userId=15")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String expected = "";
+        String expected = "et";
 
         JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
     }
@@ -97,22 +103,22 @@ public class AbonnementControllerTest {
 
     @Test
     public void getFollowersByIdNull() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/followers")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/abonnement/followers?userId=")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String expected = "";
+        String expected = "t";
 
         JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
     }
 
     @Test
     public void getFollowersByIdEmpty() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/followers/")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/abonnement/followers?")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String expected = "";
+        String expected = "t";
 
         JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
     }
@@ -120,40 +126,40 @@ public class AbonnementControllerTest {
 
     @Test
     public void getFollowsByIdOk() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/follows")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/abonnement/follows?userId=15")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String expected = "";
+        String expected = "t";
 
         JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
     }
 
     @Test
     public void getFollowsByIdNull() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/follows")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/abonnement/follows?userId=")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String expected = "";
+        String expected = "test";
 
         JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
     }
 
     @Test
     public void getFollowsByIdEmpty() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/follows")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/abonnement/follows?")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        String expected = "";
+        String expected = "test";
 
         JSONAssert.assertEquals(expected,result.getRequest().getContentAsString(),true);
     }
 
     @Test
     public void followOk() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/follow")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/abonnement/follow?follower=1&follow=2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -164,7 +170,7 @@ public class AbonnementControllerTest {
 
     @Test
     public void followNull() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/follow")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/abonnement/follow?follower=1&follow=2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -175,7 +181,7 @@ public class AbonnementControllerTest {
 
     @Test
     public void followEmpty() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/follow")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/abonnement/follow")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -186,7 +192,7 @@ public class AbonnementControllerTest {
 
     @Test
     public void unfollowOk() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/unfollow")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/abonnement/unfollow?follower=1&follows=2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -197,7 +203,7 @@ public class AbonnementControllerTest {
 
     @Test
     public void unfollowNull() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/unfollow")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/abonnement/unfollow?follower=1&follows=")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -208,7 +214,7 @@ public class AbonnementControllerTest {
 
     @Test
     public void unfollowEmpty() throws Exception{
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/abonnement/unfollow")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/abonnement/unfollow")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();

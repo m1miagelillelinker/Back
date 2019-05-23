@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 
@@ -69,6 +70,7 @@ public class ProduitControllerTest {
         productDTO.setType("book");
         productDTO.setYear("2019");
 
+        productDTOList = new ArrayList<>();
         productDTOList.add(productDTO);
     }
 

@@ -73,6 +73,7 @@ public class AssociationControllerTest {
         associationDTO.setVote(new Vote());
         associationDTO.setNote(1);
 
+        listAsso = new ArrayList<>();
         listAsso.add(associationDTO);
     }
 

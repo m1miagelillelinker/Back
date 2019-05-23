@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Configuration;
 
 import static org.springframework.context.annotation.FilterType.CUSTOM;
 
-@Configuration
 @SpringBootConfiguration
 @EnableAutoConfiguration
 public class Application extends SpringBootServletInitializer {

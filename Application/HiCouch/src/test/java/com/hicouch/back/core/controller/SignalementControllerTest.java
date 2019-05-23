@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -66,6 +67,7 @@ public class SignalementControllerTest {
         signalement.setTypeSignalement("urgent");
         signalement.setStatus(1);
 
+        listSignalement = new ArrayList<>();
         listSignalement.add(signalement);
     }
 
