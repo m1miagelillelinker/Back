@@ -8,6 +8,8 @@ import com.hicouch.back.core.service.CommentaireService;
 
 import java.util.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ public class CommentaireServiceImpl implements CommentaireService {
 
 
     private final CommentaireRepository commentaireRepository;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public CommentaireServiceImpl(CommentaireRepository commentaireRepository) {

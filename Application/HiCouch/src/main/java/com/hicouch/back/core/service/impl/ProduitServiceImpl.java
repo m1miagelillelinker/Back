@@ -8,6 +8,8 @@ import com.hicouch.back.core.exception.ReferentielRequestException;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.util.HttpBookRequest;
 import com.hicouch.back.core.util.HttpFilmRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,8 @@ public class ProduitServiceImpl implements ProduitService {
 
     private HttpBookRequest httpBookRequest;
     private HttpFilmRequest httpFilmRequest;
-
     private final ProduitRepository produitRepository;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public ProduitServiceImpl(ProduitRepository produitRepository) {

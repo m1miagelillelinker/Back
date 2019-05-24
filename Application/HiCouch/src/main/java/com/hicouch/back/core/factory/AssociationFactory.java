@@ -2,6 +2,8 @@ package com.hicouch.back.core.factory;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,10 +20,9 @@ import com.hicouch.back.core.service.VoteService;
 public class AssociationFactory {
 	
 	private VoteService voteService;
-
 	private CommentaireService commentaireService;
-	
 	private ProduitBusiness produitBusiness;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	public AssociationFactory(VoteService voteService, CommentaireService commentaireService, ProduitBusiness produitBusiness) {

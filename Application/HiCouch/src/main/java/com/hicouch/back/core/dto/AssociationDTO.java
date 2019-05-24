@@ -5,6 +5,8 @@ import java.util.List;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.model.Vote;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AssociationDTO {
 
@@ -13,6 +15,7 @@ public class AssociationDTO {
 	private ProductDTO productB;
 	private Vote vote;
 	private int note;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/**
 	 * @param productA, productB

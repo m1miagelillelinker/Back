@@ -7,6 +7,8 @@ import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.AssociationService;
 import com.hicouch.back.core.service.UserService;
 import com.hicouch.back.core.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class UserFactory {
 
     private UserService userService;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public UserFactory(UserService userService) {

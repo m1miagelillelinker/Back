@@ -22,7 +22,7 @@ public class CommentaireFactory {
     private UserFactory userFactory;
     private CommentaireService commentaireService;
     private AssociationService associationService;
-    private final static Logger logger = LoggerFactory.getLogger(CommentaireController.class);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public CommentaireFactory(UserService userService, AssociationService associationService, UserFactory userFactory, CommentaireService commentaireService) {
@@ -34,7 +34,7 @@ public class CommentaireFactory {
     }
 
     public CommentaireDTO getCommentaireDTO(Commentaire commentaire) {
-        logger.trace("getCommentaireDTO:"+commentaire);
+        logger.trace("getCommentaireDTO");
 
         CommentaireDTO commentaireDTO = new CommentaireDTO();
 

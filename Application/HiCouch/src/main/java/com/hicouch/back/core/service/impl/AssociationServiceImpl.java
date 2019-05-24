@@ -5,6 +5,8 @@ import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.factory.AssociationFactory;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.service.AssociationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ public class AssociationServiceImpl implements AssociationService {
 	private final AssociationRepository associationRepository;
 	private final EntityManager entityManager;
 	private final AssociationFactory associationFactory;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
 	@Autowired
 	public AssociationServiceImpl(AssociationRepository associationRepository, EntityManager entityManager,

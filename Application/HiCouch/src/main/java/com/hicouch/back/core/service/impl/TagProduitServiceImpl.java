@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import com.hicouch.back.core.service.TagProduitService;
 public class TagProduitServiceImpl implements TagProduitService {
 	
 	private TagProduitRepository tagProduitRepository;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	/**
 	 * @param tagProduitRepository

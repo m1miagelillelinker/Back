@@ -4,6 +4,8 @@ import java.util.Date;
 
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SignalementDTO {
 	
@@ -14,6 +16,7 @@ public class SignalementDTO {
 	private User moderator;
 	private Date createdAt;
 	private Date updatedAt;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private User signaledUser;
 	private Commentaire signaledComment;

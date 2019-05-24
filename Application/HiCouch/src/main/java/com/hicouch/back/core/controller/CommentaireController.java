@@ -25,7 +25,7 @@ public class CommentaireController {
     private final CommentaireBusiness commentaireBusiness;
     private final CommentaireService commentaireService;
     private final CommentaireFactory commentaireFactory;
-    private final static Logger logger = LoggerFactory.getLogger(CommentaireController.class);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public CommentaireController(CommentaireBusiness commentaireBusiness, CommentaireService commentaireService,CommentaireFactory commentaireFactory) {

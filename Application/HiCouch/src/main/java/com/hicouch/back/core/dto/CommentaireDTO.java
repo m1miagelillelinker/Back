@@ -1,12 +1,15 @@
 package com.hicouch.back.core.dto;
 
 import com.hicouch.back.core.model.Commentaire;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommentaireDTO {
 	
 	private AssociationDTO association;
 	private UserDTO auteur;
 	private Commentaire commentaire;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public CommentaireDTO(AssociationDTO association, UserDTO auteur, Commentaire commentaire) {
 		this.association = association;

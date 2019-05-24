@@ -2,6 +2,8 @@ package com.hicouch.back.core.dto;
 
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ public class ProductDTO {
     String image;
     String duration;
     String type;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public ProductDTO(String id, String title, String description, String country, String director, String year, List<String> genre, List<Association> listProduits, String image, String duration, String type) {
         this.id = id;

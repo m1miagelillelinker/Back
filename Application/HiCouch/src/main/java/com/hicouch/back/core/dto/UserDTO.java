@@ -1,5 +1,8 @@
 package com.hicouch.back.core.dto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.Column;
 import java.util.Date;
 
@@ -14,6 +17,7 @@ public class UserDTO {
     private Integer idstatus;
     private String picture;
     private Date lastlogin;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public UserDTO(String firstName, String lastName, String email, String typeUser, String pseudo, Integer score, Integer idstatus, String picture, Date lastlogin) {
         this.firstName = firstName;

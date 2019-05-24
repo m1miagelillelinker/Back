@@ -1,5 +1,8 @@
 package com.hicouch.back.core.dto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class OmdbDTO extends ProductDTOFromReferentiel {
 
 	String id;
@@ -13,6 +16,7 @@ public class OmdbDTO extends ProductDTOFromReferentiel {
 	String duration;
 	String nbSeasons;
 	String type;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public OmdbDTO(String id, String title, String description, String country, String director, String year,
 			String genre, String image, String duration, String nbSeasons) {
