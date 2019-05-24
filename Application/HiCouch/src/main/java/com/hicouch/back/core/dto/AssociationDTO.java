@@ -9,19 +9,21 @@ import com.hicouch.back.core.model.Vote;
 public class AssociationDTO {
 
 	private Association association;
-	private ProductDTO product;
+	private ProductDTO productA;
+	private ProductDTO productB;
 	private Vote vote;
 	private int note;
 
 	/**
-	 * @param dto
+	 * @param productA, productB
 	 * @param vote
 	 * @param commentaires
 	 */
-	public AssociationDTO(Association association, ProductDTO dto, Vote vote, List<Commentaire> commentaires, int note) {
+	public AssociationDTO(Association association, ProductDTO productA, ProductDTO productB, Vote vote, List<Commentaire> commentaires, int note) {
 		super();
 		this.association = association;
-		this.product = dto;
+		this.productA = productA;
+		this.productB = productB;
 		this.vote = vote;
 		this.note = note;
 	}
@@ -36,8 +38,8 @@ public class AssociationDTO {
 	/**
 	 * @return the dto
 	 */
-	public ProductDTO getProduct() {
-		return product;
+	public ProductDTO getProductA() {
+		return productA;
 	}
 
 	/**
@@ -51,8 +53,8 @@ public class AssociationDTO {
 	 * @param dto
 	 *            the dto to set
 	 */
-	public void setProduct(ProductDTO dto) {
-		this.product = dto;
+	public void setProductA(ProductDTO dto) {
+		this.productA = dto;
 	}
 
 	/**
@@ -63,6 +65,14 @@ public class AssociationDTO {
 		this.vote = vote;
 	}
 
+
+	public ProductDTO getProductB() {
+		return productB;
+	}
+
+	public void setProductB(ProductDTO productB) {
+		this.productB = productB;
+	}
 	/**
 	 * @return the note
 	 */

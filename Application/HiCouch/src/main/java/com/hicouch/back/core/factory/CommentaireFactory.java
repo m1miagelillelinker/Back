@@ -25,11 +25,12 @@ public class CommentaireFactory {
     private final static Logger logger = LoggerFactory.getLogger(CommentaireController.class);
 
     @Autowired
-    public CommentaireFactory(UserService userService,UserFactory userFactory, CommentaireService commentaireService) {
+    public CommentaireFactory(UserService userService, AssociationService associationService, UserFactory userFactory, CommentaireService commentaireService) {
         super();
-        this.userService = userService;
-        this.userFactory = userFactory;
+        this.userService        = userService;
+        this.userFactory        = userFactory;
         this.commentaireService = commentaireService;
+        this.associationService = associationService;
     }
 
     public CommentaireDTO getCommentaireDTO(Commentaire commentaire) {
@@ -37,13 +38,13 @@ public class CommentaireFactory {
 
         CommentaireDTO commentaireDTO = new CommentaireDTO();
 
-        commentaireDTO.setAssociations(associationService.getAssociationByIdPair(commentaire.getIdPair()));
+        commentaireDTO.setAssociation(associationService.getAssociationByIdPair(commentaire.getIdPair()));
         try {
             commentaireDTO.setAuteur(userFactory.getUserDTO(userService.getUserById(commentaire.getIdUser())));
         } catch (NoResultException e) {
             e.printStackTrace();
         }
-        commentaireDTO.setMetaInformation(commentaire);
+        commentaireDTO.setCommentaire(commentaire);
 
 
 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -40,12 +39,9 @@ public class AssociationServiceImpl implements AssociationService {
 	}
 
 	@Override
-	public List<AssociationDTO> getAssociationByIdPair(int idPair){
-		return associationRepository.findByIdPair(idPair)
-				.stream()
-				.map(associationFactory::getAssociationDTO)
-				.collect(Collectors.toList());
-	};
+	public AssociationDTO getAssociationByIdPair(int idPair){
+		return associationFactory.getAssociationDTO(associationRepository.findFirstByIdPair(idPair));
+	}
 
 	@Override
 	public String deleteAssociation(int idAssociation) {

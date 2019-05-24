@@ -8,7 +8,7 @@ import java.util.List;
 public interface AssociationService {
     List<AssociationDTO> getAssociationsByIdProduct(String idAssociation) throws Exception;
 
-    List<AssociationDTO> getAssociationByIdPair(int idPair);
+    AssociationDTO getAssociationByIdPair(int idPair);
 
     String deleteAssociation(int idAssociation) throws Exception;
 

@@ -12,5 +12,9 @@ public interface AssociationRepository extends CrudRepository<Association,Intege
 
     List<Association>  findAllByIdproduitA(String id);
 
-    List<Association>  findByIdPair(int id);
+    /**
+     * @param id
+     * @return an association
+     */
+    Association  findFirstByIdPair(int id);
 }

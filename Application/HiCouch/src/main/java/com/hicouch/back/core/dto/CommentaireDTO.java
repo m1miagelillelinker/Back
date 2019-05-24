@@ -2,18 +2,16 @@ package com.hicouch.back.core.dto;
 
 import com.hicouch.back.core.model.Commentaire;
 
-import java.util.List;
-
 public class CommentaireDTO {
 	
-	private List<AssociationDTO> associations;
+	private AssociationDTO association;
 	private UserDTO auteur;
-	private Commentaire metaInformation;
+	private Commentaire commentaire;
 
-	public CommentaireDTO(List<AssociationDTO> associations, UserDTO auteur, Commentaire metaInformation) {
-		this.associations = associations;
+	public CommentaireDTO(AssociationDTO association, UserDTO auteur, Commentaire commentaire) {
+		this.association = association;
 		this.auteur = auteur;
-		this.metaInformation = metaInformation;
+		this.commentaire = commentaire;
 	}
 
 	/**
@@ -23,12 +21,12 @@ public class CommentaireDTO {
 		super();
 	}
 
-	public List<AssociationDTO> getAssociations() {
-		return associations;
+	public AssociationDTO getAssociation() {
+		return association;
 	}
 
-	public void setAssociations(List<AssociationDTO> associations) {
-		this.associations = associations;
+	public void setAssociation(AssociationDTO association) {
+		this.association = association;
 	}
 
 	public UserDTO getAuteur() {
@@ -39,11 +37,11 @@ public class CommentaireDTO {
 		this.auteur = auteur;
 	}
 
-	public Commentaire getMetaInformation() {
-		return metaInformation;
+	public Commentaire getCommentaire() {
+		return commentaire;
 	}
 
-	public void setMetaInformation(Commentaire metaInformation) {
-		this.metaInformation = metaInformation;
+	public void setCommentaire(Commentaire commentaire) {
+		this.commentaire = commentaire;
 	}
 }
