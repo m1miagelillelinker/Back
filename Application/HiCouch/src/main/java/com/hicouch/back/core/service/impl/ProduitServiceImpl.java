@@ -59,6 +59,17 @@ public class ProduitServiceImpl implements ProduitService {
         }
     }
 
+    @Override
+    public List<ProductDTO> getBooksFromReferentiel(String keyword) throws ReferentielRequestException {
+        try{
+            httpBookRequest = new HttpBookRequest("https://www.googleapis.com/books/v1/volumes?q="+keyword);
+            return httpBookRequest.requestMultiple("GET");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ReferentielRequestException();
+        }
+    }
+
     // TODO : REQUEST L'API JEU VIDEO
     @Override
     public ProductDTO getGameByIdFromReferentiel(String gameId) throws ReferentielRequestException {

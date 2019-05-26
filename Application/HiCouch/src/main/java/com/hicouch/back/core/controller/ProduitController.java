@@ -68,6 +68,16 @@ public class ProduitController {
     }
 
     @CrossOrigin
+    @GetMapping("/getBooksFromReferentiel")
+    @ResponseBody
+    public List<ProductDTO> getBooksFromReferentiel(@RequestParam("keyword")String keyword) throws Exception{
+        if(keyword == null || keyword.equals("")){
+            throw new Exception();
+        }
+        return produitService.getBooksFromReferentiel(keyword);
+    }
+
+    @CrossOrigin
     @GetMapping("/getGameByIdFromReferentiel")
     @ResponseBody
     public ProductDTO getGameByIdFromReferentiel(@RequestParam("gameId")String gameId) throws Exception {

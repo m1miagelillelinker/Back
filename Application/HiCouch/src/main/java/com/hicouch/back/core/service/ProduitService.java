@@ -20,4 +20,6 @@ public interface ProduitService {
     List<ProductDTO> getFilmsByTitleFromReferentiel(String research) throws ReferentielRequestException;
 
     List<ProductDTO> getGamesByIdFromReferentiel(String keyword) throws ReferentielRequestException;
+
+    List<ProductDTO> getBooksFromReferentiel(String keyword) throws  ReferentielRequestException;
 }
