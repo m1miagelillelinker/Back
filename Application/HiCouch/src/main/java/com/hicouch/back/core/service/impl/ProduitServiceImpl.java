@@ -8,6 +8,7 @@ import com.hicouch.back.core.exception.ReferentielRequestException;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.util.HttpBookRequest;
 import com.hicouch.back.core.util.HttpFilmRequest;
+import com.hicouch.back.core.util.HttpGamesRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class ProduitServiceImpl implements ProduitService {
 
     private HttpBookRequest httpBookRequest;
     private HttpFilmRequest httpFilmRequest;
+    private HttpGamesRequest httpGamesRequest;
 
     private final ProduitRepository produitRepository;
 
@@ -59,8 +61,22 @@ public class ProduitServiceImpl implements ProduitService {
 
     // TODO : REQUEST L'API JEU VIDEO
     @Override
-    public ProductDTO getGameByIdFromReferentiel(String gameId) {
-        return null;
+    public ProductDTO getGameByIdFromReferentiel(String gameId) throws ReferentielRequestException {
+        try{
+            httpGamesRequest = new HttpGamesRequest();
+            return httpGamesRequest.request(gameId);
+        }catch (Exception e){
+            throw new ReferentielRequestException();
+        }
+    }
+
+    public List<ProductDTO> getGamesByIdFromReferentiel(String keyword) throws ReferentielRequestException{
+        try{
+            httpGamesRequest = new HttpGamesRequest();
+            return httpGamesRequest.requestMultiple(keyword);
+        }catch (Exception e){
+            throw new ReferentielRequestException();
+        }
     }
 
     @Override
@@ -92,7 +108,8 @@ public class ProduitServiceImpl implements ProduitService {
 			result = this.getFilmByIdFromReferentiel(productId);
 			break;
 		case ProductTypeEnum.GAME:
-			throw new Exception("Game not implemented yet");
+		    result = this.getGameByIdFromReferentiel(productId);
+		    break;
 		default:
 			throw new Exception("No Referentiel Defined");
 		}

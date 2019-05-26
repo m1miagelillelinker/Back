@@ -77,4 +77,15 @@ public class ProduitController {
         return produitBusiness.getCompleteProduct(gameId, ProductTypeEnum.GAME);
     }
 
+    @CrossOrigin
+    @GetMapping("/getGamesByReferentiel")
+    @ResponseBody
+    public List<ProductDTO> getGamesByReferentiel(@RequestParam("keyword")String keyword) throws Exception{
+        if(keyword == null || keyword.equals("")){
+            throw new Exception();
+        }
+
+        return produitService.getGamesByIdFromReferentiel(keyword);
+    }
+
 }

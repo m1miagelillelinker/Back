@@ -13,9 +13,11 @@ public interface ProduitService {
 
     ProductDTO getBookByIdFromReferentiel(String bookId) throws ReferentielRequestException;
 
-    ProductDTO getGameByIdFromReferentiel(String gameId);
+    ProductDTO getGameByIdFromReferentiel(String gameId) throws ReferentielRequestException;
     
     ProductDTO getProductByIdFromReferentiel(String productId, String referentiel) throws Exception;
 
     List<ProductDTO> getFilmsByTitleFromReferentiel(String research) throws ReferentielRequestException;
+
+    List<ProductDTO> getGamesByIdFromReferentiel(String keyword) throws ReferentielRequestException;
 }
