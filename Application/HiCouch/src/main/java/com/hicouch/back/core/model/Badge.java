@@ -1,5 +1,6 @@
 package com.hicouch.back.core.model;
 
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -27,6 +28,9 @@ public class Badge {
     @LastModifiedDate
     @Column(name="updatedat")
     LocalDateTime updatedAt;
+
+    @CreatedBy
+    private String creator;
 
     public Badge(){}
 

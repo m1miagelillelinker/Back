@@ -42,12 +42,11 @@ public class Association {
     @Column(name="updatedat")
     LocalDateTime updatedat;
 
-    /*
     @CreatedBy
     private String creator;
 
     @LastModifiedBy
-    private String modificator;*/
+    private String modificator;
 
     public Association(){}
 

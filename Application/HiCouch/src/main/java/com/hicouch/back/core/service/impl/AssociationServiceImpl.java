@@ -99,6 +99,6 @@ public class AssociationServiceImpl implements AssociationService {
 			e.printStackTrace();
 			throw new Exception();
 		}
-		return asso;
+		return asso; //TODO Ne devrait'on pas retourner une ASSODTO?
 	}
 }
