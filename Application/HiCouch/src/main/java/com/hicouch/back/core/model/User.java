@@ -1,7 +1,10 @@
 package com.hicouch.back.core.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="utilisateur")
@@ -42,19 +45,21 @@ public class User {
     @Column(name= "picture")
     private String picture;
 
+    @CreatedDate
     @Column(name="createdat")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
+    @LastModifiedDate
     @Column(name="updatedat")
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     @Column(name="lastlogin")
-    private Date lastlogin;
+    private LocalDateTime lastlogin;
 
     @Column(name="loginscount")
     private Integer loginscount;
 
-    public User(String firstName, String lastName, Integer gender, String email, String typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, Date createdAt, Date updatedAt, Date lastlogin, Integer loginscount) {
+    public User(String firstName, String lastName, Integer gender, String email, String typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime lastlogin, Integer loginscount) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -161,27 +166,27 @@ public class User {
         this.picture = picture;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Date getLastlogin() {
+    public LocalDateTime getLastlogin() {
         return lastlogin;
     }
 
-    public void setLastlogin(Date lastlogin) {
+    public void setLastlogin(LocalDateTime lastlogin) {
         this.lastlogin = lastlogin;
     }
 

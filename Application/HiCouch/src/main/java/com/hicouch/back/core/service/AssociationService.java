@@ -8,6 +8,8 @@ import java.util.List;
 public interface AssociationService {
     List<AssociationDTO> getAssociationsByIdProduct(String id_association) throws Exception;
 
+    List<AssociationDTO> getTopLastAssociations() throws Exception;
+
     String deleteAssociation(int idAssociation) throws Exception;
 
 	Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB)

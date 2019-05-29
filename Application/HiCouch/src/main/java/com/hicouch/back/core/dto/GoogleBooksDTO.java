@@ -37,7 +37,7 @@ public class GoogleBooksDTO extends ProductDTOFromReferentiel {
         listTag.add(this.getGenre());
         productDTO.setGenre(listTag);
         productDTO.setImage(this.getImage());
-        //productDTO.setDuration(new Date());
+        //productDTO.setDuration(LocalDateTime.now());
         return productDTO;
     }
 

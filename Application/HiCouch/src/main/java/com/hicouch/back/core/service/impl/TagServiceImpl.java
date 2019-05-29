@@ -6,7 +6,7 @@ import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Tag;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +36,7 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public Tag createOrGetTag(String tag) {
 		Optional<Tag> existing = tagRepository.findOneByValue(tag);
-		return existing.isPresent() ? existing.get() : tagRepository.save(new Tag(tag, 1, new Date(), new Date()));
+		return existing.isPresent() ? existing.get() : tagRepository.save(new Tag(tag, 1, LocalDateTime.now(), LocalDateTime.now()));
 	}
 
 	@Override

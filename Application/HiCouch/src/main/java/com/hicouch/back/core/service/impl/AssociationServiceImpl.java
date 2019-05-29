@@ -8,9 +8,8 @@ import com.hicouch.back.core.service.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -40,6 +39,14 @@ public class AssociationServiceImpl implements AssociationService {
 	}
 
 	@Override
+	public List<AssociationDTO> getTopLastAssociations() throws Exception {
+		return associationRepository.findTop5ByOrderByCreatedatDesc()
+				.stream()
+				.map(associationFactory::getAssociationDTO)
+				.collect(Collectors.toList());
+	}
+
+	@Override
 	public String deleteAssociation(int idAssociation) {
 		associationRepository.deleteById(idAssociation);
 		return "Le delete a ete fait";
@@ -48,7 +55,7 @@ public class AssociationServiceImpl implements AssociationService {
 	@Override
 	public Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB) throws Exception {
 
-		Date maintenant = new Date(System.currentTimeMillis());
+		LocalDateTime maintenant = LocalDateTime.now();
 
 		Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
 		int idPair = (Integer) q.getSingleResult();

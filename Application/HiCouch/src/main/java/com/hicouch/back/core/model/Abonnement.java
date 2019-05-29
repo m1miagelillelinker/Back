@@ -1,8 +1,11 @@
 package com.hicouch.back.core.model;
 
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="abonnement")
@@ -19,13 +22,15 @@ public class Abonnement {
     @Column(name="follows")
     Integer follows;
 
+    @CreatedDate
     @Column(name="createat")
-    Date createdat;
+    LocalDateTime createdat;
 
+    @LastModifiedDate
     @Column(name="updatedat")
-    Date updatedAt;
+    LocalDateTime updatedAt;
 
-    public Abonnement(Integer follower, Integer follows, Date createdat, Date updatedAt) {
+    public Abonnement(Integer follower, Integer follows, LocalDateTime createdat, LocalDateTime updatedAt) {
         this.follower = follower;
         this.follows = follows;
         this.createdat = createdat;
@@ -58,19 +63,19 @@ public class Abonnement {
         this.follows = follows;
     }
 
-    public Date getCreatedat() {
+    public LocalDateTime getCreatedat() {
         return createdat;
     }
 
-    public void setCreatedat(Date createdat) {
+    public void setCreatedat(LocalDateTime createdat) {
         this.createdat = createdat;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 

@@ -36,6 +36,15 @@ public class AssociationController {
     }
 
     @CrossOrigin
+    @GetMapping("/last")
+    @ResponseBody
+    public List<AssociationDTO> getTopLastAssociations() throws Exception {
+
+        return associationService.getTopLastAssociations();
+    }
+
+
+    @CrossOrigin
     @PutMapping("/create")
     @ResponseBody
     public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idfournA") String idfournA, @RequestParam("idProductB") String idProductB, @RequestParam("idfournB") String idfournB) throws Exception {
