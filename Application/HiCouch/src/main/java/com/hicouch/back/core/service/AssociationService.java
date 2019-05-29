@@ -13,6 +13,8 @@ public interface AssociationService {
 
     boolean checkIfIdPairExists(int idPair);
 
+    List<AssociationDTO> getTopLastAssociations() throws Exception;
+
     String deleteAssociation(int idAssociation) throws Exception;
 
 	Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB)

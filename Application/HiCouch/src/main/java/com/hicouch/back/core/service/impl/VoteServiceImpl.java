@@ -5,7 +5,7 @@ import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Vote;
 import com.hicouch.back.core.service.VoteService;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,14 +35,14 @@ public class VoteServiceImpl implements VoteService {
 				vote = voteOld;
 			}
 		} else {
-			vote.setCreatedAt(new Date());
+			vote.setCreatedAt(LocalDateTime.now());
 		}
 		
 		if(vote.getVote() == 0) {
 			voteRepository.delete(vote);
 			vote = null;
 		} else {
-			vote.setUpdatedAt(new Date());
+			vote.setUpdatedAt(LocalDateTime.now());
 			voteRepository.save(vote);
 		}
 		

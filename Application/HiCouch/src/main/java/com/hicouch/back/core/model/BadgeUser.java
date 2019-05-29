@@ -1,6 +1,9 @@
 package com.hicouch.back.core.model;
 
-import java.util.Date;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -18,12 +21,14 @@ public class BadgeUser {
 	
 	@Column(name="idbadge")
 	int idBadge;
-	
-    @Column(name="createat")
-    Date createdat;
 
+	@CreatedDate
+    @Column(name="createat")
+    LocalDateTime createdat;
+
+	@LastModifiedDate
     @Column(name="updatedat")
-    Date updatedAt;
+    LocalDateTime updatedAt;
     
     
 
@@ -33,7 +38,7 @@ public class BadgeUser {
 	 * @param createdat
 	 * @param updatedAt
 	 */
-	public BadgeUser(int idUser, int idBadge, Date createdat, Date updatedAt) {
+	public BadgeUser(int idUser, int idBadge, LocalDateTime createdat, LocalDateTime updatedAt) {
 		this.idUser = idUser;
 		this.idBadge = idBadge;
 		this.createdat = createdat;
@@ -66,14 +71,14 @@ public class BadgeUser {
 	/**
 	 * @return the createdat
 	 */
-	public Date getCreatedat() {
+	public LocalDateTime getCreatedat() {
 		return createdat;
 	}
 
 	/**
 	 * @return the updatedAt
 	 */
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
@@ -101,14 +106,14 @@ public class BadgeUser {
 	/**
 	 * @param createdat the createdat to set
 	 */
-	public void setCreatedat(Date createdat) {
+	public void setCreatedat(LocalDateTime createdat) {
 		this.createdat = createdat;
 	}
 
 	/**
 	 * @param updatedAt the updatedAt to set
 	 */
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
     

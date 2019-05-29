@@ -4,7 +4,7 @@ import com.hicouch.back.core.repository.AbonnementRepository;
 import com.hicouch.back.core.model.Abonnement;
 import com.hicouch.back.core.service.AbonnementService;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +36,7 @@ public class AbonnementServiceImpl implements AbonnementService {
 
 	@Override
 	public Abonnement follow(Integer follower, Integer follows) {
-		Abonnement abonnement = new Abonnement(follower, follows, new Date(), new Date());
+		Abonnement abonnement = new Abonnement(follower, follows, LocalDateTime.now(), LocalDateTime.now());
 		return abonnementRepository.save(abonnement);
 	}
 

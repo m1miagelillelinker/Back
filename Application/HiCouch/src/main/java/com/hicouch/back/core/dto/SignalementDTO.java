@@ -1,6 +1,6 @@
 package com.hicouch.back.core.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.model.User;
@@ -14,10 +14,10 @@ public class SignalementDTO {
 	private User reporter;
 	private int status;
 	private User moderator;
-	private Date createdAt;
-	private Date updatedAt;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private User signaledUser;
 	private Commentaire signaledComment;
 	
@@ -63,19 +63,19 @@ public class SignalementDTO {
 		this.moderator = moderator;
 	}
 
-	public Date getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 

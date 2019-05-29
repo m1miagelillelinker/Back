@@ -2,16 +2,20 @@ package com.hicouch.back.core.model;
 
 import com.hicouch.back.core.enumeration.StatusEnum;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="commentaire")
 public class Commentaire {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private Integer id;
 
@@ -30,17 +34,19 @@ public class Commentaire {
     @Column(name="status")
     private int status;
 
+    @CreatedDate
     @Column(name="createdat")
-    private Date createdat = new Date();
+    private LocalDateTime createdat;
 
+    @LastModifiedBy
     @Column(name="updatedat")
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     public Commentaire(String commentaire, int idUser, int idPair) {
         this.commentaire = commentaire;
         this.idUser = idUser;
         this.idPair = idPair;
-        this.status = StatusEnum.TO_MODERATE;
+        this.status = StatusEnum.OK;
     }
 
     public Commentaire(){}
@@ -93,19 +99,19 @@ public class Commentaire {
         this.status = status;
     }
 
-    public Date getCreatedat() {
+    public LocalDateTime getCreatedat() {
         return createdat;
     }
 
-    public void setCreatedat(Date createdat) {
+    public void setCreatedat(LocalDateTime createdat) {
         this.createdat = createdat;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 

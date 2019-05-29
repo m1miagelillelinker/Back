@@ -1,10 +1,17 @@
 package com.hicouch.back.core.model;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="association")
+@EntityListeners(AuditingEntityListener.class)
 public class Association {
 
     @Id
@@ -27,15 +34,24 @@ public class Association {
     @Column(name="idpair")
     Integer idPair;
 
+    @CreatedDate
     @Column(name="createdat")
-    Date createdat;
+    LocalDateTime createdat;
 
+    @LastModifiedDate
     @Column(name="updatedat")
-    Date updatedat;
+    LocalDateTime updatedat;
+
+    /*
+    @CreatedBy
+    private String creator;
+
+    @LastModifiedBy
+    private String modificator;*/
 
     public Association(){}
 
-    public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, int idPair, Date createdat, Date updatedat) {
+    public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, int idPair, LocalDateTime createdat, LocalDateTime updatedat) {
         this.idproduitA = idproduitA;
         this.idfournA = idfournA;
         this.idproduitB = idproduitB;
@@ -69,19 +85,19 @@ public class Association {
         this.idproduitB = idproduitB;
     }
 
-    public Date getCreatedat() {
+    public LocalDateTime getCreatedat() {
         return createdat;
     }
 
-    public void setCreatedat(Date createdat) {
+    public void setCreatedat(LocalDateTime createdat) {
         this.createdat = createdat;
     }
 
-    public Date getUpdatedat() {
+    public LocalDateTime getUpdatedat() {
         return updatedat;
     }
 
-    public void setUpdatedat(Date updatedat) {
+    public void setUpdatedat(LocalDateTime updatedat) {
         this.updatedat = updatedat;
     }
 

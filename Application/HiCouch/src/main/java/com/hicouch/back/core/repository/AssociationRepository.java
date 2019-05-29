@@ -18,4 +18,6 @@ public interface AssociationRepository extends CrudRepository<Association,Intege
      * @return an association
      */
     Optional<Association> findFirstByIdPair(int id);
+
+    List<Association> findTop5ByOrderByCreatedatDesc();
 }
