@@ -6,9 +6,11 @@ import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.factory.AssociationFactory;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.service.AssociationService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -70,6 +72,13 @@ public class AssociationServiceImpl implements AssociationService {
 	@Override
 	public Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB) throws BusinessException {
 
+
+		//l'association existe deja? alors on retourne celle qui existe deja plutot qu'une erreur 500
+		Association assoExists = associationRepository.findByIdproduitAAndIdproduitB(idProductA,idProductB);
+		if ( ! assoExists.equals(null) ){
+			return assoExists;
+		}
+
 		LocalDateTime maintenant = LocalDateTime.now();
 
 		Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
@@ -96,7 +105,12 @@ public class AssociationServiceImpl implements AssociationService {
 		try {
 			associationRepository.save(asso);
 			associationRepository.save(assoMirror);
-		} catch (Exception e) {
+		} catch (DataIntegrityViolationException e) {
+			e.printStackTrace();
+		} catch (ConstraintViolationException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			throw new BusinessException();
 		}

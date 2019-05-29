@@ -20,4 +20,7 @@ public interface AssociationRepository extends CrudRepository<Association,Intege
     Optional<Association> findFirstByIdPair(int id);
 
     List<Association> findTop5ByOrderByCreatedatDesc();
+
+    Association findByIdproduitAAndIdproduitB(String idProduitA, String idProduitB);
+
 }
