@@ -18,11 +18,11 @@ public class TagProduit {
 	
 	@Column(name="idtag")
 	int idTag;
-	
-    @Column(name="createdat")
+
+    @Column(name="createdat",columnDefinition="datetime")
     LocalDateTime createdat;
 
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     LocalDateTime updatedAt;
 
 	/**

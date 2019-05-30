@@ -1,5 +1,6 @@
 package com.hicouch.back.core.model;
 
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 
@@ -31,12 +32,18 @@ public class Commentaire {
     int status;
 
     @CreatedDate
-    @Column(name="createdat")
+    @Column(name="createdat",columnDefinition="datetime")
     LocalDateTime createdat;
 
     @LastModifiedBy
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     LocalDateTime updatedAt;
+
+    @CreatedBy
+    private String creator;
+
+    @LastModifiedBy
+    private String modificator;
 
     public Commentaire(String commentaire, Integer note, int idUser, int idPair, int status, LocalDateTime createdat, LocalDateTime updatedAt) {
         this.commentaire = commentaire;

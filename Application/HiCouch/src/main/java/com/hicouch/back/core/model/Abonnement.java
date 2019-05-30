@@ -23,11 +23,11 @@ public class Abonnement {
     Integer follows;
 
     @CreatedDate
-    @Column(name="createat")
+    @Column(name="createat",columnDefinition="datetime")
     LocalDateTime createdat;
 
     @LastModifiedDate
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     LocalDateTime updatedAt;
 
     public Abonnement(Integer follower, Integer follows, LocalDateTime createdat, LocalDateTime updatedAt) {

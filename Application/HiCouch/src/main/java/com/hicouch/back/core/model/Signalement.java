@@ -3,7 +3,9 @@ package com.hicouch.back.core.model;
 import javax.persistence.*;
 
 import com.hicouch.back.core.enumeration.SignalementTypeEnum;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
@@ -39,12 +41,18 @@ public class Signalement {
     Integer moderatorId;
 
     @CreatedDate
-    @Column(name="createdat")
+    @Column(name="createdat",columnDefinition="datetime")
     LocalDateTime createdat;
 
     @LastModifiedDate
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     LocalDateTime updatedAt;
+
+    @CreatedBy
+    private String creator;
+
+    @LastModifiedBy
+    private String modificator;
 
     //Signalement full
     public Signalement(String typeSignalement, Integer signaledId, String message, Integer idUser, Integer status, Integer moderatorId, LocalDateTime createdat, LocalDateTime updatedAt) {

@@ -8,9 +8,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="association")
+//@SequenceGenerator(name="AssoSeqGen", sequenceName = "AssoSeq", initialValue=1, allocationSize=100)
 @EntityListeners(AuditingEntityListener.class)
 public class Association {
 
@@ -30,16 +32,18 @@ public class Association {
     
     @Column(name="idfournB")
     String idfournB;
-    
-    @Column(name="idpair")
+
+    //@ManyToOne
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="AssoSeq")
+    @Column(name="idpair"/*, nullable = false*/)
     Integer idPair;
 
     @CreatedDate
-    @Column(name="createdat")
+    @Column(name="createdat",columnDefinition="datetime")
     LocalDateTime createdat;
 
     @LastModifiedDate
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     LocalDateTime updatedat;
 
     @CreatedBy
@@ -47,6 +51,9 @@ public class Association {
 
     @LastModifiedBy
     private String modificator;
+
+    @ManyToOne
+    private User user;
 
     public Association(){}
 

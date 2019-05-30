@@ -22,11 +22,11 @@ public class Badge {
     String description;
 
     @CreatedDate
-    @Column(name="createdat")
+    @Column(name="createdat",columnDefinition="datetime")
     LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     LocalDateTime updatedAt;
 
     @CreatedBy

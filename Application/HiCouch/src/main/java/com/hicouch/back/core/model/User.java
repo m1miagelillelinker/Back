@@ -5,6 +5,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="utilisateur")
@@ -46,18 +47,33 @@ public class User {
     private String picture;
 
     @CreatedDate
-    @Column(name="createdat")
+    @Column(name="createdat",columnDefinition="datetime")
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     private LocalDateTime updatedAt;
 
-    @Column(name="lastlogin")
+    @Column(name="lastlogin",columnDefinition="datetime")
     private LocalDateTime lastlogin;
 
     @Column(name="loginscount")
     private Integer loginscount;
+
+    @OneToMany
+    private List<Association> associations;
+
+    //Badges associés a l'utilisateur
+    @OneToMany
+    private List<Badge> badges;
+
+    //followers associés a cet utilisateur
+    @OneToMany
+    private List<User> followers;
+
+    //Liste des utilisateurs que cet utilisateur suit
+    @OneToMany
+    private List<User> follow;
 
     public User(String firstName, String lastName, Integer gender, String email, String typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime lastlogin, Integer loginscount) {
         this.firstName = firstName;
@@ -196,6 +212,38 @@ public class User {
 
     public void setLoginscount(Integer loginscount) {
         this.loginscount = loginscount;
+    }
+
+    public List<Association> getAssociations() {
+        return associations;
+    }
+
+    public void setAssociations(List<Association> associations) {
+        this.associations = associations;
+    }
+
+    public List<Badge> getBadges() {
+        return badges;
+    }
+
+    public void setBadges(List<Badge> badges) {
+        this.badges = badges;
+    }
+
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    public List<User> getFollow() {
+        return follow;
+    }
+
+    public void setFollow(List<User> follow) {
+        this.follow = follow;
     }
 
     @Override

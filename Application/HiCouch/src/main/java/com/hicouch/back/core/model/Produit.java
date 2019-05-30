@@ -22,11 +22,11 @@ public class Produit {
     private String name;
 
     @CreatedDate
-    @Column(name="createdat")
+    @Column(name="createdat",columnDefinition="datetime")
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "updatedat")
+    @Column(name = "updatedat",columnDefinition="datetime")
     private LocalDateTime updatedAt;
 
     public Produit(int id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {

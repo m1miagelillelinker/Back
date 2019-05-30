@@ -24,11 +24,11 @@ public class UserAssociation {
     String idAsso;
 
     @CreatedDate
-    @Column(name="createat")
+    @Column(name="createat",columnDefinition="datetime")
     LocalDateTime createdat;
 
     @LastModifiedDate
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     LocalDateTime updatedAt;
     
 	/**

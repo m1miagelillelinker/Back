@@ -67,15 +67,15 @@ public class AssociationServiceImpl implements AssociationService {
 
 		LocalDateTime maintenant = LocalDateTime.now();
 
-		Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
-		int idPair = (Integer) q.getSingleResult();
+		//Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
+		//int idPair = (Integer) q.getSingleResult();
 
 		Association asso = new Association();
 		asso.setIdproduitA(idProductA);
 		asso.setIdfournA(idfournA);
 		asso.setIdproduitB(idProductB);
 		asso.setIdfournB(idfournB);
-		asso.setIdPair(idPair);
+		//asso.setIdPair(idPair);
 		asso.setCreatedat(maintenant);
 		asso.setUpdatedat(maintenant);
 
@@ -84,7 +84,7 @@ public class AssociationServiceImpl implements AssociationService {
 		assoMirror.setIdfournA(idfournB);
 		assoMirror.setIdproduitB(idProductA);
 		assoMirror.setIdfournB(idfournA);
-		assoMirror.setIdPair(idPair);
+		//assoMirror.setIdPair(idPair);
 		assoMirror.setCreatedat(maintenant);
 		assoMirror.setUpdatedat(maintenant);
 

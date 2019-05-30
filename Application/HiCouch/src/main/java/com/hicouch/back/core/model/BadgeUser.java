@@ -23,11 +23,11 @@ public class BadgeUser {
 	int idBadge;
 
 	@CreatedDate
-    @Column(name="createat")
+    @Column(name="createat",columnDefinition="datetime")
     LocalDateTime createdat;
 
 	@LastModifiedDate
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     LocalDateTime updatedAt;
     
     
