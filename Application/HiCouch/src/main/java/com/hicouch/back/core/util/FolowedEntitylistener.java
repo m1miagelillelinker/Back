@@ -7,10 +7,6 @@ import java.util.Optional;
 public class FolowedEntitylistener implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
-        return Optional.empty();
+        return Optional.of("callback");
     }
-    /*@Override
-    public String getCurrentAuditor() {
-        return "hicfrt";
-    }*/
 }

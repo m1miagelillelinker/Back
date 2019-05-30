@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -59,9 +60,9 @@ public class AssociationServiceImpl implements AssociationService {
 
 
 		//l'association existe deja? alors on retourne celle qui existe deja plutot qu'une erreur 500
-		Association assoExists = associationRepository.findByIdproduitAAndIdproduitB(idProductA,idProductB);
-		if ( ! assoExists.equals(null) ){
-			return assoExists;
+		Optional<Association> assoExists = Optional.ofNullable(associationRepository.findByIdproduitAAndIdproduitB(idProductA, idProductB));
+		if ( assoExists.isPresent() ){
+			return assoExists.get();
 		}
 
 		LocalDateTime maintenant = LocalDateTime.now();
