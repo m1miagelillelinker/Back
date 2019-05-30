@@ -54,6 +54,9 @@ public class User {
     @Column(name="loginscount")
     private Integer loginscount;
 
+	@Column(name = "idauth0")
+	private String idAuth0;
+
     public User(String firstName, String lastName, Integer gender, String email, String typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, Date createdAt, Date updatedAt, Date lastlogin, Integer loginscount) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -193,24 +196,21 @@ public class User {
         this.loginscount = loginscount;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gender=" + gender +
-                ", email='" + email + '\'' +
-                ", typeUser='" + typeUser + '\'' +
-                ", pseudo='" + pseudo + '\'' +
-                ", score=" + score +
-                ", password='" + password + '\'' +
-                ", idstatus=" + idstatus +
-                ", picture='" + picture + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", lastlogin=" + lastlogin +
-                ", loginscount=" + loginscount +
-                '}';
-    }
+	public String getIdAuth0() {
+		return idAuth0;
+	}
+
+	public void setIdAuth0(String idAuth0) {
+		this.idAuth0 = idAuth0;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
+				+ ", email=" + email + ", typeUser=" + typeUser + ", pseudo=" + pseudo + ", score=" + score
+				+ ", password=" + password + ", idstatus=" + idstatus + ", picture=" + picture + ", createdAt="
+				+ createdAt + ", updatedAt=" + updatedAt + ", lastlogin=" + lastlogin + ", loginscount=" + loginscount
+				+ ", idAuth0=" + idAuth0 + "]";
+	}
+
 }

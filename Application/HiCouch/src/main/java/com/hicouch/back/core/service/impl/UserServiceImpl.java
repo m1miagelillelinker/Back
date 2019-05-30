@@ -5,6 +5,7 @@ import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Integer userId) throws NoResultException {
+
+    	System.out.println("info : ");
+    	System.out.println(SecurityContextHolder.getContext().getAuthentication().getCredentials());
+    	System.out.println(SecurityContextHolder.getContext().getAuthentication().getDetails());
+    	System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
+    	System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    	System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         return userRepository.findById(userId).orElseThrow(NoResultException::new);
     }
 
