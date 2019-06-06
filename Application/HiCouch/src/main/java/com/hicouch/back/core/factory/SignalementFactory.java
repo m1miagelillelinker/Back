@@ -1,7 +1,5 @@
 package com.hicouch.back.core.factory;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +16,6 @@ public class SignalementFactory {
 	
 	private UserService userService;
 	private CommentaireService commentaireService;
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	public SignalementFactory(UserService userService, CommentaireService commentaireService) {
