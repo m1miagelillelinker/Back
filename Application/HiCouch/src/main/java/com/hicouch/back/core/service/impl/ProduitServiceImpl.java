@@ -12,6 +12,7 @@ import com.hicouch.back.core.util.HttpGamesRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -70,7 +71,26 @@ public class ProduitServiceImpl implements ProduitService {
         }
     }
 
-    // TODO : REQUEST L'API JEU VIDEO
+    @Override
+    public List<ProductDTO> getProductsByKeyWordFromReferentiel(String keyword, String referentiel) throws Exception {
+        List<ProductDTO> listProduct = new ArrayList<>();
+        switch (referentiel) {
+            case ProductTypeEnum.BOOK:
+                listProduct = this.getBooksFromReferentiel(keyword);
+                break;
+            case ProductTypeEnum.SERIE:
+            case ProductTypeEnum.MOVIE:
+                listProduct =this.getFilmsByTitleFromReferentiel(keyword);
+                break;
+            case ProductTypeEnum.GAME:
+                listProduct = this.getGamesByIdFromReferentiel(keyword);
+                break;
+            default:
+                throw new Exception("No Referentiel Defined");
+        }
+        return listProduct;
+    }
+
     @Override
     public ProductDTO getGameByIdFromReferentiel(String gameId) throws ReferentielRequestException {
         try{

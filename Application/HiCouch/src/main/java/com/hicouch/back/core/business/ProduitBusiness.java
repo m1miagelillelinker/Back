@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface ProduitBusiness {
 
-	public ProductDTO getCompleteProduct(String idProduct, String referentiel) throws Exception;
+	ProductDTO getCompleteProduct(String idProduct, String referentiel) throws Exception;
+
+    List<ProductDTO> getCompleteProducts(String keyword,String referentiel);
 
 	
 }

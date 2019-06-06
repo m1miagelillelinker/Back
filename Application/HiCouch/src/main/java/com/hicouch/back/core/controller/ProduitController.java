@@ -27,7 +27,7 @@ public class ProduitController {
 
 
     @CrossOrigin
-    @GetMapping("/getFilmByIdFromReferentiel")
+        @GetMapping("/getFilmByIdFromReferentiel")
     @ResponseBody
     public ProductDTO getFilmByIdFromReferentiel(@RequestParam("filmId") String filmId) throws Exception {
         if(filmId == null || filmId.equals("")){
@@ -43,7 +43,8 @@ public class ProduitController {
         if(research == null || research.equals("")){
             throw new Exception();
         }
-        return produitService.getFilmsByTitleFromReferentiel(research);
+        //return produitService.getFilmsByTitleFromReferentiel(research);
+        return produitBusiness.getCompleteProducts(research,ProductTypeEnum.MOVIE);
     }
 
 
@@ -74,7 +75,7 @@ public class ProduitController {
         if(keyword == null || keyword.equals("")){
             throw new Exception();
         }
-        return produitService.getBooksFromReferentiel(keyword);
+        return produitBusiness.getCompleteProducts(keyword,ProductTypeEnum.BOOK);
     }
 
     @CrossOrigin
@@ -95,7 +96,7 @@ public class ProduitController {
             throw new Exception();
         }
 
-        return produitService.getGamesByIdFromReferentiel(keyword);
+        return produitBusiness.getCompleteProducts(keyword,ProductTypeEnum.GAME);
     }
 
 }
