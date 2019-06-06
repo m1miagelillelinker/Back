@@ -30,8 +30,6 @@ public class HttpGamesRequest {
                 .body("fields *; where id = " + gameId + ";")
                 .asJson();
 
-        System.out.println("cc");
-
         if (jsonResponse.getStatus() > 299) {
             throw new ReferentielRequestException();
         } else {
@@ -72,14 +70,41 @@ public class HttpGamesRequest {
     private ProductDTO convert(JsonNode body) throws UnirestException {
         JSONObject jsonObject = body.getArray().getJSONObject(0);
 
-        String id = jsonObject.get("id") != null ? jsonObject.get("id").toString() : "null";
-        String title = jsonObject.get("name") != null ? jsonObject.get("name").toString() : "null";
-        String description = jsonObject.get("summary") != null ? jsonObject.get("summary").toString() : "null";
+        String id = null;
+        String title = null;
+        String description = null;
         String country = "FR";
-        String director = jsonObject.get("rating") != null ? jsonObject.get("rating").toString() : "null";
+        String director = null;
+        String lg = null;
+        String year = null;
+        String image = null;
 
-        String lg = jsonObject.get("created_at") != null ? jsonObject.get("created_at").toString() : "null";
-        String year = lg.equals("null") ? lg : new Date(Long.parseLong(lg) * 1000).toString();
+
+        try{
+            id = jsonObject.get("id").toString();
+        } catch (Exception ignored){}
+
+        try{
+            title = jsonObject.get("name").toString();
+        }catch (Exception ignored){}
+
+        try{
+            description = jsonObject.get("summary").toString();
+        }catch (Exception ignored){}
+
+        try{
+            director = jsonObject.get("rating").toString();
+        }catch (Exception ignored){}
+
+        try{
+            lg = jsonObject.get("created_at").toString();
+        }catch (Exception ignored){}
+
+        try{
+            year =new Date(Long.parseLong(lg) * 1000).toString();
+        }catch (Exception ignored){}
+
+
 
         List<String> genre = new ArrayList<>();
         List<Association> listProduits = new ArrayList<>();
@@ -90,13 +115,18 @@ public class HttpGamesRequest {
                 .body("fields * ; where game = "+id+";")
                 .asJson();
 
-        String image = jsonResponse2.getBody().getArray().getJSONObject(0).get("url") != null ? jsonResponse2.getBody().getArray().getJSONObject(0).get("url").toString() : "null";
-        if(image.contains("cover_small") || image.contains("screenshot_med") || image.contains("cover_big") ||
-                image.contains("logo_med") || image.contains("screenshot_big") || image.contains("screenshot_huge")
-                ||image.contains("thumb") || image.contains("micro") || image.contains("720p")){
+        try{
+            image = jsonResponse2.getBody().getArray().getJSONObject(0).get("url").toString();
+            if(image.contains("cover_small") || image.contains("screenshot_med") || image.contains("cover_big") ||
+                    image.contains("logo_med") || image.contains("screenshot_big") || image.contains("screenshot_huge")
+                    ||image.contains("thumb") || image.contains("micro") || image.contains("720p")){
 
-            image = image.replaceFirst("/t_(.*)/","/t_1080p/");
+                image = image.replaceFirst("/t_(.*)/","/t_1080p/");
+            }
+        }catch (Exception e){
+            image = null;
         }
+
         String duration = "null";
         String type = ProductTypeEnum.BOOK;
 

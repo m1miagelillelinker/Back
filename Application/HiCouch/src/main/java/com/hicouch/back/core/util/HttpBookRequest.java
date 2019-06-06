@@ -24,16 +24,51 @@ public class HttpBookRequest extends HttpRequest {
             JSONObject json = item.getJSONObject(0);
             JSONObject volumeInfo = json.getJSONObject("volumeInfo");
 
-            googleBooksDTO.setTitle(volumeInfo.get("title").toString());
-            googleBooksDTO.setDescription(volumeInfo.get("description").toString());
-            googleBooksDTO.setAuthor(volumeInfo.getJSONArray("authors").getString(0));
-            googleBooksDTO.setYear( volumeInfo.get("publishedDate").toString());
-            googleBooksDTO.setGenre(volumeInfo.getJSONArray("categories").get(0).toString());
-            googleBooksDTO.setImage(volumeInfo.getJSONObject("imageLinks").get("thumbnail").toString());
-            googleBooksDTO.setId(volumeInfo.getJSONArray("industryIdentifiers").getJSONObject(0).get("identifier").toString());
+            try{
+                googleBooksDTO.setTitle(volumeInfo.get("title").toString());
+            }catch (Exception e){
+                googleBooksDTO.setTitle(null);
+            }
+
+            try{
+                googleBooksDTO.setDescription(volumeInfo.get("description").toString());
+            }catch (Exception e){
+                googleBooksDTO.setDescription(null);
+            }
+
+            try{
+                googleBooksDTO.setAuthor(volumeInfo.getJSONArray("authors").getString(0));
+            }catch (Exception e){
+                googleBooksDTO.setAuthor(null);
+            }
+
+            try{
+                googleBooksDTO.setYear( volumeInfo.get("publishedDate").toString());
+            }catch (Exception e){
+                googleBooksDTO.setYear(null);
+            }
+
+            try{
+                googleBooksDTO.setGenre(volumeInfo.getJSONArray("categories").get(0).toString());
+            }catch (Exception e){
+                googleBooksDTO.setGenre(null);
+            }
+
+            try{
+                googleBooksDTO.setImage(volumeInfo.getJSONObject("imageLinks").get("thumbnail").toString());
+            }catch (Exception e){
+                googleBooksDTO.setImage(null);
+            }
+
+            try{
+                googleBooksDTO.setId(volumeInfo.getJSONArray("industryIdentifiers").getJSONObject(0).get("identifier").toString());
+            }catch (Exception e){
+                googleBooksDTO.setId(null);
+            }
             return googleBooksDTO.toProductDTO();
         } catch (Exception e) {
-            throw new Exception();
+            e.printStackTrace();
+            return null;
         }
 
     }
@@ -49,14 +84,50 @@ public class HttpBookRequest extends HttpRequest {
             JSONObject jsonObject =jsonArray.getJSONObject(i);
             JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
 
-            googleBooksDTO.setTitle(volumeInfo.get("title").toString());
-            googleBooksDTO.setDescription(volumeInfo.get("subtitle").toString());
-            googleBooksDTO.setAuthor(volumeInfo.getJSONArray("authors").getString(0));
-            googleBooksDTO.setYear( volumeInfo.get("publishedDate").toString());
-            googleBooksDTO.setGenre(volumeInfo.getJSONArray("categories").get(0).toString());
-            googleBooksDTO.setImage(volumeInfo.getJSONObject("imageLinks").get("thumbnail").toString());
-            googleBooksDTO.setId(volumeInfo.getJSONArray("industryIdentifiers").getJSONObject(0).get("identifier").toString());
+            try{
+                googleBooksDTO.setTitle(volumeInfo.get("title").toString());
+            }catch (Exception e){
+                googleBooksDTO.setTitle(null);
+            }
+
+            try{
+                googleBooksDTO.setDescription(volumeInfo.get("subtitle").toString());
+            }catch (Exception e){
+                googleBooksDTO.setDescription(null);
+            }
+
+            try{
+                googleBooksDTO.setAuthor(volumeInfo.getJSONArray("authors").getString(0));
+            }catch (Exception e){
+                googleBooksDTO.setAuthor(null);
+            }
+
+            try{
+                googleBooksDTO.setYear( volumeInfo.get("publishedDate").toString());
+            }catch (Exception e){
+                googleBooksDTO.setYear(null);
+            }
+
+            try{
+                googleBooksDTO.setGenre(volumeInfo.getJSONArray("categories").get(0).toString());
+            }catch (Exception e){
+                googleBooksDTO.setGenre(null);
+            }
+
+            try{
+                googleBooksDTO.setImage(volumeInfo.getJSONObject("imageLinks").get("thumbnail").toString());
+            }catch (Exception e){
+                googleBooksDTO.setImage(null);
+            }
+
+            try{
+                googleBooksDTO.setId(volumeInfo.getJSONArray("industryIdentifiers").getJSONObject(0).get("identifier").toString());
+            }catch (Exception e){
+                googleBooksDTO.setId(null);
+            }
+
             productDTOList.add(googleBooksDTO.toProductDTO());
+
         }
         return productDTOList;
     }
