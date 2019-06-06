@@ -63,7 +63,7 @@ public class CommentaireController {
     }
 
     @CrossOrigin
-    @GetMapping("/hide/")
+    @PostMapping("/hide/")
     @ResponseBody
     public Commentaire hideCommentaire(@RequestBody Commentaire comm) throws Exception {
         logger.trace("hideCommentaire:"+comm);
@@ -75,7 +75,7 @@ public class CommentaireController {
     }
 
     @CrossOrigin
-    @PostMapping("/updateCommentaire")
+    @PostMapping("/update/")
     @ResponseBody
     public Commentaire updateCommentaire(@RequestBody Commentaire comm) throws NoResultException {
         logger.trace("hideCommentaire:"+comm);

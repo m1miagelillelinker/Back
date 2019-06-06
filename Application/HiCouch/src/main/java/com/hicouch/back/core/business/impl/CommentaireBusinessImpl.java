@@ -3,6 +3,7 @@ package com.hicouch.back.core.business.impl;
 import com.hicouch.back.core.business.CommentaireBusiness;
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.exception.BusinessException;
+import com.hicouch.back.core.exception.DataProvidedException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.AssociationService;
 import com.hicouch.back.core.service.CommentaireService;
@@ -27,7 +28,7 @@ public class CommentaireBusinessImpl implements CommentaireBusiness {
     }
 
     //TODO Faire en sorte que le SPAM ne soit pas possible (limiter le nombre de commentaires par minute par exemple
-    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException {
+    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException {
         if ( ! associationService.checkIfIdPairExists(commentaire.getIdPair())){
             throw new BusinessException();
         }

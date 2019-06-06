@@ -1,6 +1,7 @@
 package com.hicouch.back.core.service;
 
 import com.hicouch.back.core.exception.BusinessException;
+import com.hicouch.back.core.exception.DataProvidedException;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 
@@ -14,7 +15,7 @@ public interface CommentaireService {
 	List<Commentaire> getAllCommentairesToModerate();
 	Commentaire setCommentaireStatus(int commentId, int status) throws NoResultException;
 
-    Commentaire addCommentaire(Commentaire commentaire) throws BusinessException;
+    Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException;
 
     Commentaire hideCommentaire(Commentaire commentaire) throws NoResultException;
 

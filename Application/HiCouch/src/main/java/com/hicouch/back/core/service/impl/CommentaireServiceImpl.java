@@ -2,6 +2,7 @@ package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.exception.BusinessException;
+import com.hicouch.back.core.exception.DataProvidedException;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.repository.CommentaireRepository;
@@ -56,14 +57,21 @@ public class CommentaireServiceImpl implements CommentaireService {
 	}
 
     @Override
-    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException {
+    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException {
         try{
+            if(commentaire.getId() != null) {
+                throw new DataProvidedException("l'idpair ne doit pas etre fournit pour l'ajout");
+            }
             commentaire.setCreatedat(new Date());
             commentaire.setUpdatedAt(new Date());
             commentaire.setNote(commentaire.getNote()+1);
             commentaire.setStatus(StatusEnum.TO_MODERATE);
             logger.trace(commentaire.toString());
             return commentaireRepository.save(commentaire);
+        }catch (DataProvidedException e){
+            logger.error(e.getMessage());
+            e.printStackTrace();
+            throw new DataProvidedException("l'idpair ne doit pas etre fournit pour l'ajout");
         }catch (Exception e){
             logger.error(e.getMessage());
             e.printStackTrace();
