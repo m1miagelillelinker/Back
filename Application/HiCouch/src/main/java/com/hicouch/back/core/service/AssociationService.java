@@ -10,6 +10,8 @@ public interface AssociationService {
 
     AssociationDTO getAssociationByIdPair(int idPair);
 
+    boolean checkIfIdPairExists(int idPair);
+
     String deleteAssociation(int idAssociation) throws Exception;
 
 	Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB)

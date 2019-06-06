@@ -30,7 +30,7 @@ public class Application extends SpringBootServletInitializer {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-            logger.info("Parcours des Beans");
+            logger.info("HiCOUCH is READY !!!!!!!");
 
             String[] beanNames = ctx.getBeanDefinitionNames();
             /* Listing des Beans desactivé

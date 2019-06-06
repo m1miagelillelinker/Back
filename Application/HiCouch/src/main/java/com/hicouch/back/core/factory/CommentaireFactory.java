@@ -1,6 +1,5 @@
 package com.hicouch.back.core.factory;
 
-import com.hicouch.back.core.controller.CommentaireController;
 import com.hicouch.back.core.dto.CommentaireDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;

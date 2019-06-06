@@ -1,6 +1,7 @@
 package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.enumeration.StatusEnum;
+import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.repository.CommentaireRepository;
@@ -55,28 +56,31 @@ public class CommentaireServiceImpl implements CommentaireService {
 	}
 
     @Override
-    public String addCommentaire(Commentaire json) {
+    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException {
         try{
-            commentaireRepository.save(json);
-            return "Ok: commentaire ajouter";
+            commentaire.setCreatedat(new Date());
+            commentaire.setUpdatedAt(new Date());
+            commentaire.setNote(commentaire.getNote()+1);
+            commentaire.setStatus(StatusEnum.TO_MODERATE);
+            logger.trace(commentaire.toString());
+            return commentaireRepository.save(commentaire);
         }catch (Exception e){
+            logger.error(e.getMessage());
             e.printStackTrace();
+            throw new BusinessException("Idpair inexistant");
         }
-
-        return "Error : commentaire non ajouter";
     }
 
     @Override
-    public String hideCommentaire(Commentaire commentaire) throws NoResultException {
+    public Commentaire hideCommentaire(Commentaire commentaire) throws NoResultException {
         if(commentaire.getId() != null) {
             Commentaire oldCommentaire = findById(commentaire.getId());
             oldCommentaire.setStatus(StatusEnum.HIDDEN);
             commentaire = oldCommentaire;
             commentaire.setUpdatedAt(new Date());
-            commentaireRepository.save(commentaire);
-            return "Ok: commentaire hidden";
+            return commentaireRepository.save(commentaire);
         }
-        else return "Error : commentaire non caché";
+        else return null;
     }
 
     @Override

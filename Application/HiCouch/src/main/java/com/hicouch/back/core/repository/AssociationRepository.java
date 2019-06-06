@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AssociationRepository extends CrudRepository<Association,Integer> {
@@ -16,5 +17,5 @@ public interface AssociationRepository extends CrudRepository<Association,Intege
      * @param id
      * @return an association
      */
-    Association  findFirstByIdPair(int id);
+    Optional<Association>  findFirstByIdPair(int id);
 }

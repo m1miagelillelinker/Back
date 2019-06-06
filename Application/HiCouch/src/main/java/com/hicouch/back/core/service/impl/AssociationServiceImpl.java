@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -27,8 +28,7 @@ public class AssociationServiceImpl implements AssociationService {
 
 
 	@Autowired
-	public AssociationServiceImpl(AssociationRepository associationRepository, EntityManager entityManager,
-			AssociationFactory associationFactory) {
+	public AssociationServiceImpl(AssociationRepository associationRepository, EntityManager entityManager, AssociationFactory associationFactory) {
 		this.associationRepository = associationRepository;
 		this.entityManager = entityManager;
 		this.associationFactory = associationFactory;
@@ -44,7 +44,13 @@ public class AssociationServiceImpl implements AssociationService {
 
 	@Override
 	public AssociationDTO getAssociationByIdPair(int idPair){
-		return associationFactory.getAssociationDTO(associationRepository.findFirstByIdPair(idPair));
+		return associationFactory.getAssociationDTO(associationRepository.findFirstByIdPair(idPair).get());
+	}
+
+	@Override
+	public boolean checkIfIdPairExists(int idPair) {
+		Optional<Association> asso = associationRepository.findFirstByIdPair(idPair);
+		return asso.isPresent();
 	}
 
 	@Override
