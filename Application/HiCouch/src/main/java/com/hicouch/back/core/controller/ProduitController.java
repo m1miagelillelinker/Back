@@ -43,7 +43,6 @@ public class ProduitController {
         if(research == null || research.equals("")){
             throw new Exception();
         }
-        //return produitService.getFilmsByTitleFromReferentiel(research);
         return produitBusiness.getCompleteProducts(research,ProductTypeEnum.MOVIE);
     }
 

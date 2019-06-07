@@ -33,7 +33,7 @@ public class ProduitBusinessImpl implements ProduitBusiness {
 		return product;
 	}
 
-	public List<ProductDTO> getCompleteProducts(String keyword,String referentiel)throws  Exception{
+	public List<ProductDTO> getCompleteProducts(String keyword,String referentiel)throws Exception{
 	    List<ProductDTO> productDTOList = produitService.getProductsByKeyWordFromReferentiel(keyword,referentiel);
 	    for(ProductDTO productDTO : productDTOList){
 	        productDTO.setTags(tagBusiness.getAllTagByProduct(productDTO.getId()));
