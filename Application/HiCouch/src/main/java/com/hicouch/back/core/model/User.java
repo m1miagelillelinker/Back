@@ -25,7 +25,7 @@ public class User {
     private String email;
 
     @Column(name="typeuser")
-    private String typeUser;
+    private Integer typeUser;
 
     @Column(name="pseudo")
     private String pseudo;
@@ -57,7 +57,7 @@ public class User {
 	@Column(name = "idauth0")
 	private String idAuth0;
 
-    public User(String firstName, String lastName, Integer gender, String email, String typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, Date createdAt, Date updatedAt, Date lastlogin, Integer loginscount) {
+    public User(String firstName, String lastName, Integer gender, String email, Integer typeUser, String pseudo, Integer score, String password, Integer idstatus, String picture, Date createdAt, Date updatedAt, Date lastlogin, Integer loginscount) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -116,11 +116,11 @@ public class User {
         this.email = email;
     }
 
-    public String getTypeUser() {
+    public Integer getTypeUser() {
         return typeUser;
     }
 
-    public void setTypeUser(String typeUser) {
+    public void setTypeUser(Integer typeUser) {
         this.typeUser = typeUser;
     }
 

@@ -1,6 +1,7 @@
 package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.repository.UserRepository;
+import com.hicouch.back.core.enumeration.TypeUser;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.UserService;
@@ -35,5 +36,21 @@ public class UserServiceImpl implements UserService {
 		User user = userRepository.findById(userId).orElseThrow(NoResultException::new);
 		user.setIdstatus(status);
 		return userRepository.save(user);
+	}
+
+	@Override
+	public User getUserByAuth0Id(String userId) throws NoResultException {
+		return userRepository.getUserByIdAuth0(userId).orElseThrow(NoResultException::new);
+	}
+
+	@Override
+	public User getCurrentUser() throws NoResultException {
+		String auth0Id = SecurityContextHolder.getContext().getAuthentication().getName();
+		return getUserByAuth0Id(auth0Id);
+	}
+
+	@Override
+	public boolean isModeratorOrAdmin(User user) {
+		return TypeUser.MODERATOR == user.getTypeUser() || TypeUser.ADMIN == user.getTypeUser();
 	}
 }

@@ -40,12 +40,15 @@ public class SignalementFactory {
 			e.printStackTrace();
 		}
 		
-		try {
-			User moderator = userService.getUserById(signalement.getModeratorId());
-			signalementDTO.setModerator(moderator);
-		} catch (NoResultException e) {
-			e.printStackTrace();
+		if(signalement.getModeratorId() != null) {
+			try {
+				User moderator = userService.getUserById(signalement.getModeratorId());
+				signalementDTO.setModerator(moderator);
+			} catch (NoResultException e) {
+				e.printStackTrace();
+			}
 		}
+		
 		
 		if(signalement.getSignaledCommentId() != null) {
 			try {

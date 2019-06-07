@@ -5,6 +5,7 @@ import com.hicouch.back.core.dto.SignalementDTO;
 import com.hicouch.back.core.enumeration.SignalementTypeEnum;
 import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.exception.NoResultException;
+import com.hicouch.back.core.exception.NoRightException;
 import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.service.SignalementService;
 
@@ -45,28 +46,40 @@ public class SignalementController {
     @CrossOrigin
     @GetMapping("/toModerate/comment")
     @ResponseBody
-    public List<SignalementDTO> getSignaledCommentToModerate(){
+    public List<SignalementDTO> getSignaledCommentToModerate() throws NoRightException, NoResultException {
+    	if(!signalementBusiness.isCurrentUserModeratorOrAdmin()) {
+    		throw new NoRightException();
+    	}
     	return signalementService.findAllSignalementsByTypeAndStatus(StatusEnum.TO_MODERATE, SignalementTypeEnum.COMMENTAIRE);
     }
     
     @CrossOrigin
     @GetMapping("/toModerate/user")
     @ResponseBody
-    public List<SignalementDTO> getSignaledUserToModerate(){
+    public List<SignalementDTO> getSignaledUserToModerate() throws NoRightException, NoResultException {
+    	if(!signalementBusiness.isCurrentUserModeratorOrAdmin()) {
+    		throw new NoRightException();
+    	}
     	return signalementService.findAllSignalementsByTypeAndStatus(StatusEnum.TO_MODERATE, SignalementTypeEnum.UTILISATEUR);
     }
     
     @CrossOrigin
     @PutMapping("/confirmeSignalement")
     @ResponseBody
-    public SignalementDTO confirmeSignalement(@RequestParam("signalementId") int signalementId) throws NoResultException {
+    public SignalementDTO confirmeSignalement(@RequestParam("signalementId") int signalementId) throws NoRightException, NoResultException {
+    	if(!signalementBusiness.isCurrentUserModeratorOrAdmin()) {
+    		throw new NoRightException();
+    	}
     	return signalementBusiness.processSignalement(signalementId, StatusEnum.BLOCKED);
     }
     
     @CrossOrigin
     @PutMapping("/refuseSignalement")
     @ResponseBody
-    public SignalementDTO refuseSignalement(@RequestParam("signalementId") int signalementId) throws NoResultException {
+    public SignalementDTO refuseSignalement(@RequestParam("signalementId") int signalementId) throws NoRightException, NoResultException {
+    	if(!signalementBusiness.isCurrentUserModeratorOrAdmin()) {
+    		throw new NoRightException();
+    	}
     	return signalementBusiness.processSignalement(signalementId, StatusEnum.OK);
     }
 
