@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Abonnement {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idabonnement")
     int idabonnement;
 

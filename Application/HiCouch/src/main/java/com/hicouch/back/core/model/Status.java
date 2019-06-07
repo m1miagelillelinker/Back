@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Status {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     int id;
 
