@@ -1,6 +1,6 @@
 package com.hicouch.back.core.service.impl;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +32,7 @@ public class TagProduitServiceImpl implements TagProduitService {
 		Optional<TagProduit> oldTagProduit = tagProduitRepository.findByIdProduitAndIdTag(idProduit, idTag);
 		TagProduit tagProduit = oldTagProduit.isPresent() 
 				? tagProduit = oldTagProduit.get() 
-				: new TagProduit(idProduit, idTag, new Date(), new Date());
+				: new TagProduit(idProduit, idTag, LocalDateTime.now(), LocalDateTime.now());
 		return tagProduitRepository.save(tagProduit);
 	}
 

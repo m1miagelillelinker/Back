@@ -1,6 +1,6 @@
 package com.hicouch.back.core.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -20,10 +20,10 @@ public class TagProduit {
 	int idTag;
 	
     @Column(name="createdat")
-    Date createdat;
+    LocalDateTime createdat;
 
     @Column(name="updatedat")
-    Date updatedAt;
+    LocalDateTime updatedAt;
 
 	/**
 	 * @return the id
@@ -40,7 +40,7 @@ public class TagProduit {
 	 * @param createdat
 	 * @param updatedAt
 	 */
-	public TagProduit(String idProduit, int idTag, Date createdat, Date updatedAt) {
+	public TagProduit(String idProduit, int idTag, LocalDateTime createdat, LocalDateTime updatedAt) {
 		this.idProduit = idProduit;
 		this.idTag = idTag;
 		this.createdat = createdat;
@@ -66,14 +66,14 @@ public class TagProduit {
 	/**
 	 * @return the createdat
 	 */
-	public Date getCreatedat() {
+	public LocalDateTime getCreatedat() {
 		return createdat;
 	}
 
 	/**
 	 * @return the updatedAt
 	 */
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
@@ -101,14 +101,14 @@ public class TagProduit {
 	/**
 	 * @param createdat the createdat to set
 	 */
-	public void setCreatedat(Date createdat) {
+	public void setCreatedat(LocalDateTime createdat) {
 		this.createdat = createdat;
 	}
 
 	/**
 	 * @param updatedAt the updatedAt to set
 	 */
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
     

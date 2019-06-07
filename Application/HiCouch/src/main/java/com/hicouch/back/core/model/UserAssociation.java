@@ -1,6 +1,9 @@
 package com.hicouch.back.core.model;
 
-import java.util.Date;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -20,11 +23,13 @@ public class UserAssociation {
     @Column(name="idasso")
     String idAsso;
 
+    @CreatedDate
     @Column(name="createat")
-    Date createdat;
+    LocalDateTime createdat;
 
+    @LastModifiedDate
     @Column(name="updatedat")
-    Date updatedAt;
+    LocalDateTime updatedAt;
     
 	/**
 	 * @param idUser
@@ -32,7 +37,7 @@ public class UserAssociation {
 	 * @param createdat
 	 * @param updatedAt
 	 */
-	public UserAssociation(int idUser, String idAsso, Date createdat, Date updatedAt) {
+	public UserAssociation(int idUser, String idAsso, LocalDateTime createdat, LocalDateTime updatedAt) {
 		this.idUser = idUser;
 		this.idAsso = idAsso;
 		this.createdat = createdat;
@@ -65,14 +70,14 @@ public class UserAssociation {
 	/**
 	 * @return the createdat
 	 */
-	public Date getCreatedat() {
+	public LocalDateTime getCreatedat() {
 		return createdat;
 	}
 
 	/**
 	 * @return the updatedAt
 	 */
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
@@ -100,14 +105,14 @@ public class UserAssociation {
 	/**
 	 * @param createdat the createdat to set
 	 */
-	public void setCreatedat(Date createdat) {
+	public void setCreatedat(LocalDateTime createdat) {
 		this.createdat = createdat;
 	}
 
 	/**
 	 * @param updatedAt the updatedAt to set
 	 */
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
     

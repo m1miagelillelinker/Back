@@ -1,7 +1,10 @@
 package com.hicouch.back.core.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="produit")
@@ -18,13 +21,15 @@ public class Produit {
     @Column(name="name")
     private String name;
 
+    @CreatedDate
     @Column(name="createdat")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
+    @LastModifiedDate
     @Column(name = "updatedat")
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
-    public Produit(int id, String name, Date createdAt, Date updatedAt) {
+    public Produit(int id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
@@ -49,19 +54,19 @@ public class Produit {
         this.name = name;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 
