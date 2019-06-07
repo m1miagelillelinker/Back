@@ -1,7 +1,12 @@
 package com.hicouch.back.core.model;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import com.hicouch.back.core.enumeration.SignalementTypeEnum;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="signalement")
@@ -33,21 +38,23 @@ public class Signalement {
     @Column(name="moderatorid")
     Integer moderatorId;
 
+    @CreatedDate
     @Column(name="createdat")
-    Date createdat;
+    LocalDateTime createdat;
 
+    @LastModifiedDate
     @Column(name="updatedat")
-    Date updatedAt;
+    LocalDateTime updatedAt;
 
     //Signalement full
-    public Signalement(String typeSignalement, Integer signaledId, String message, Integer idUser, Integer status, Integer moderatorId, Date createdat, Date updatedAt) {
+    public Signalement(String typeSignalement, Integer signaledId, String message, Integer idUser, Integer status, Integer moderatorId, LocalDateTime createdat, LocalDateTime updatedAt) {
         this.typeSignalement = typeSignalement;
         switch (typeSignalement){
-            case "utilisateur":
+            case SignalementTypeEnum.UTILISATEUR:
                 this.signaledUserId = signaledId;
                 this.signaledCommentId = 0;
                 break;
-            case "comment":
+            case SignalementTypeEnum.COMMENTAIRE:
                 this.signaledCommentId = signaledId;
                 this.signaledUserId = 0;
                 break;
@@ -63,7 +70,7 @@ public class Signalement {
     //Constructeur de création
     public Signalement(String typeSignalement, Integer signaledId, String message, Integer idUser, Integer moderatorId) {
         //appel du constructeur principal
-        this(typeSignalement, signaledId, message, idUser, 1, moderatorId, new Date(), new Date());
+        this(typeSignalement, signaledId, message, idUser, 1, moderatorId, LocalDateTime.now(), LocalDateTime.now());
     }
 
     public Signalement(){}
@@ -132,19 +139,19 @@ public class Signalement {
         this.moderatorId = moderatorId;
     }
 
-    public Date getCreatedat() {
+    public LocalDateTime getCreatedat() {
         return createdat;
     }
 
-    public void setCreatedat(Date createdat) {
+    public void setCreatedat(LocalDateTime createdat) {
         this.createdat = createdat;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 

@@ -2,6 +2,7 @@ package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.ProduitBusiness;
 import com.hicouch.back.core.dto.ProductDTO;
+import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import com.hicouch.back.core.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -26,13 +27,13 @@ public class ProduitController {
 
 
     @CrossOrigin
-    @GetMapping("/getFilmByIdFromReferentiel")
+        @GetMapping("/getFilmByIdFromReferentiel")
     @ResponseBody
     public ProductDTO getFilmByIdFromReferentiel(@RequestParam("filmId") String filmId) throws Exception {
         if(filmId == null || filmId.equals("")){
             throw new Exception();
         }
-        return produitService.getFilmByIdFromReferentiel(filmId);
+        return produitBusiness.getCompleteProduct(filmId, ProductTypeEnum.MOVIE);
     }
 
     @CrossOrigin
@@ -42,7 +43,7 @@ public class ProduitController {
         if(research == null || research.equals("")){
             throw new Exception();
         }
-        return produitService.getFilmsByTitleFromReferentiel(research);
+        return produitBusiness.getCompleteProducts(research,ProductTypeEnum.MOVIE);
     }
 
 
@@ -63,7 +64,17 @@ public class ProduitController {
         if(bookId == null || bookId.equals("")){
             throw new Exception();
         }
-        return produitService.getBookByIdFromReferentiel(bookId);
+        return produitBusiness.getCompleteProduct(bookId, ProductTypeEnum.BOOK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getBooksFromReferentiel")
+    @ResponseBody
+    public List<ProductDTO> getBooksFromReferentiel(@RequestParam("keyword")String keyword) throws Exception{
+        if(keyword == null || keyword.equals("")){
+            throw new Exception();
+        }
+        return produitBusiness.getCompleteProducts(keyword,ProductTypeEnum.BOOK);
     }
 
     @CrossOrigin
@@ -73,7 +84,18 @@ public class ProduitController {
         if(gameId == null || gameId.equals("")){
             throw new Exception();
         }
-        return produitService.getGameByIdFromReferentiel(gameId);
+        return produitBusiness.getCompleteProduct(gameId, ProductTypeEnum.GAME);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getGamesByReferentiel")
+    @ResponseBody
+    public List<ProductDTO> getGamesByReferentiel(@RequestParam("keyword")String keyword) throws Exception{
+        if(keyword == null || keyword.equals("")){
+            throw new Exception();
+        }
+
+        return produitBusiness.getCompleteProducts(keyword,ProductTypeEnum.GAME);
     }
 
 }

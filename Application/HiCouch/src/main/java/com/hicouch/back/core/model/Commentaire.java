@@ -1,7 +1,15 @@
 package com.hicouch.back.core.model;
 
+import com.hicouch.back.core.enumeration.StatusEnum;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="commentaire")
@@ -10,37 +18,36 @@ public class Commentaire {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    Integer id;
+    private Integer id;
 
     @Column(name="Commentaire")
-    String commentaire;
+    private String commentaire;
 
     @Column(name="Note")
-    Integer note;
+    private Integer note = 0;
 
     @Column(name="iduser")
-    int idUser;
+    private int idUser;
 
     @Column(name="idpair")
-    int idPair;
+    private int idPair;
 
     @Column(name="status")
-    int status;
+    private int status;
 
+    @CreatedDate
     @Column(name="createdat")
-    Date createdat;
+    private LocalDateTime createdat;
 
+    @LastModifiedDate
     @Column(name="updatedat")
-    Date updatedAt;
+    private LocalDateTime updatedAt;
 
-    public Commentaire(String commentaire, Integer note, int idUser, int idPair, int status, Date createdat, Date updatedAt) {
+    public Commentaire(String commentaire, int idUser, int idPair) {
         this.commentaire = commentaire;
-        this.note = note;
         this.idUser = idUser;
         this.idPair = idPair;
-        this.status = status;
-        this.createdat = createdat;
-        this.updatedAt = updatedAt;
+        this.status = StatusEnum.OK;
     }
 
     public Commentaire(){}
@@ -93,19 +100,19 @@ public class Commentaire {
         this.status = status;
     }
 
-    public Date getCreatedat() {
+    public LocalDateTime getCreatedat() {
         return createdat;
     }
 
-    public void setCreatedat(Date createdat) {
+    public void setCreatedat(LocalDateTime createdat) {
         this.createdat = createdat;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 

@@ -1,7 +1,11 @@
 package com.hicouch.back.core.service.impl;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,7 @@ import com.hicouch.back.core.service.TagProduitService;
 public class TagProduitServiceImpl implements TagProduitService {
 	
 	private TagProduitRepository tagProduitRepository;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	/**
 	 * @param tagProduitRepository
@@ -23,9 +28,17 @@ public class TagProduitServiceImpl implements TagProduitService {
 	}
 
 	@Override
-	public TagProduit newTagProduit(int idTag, String idProduit) {
-		TagProduit tagProduit = new TagProduit(idProduit, idTag, new Date(), new Date());
+	public TagProduit createOrGetTagProduit(int idTag, String idProduit) {
+		Optional<TagProduit> oldTagProduit = tagProduitRepository.findByIdProduitAndIdTag(idProduit, idTag);
+		TagProduit tagProduit = oldTagProduit.isPresent() 
+				? tagProduit = oldTagProduit.get() 
+				: new TagProduit(idProduit, idTag, LocalDateTime.now(), LocalDateTime.now());
 		return tagProduitRepository.save(tagProduit);
+	}
+
+	@Override
+	public List<TagProduit> findAllTagProduitByIdProduit(String idProduit) {
+		return tagProduitRepository.findAllByIdProduit(idProduit);
 	}
 
 }

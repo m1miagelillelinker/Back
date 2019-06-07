@@ -2,6 +2,7 @@ package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.AssociationBusiness;
 import com.hicouch.back.core.dto.AssociationDTO;
+import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.service.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,20 @@ public class AssociationController {
     }
 
     @CrossOrigin
+    @GetMapping("/last")
+    @ResponseBody
+    public List<AssociationDTO> getTopLastAssociations() throws Exception {
+
+        return associationService.getTopLastAssociations();
+    }
+
+
+    @CrossOrigin
     @PutMapping("/create")
     @ResponseBody
-    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idfournA") String idfournA, @RequestParam("idProductB") String idProductB, @RequestParam("idfournB") String idfournB) throws Exception {
+    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idfournA") String idfournA, @RequestParam("idProductB") String idProductB, @RequestParam("idfournB") String idfournB) throws BusinessException {
         if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("")){
-            throw new Exception();
+            throw new BusinessException();
         }
         return associationService.createAssociation(idProductA,idfournA, idProductB, idfournB);
     }
@@ -51,6 +61,5 @@ public class AssociationController {
     public String deleteAssociation(@RequestParam("idAssociation") int idAssociation) throws Exception {
         return associationService.deleteAssociation(idAssociation);
     }
-
 
 }
