@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class BadgeUser {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	int id;
 	
