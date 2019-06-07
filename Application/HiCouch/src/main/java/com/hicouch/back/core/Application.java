@@ -31,14 +31,6 @@ public class Application extends SpringBootServletInitializer {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             logger.info("HiCOUCH is READY !!!!!!!");
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            /* Listing des Beans desactivé
-            Arrays.sort(beanNames);
-            for (String beanName : beanNames) {
-                System.out.println(beanName);
-            }*/
-
         };
     }
 }

@@ -1,6 +1,5 @@
 package com.hicouch.back.core.service;
 
-import com.hicouch.back.core.dto.UserDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
 

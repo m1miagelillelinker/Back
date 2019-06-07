@@ -2,6 +2,7 @@ package com.hicouch.back.core.service.impl;
 
 import com.hicouch.back.core.repository.AssociationRepository;
 import com.hicouch.back.core.dto.AssociationDTO;
+import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.factory.AssociationFactory;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.service.AssociationService;
@@ -35,7 +36,7 @@ public class AssociationServiceImpl implements AssociationService {
 	}
 
 	@Override
-	public List<AssociationDTO> getAssociationsByIdProduct(String idProduct) throws Exception {
+	public List<AssociationDTO> getAssociationsByIdProduct(String idProduct) throws BusinessException {
 		return associationRepository.findAllByIdproduitA(idProduct)
 				.stream()
 				.map(associationFactory::getAssociationDTO)
@@ -49,8 +50,7 @@ public class AssociationServiceImpl implements AssociationService {
 
 	@Override
 	public boolean checkIfIdPairExists(int idPair) {
-		Optional<Association> asso = associationRepository.findFirstByIdPair(idPair);
-		return asso.isPresent();
+		return associationRepository.findFirstByIdPair(idPair).isPresent();
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class AssociationServiceImpl implements AssociationService {
 	}
 
 	@Override
-	public Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB) throws Exception {
+	public Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB) throws BusinessException {
 
 		Date maintenant = new Date(System.currentTimeMillis());
 
@@ -90,7 +90,7 @@ public class AssociationServiceImpl implements AssociationService {
 			associationRepository.save(assoMirror);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception();
+			throw new BusinessException();
 		}
 		return asso;
 	}

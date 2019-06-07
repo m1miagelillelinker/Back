@@ -17,5 +17,5 @@ public interface AssociationRepository extends CrudRepository<Association,Intege
      * @param id
      * @return an association
      */
-    Optional<Association>  findFirstByIdPair(int id);
+    Optional<Association> findFirstByIdPair(int id);
 }

@@ -51,39 +51,36 @@ public class CommentaireController {
     }
 
     @CrossOrigin
-    @PostMapping("/new/")
+    @PostMapping("/new")
     @ResponseBody
     public Commentaire addCommentaire(@RequestBody Commentaire comm) throws Exception {
         logger.trace("addCommentaire:"+comm);
-        if( comm != null ){
-            return commentaireBusiness.addCommentaire(comm);
-        }else{
+        if( comm == null ){
             throw new InvalidParameterException();
         }
+        return commentaireBusiness.addCommentaire(comm);
     }
 
     @CrossOrigin
-    @PostMapping("/hide/")
+    @PostMapping("/hide")
     @ResponseBody
     public Commentaire hideCommentaire(@RequestBody Commentaire comm) throws Exception {
         logger.trace("hideCommentaire:"+comm);
-        if(comm != null ){
-            return commentaireService.hideCommentaire(comm);
-        }else{
-            throw new InvalidParameterException();
+        if(comm == null ){
+        	throw new InvalidParameterException();
         }
+        return commentaireService.hideCommentaire(comm);
     }
 
     @CrossOrigin
-    @PostMapping("/update/")
+    @PostMapping("/update")
     @ResponseBody
     public Commentaire updateCommentaire(@RequestBody Commentaire comm) throws NoResultException {
         logger.trace("hideCommentaire:"+comm);
-        if(comm != null && !comm.equals("")){
-            return commentaireService.updateCommentaire(comm);
-        }else{
+        if(comm == null){
             throw new InvalidParameterException();
         }
+        return commentaireService.updateCommentaire(comm);
     }
 
 

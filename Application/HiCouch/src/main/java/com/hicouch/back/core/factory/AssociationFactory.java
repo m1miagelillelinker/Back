@@ -43,8 +43,6 @@ public class AssociationFactory {
 			// TODO : fetch user
 			Vote vote = voteService.getVoteByUserOnAsso(1, association.getId());
 			associationDTO.setVote(vote);
-			
-			List<Commentaire> commentaires = commentaireService.getCommentaireByAsso(association.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

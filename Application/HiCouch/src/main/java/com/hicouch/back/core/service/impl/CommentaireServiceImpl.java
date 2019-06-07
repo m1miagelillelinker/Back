@@ -57,17 +57,13 @@ public class CommentaireServiceImpl implements CommentaireService {
 	}
 
     @Override
+    // TODO : ajouter un vote de l'utilisateur
     public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException {
         try{
             if(commentaire.getId() != null) {
                 throw new DataProvidedException("l'idpair ne doit pas etre fournit pour l'ajout");
             }
-            commentaire.setCreatedat(new Date());
-            commentaire.setUpdatedAt(new Date());
-            commentaire.setNote(commentaire.getNote()+1);
-            commentaire.setStatus(StatusEnum.TO_MODERATE);
-            logger.trace(commentaire.toString());
-            return commentaireRepository.save(commentaire);
+            return upsertCommentaire(commentaire);
         }catch (DataProvidedException e){
             logger.error(e.getMessage());
             e.printStackTrace();
@@ -75,7 +71,7 @@ public class CommentaireServiceImpl implements CommentaireService {
         }catch (Exception e){
             logger.error(e.getMessage());
             e.printStackTrace();
-            throw new BusinessException("Idpair inexistant");
+            throw new BusinessException();
         }
     }
 
@@ -105,6 +101,7 @@ public class CommentaireServiceImpl implements CommentaireService {
             commentaire = oldCommentaire;
         } else {
             commentaire.setCreatedat(new Date());
+            commentaire.setStatus(StatusEnum.OK);
         }
         commentaire.setUpdatedAt(new Date());
         return commentaireRepository.save(commentaire);
