@@ -3,7 +3,7 @@ package com.hicouch.back.core.dto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.Column;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class UserDTO {
@@ -16,10 +16,10 @@ public class UserDTO {
     private Integer score;
     private Integer idstatus;
     private String picture;
-    private Date lastlogin;
+    private LocalDateTime lastlogin;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public UserDTO(String firstName, String lastName, String email, String typeUser, String pseudo, Integer score, Integer idstatus, String picture, Date lastlogin) {
+    public UserDTO(String firstName, String lastName, String email, String typeUser, String pseudo, Integer score, Integer idstatus, String picture, LocalDateTime lastlogin) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -102,11 +102,11 @@ public class UserDTO {
         this.picture = picture;
     }
 
-    public Date getLastlogin() {
+    public LocalDateTime getLastlogin() {
         return lastlogin;
     }
 
-    public void setLastlogin(Date lastlogin) {
+    public void setLastlogin(LocalDateTime lastlogin) {
         this.lastlogin = lastlogin;
     }
 }

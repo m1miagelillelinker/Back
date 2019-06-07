@@ -8,6 +8,7 @@ import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.repository.CommentaireRepository;
 import com.hicouch.back.core.service.CommentaireService;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import org.slf4j.Logger;
@@ -81,7 +82,7 @@ public class CommentaireServiceImpl implements CommentaireService {
             Commentaire oldCommentaire = findById(commentaire.getId());
             oldCommentaire.setStatus(StatusEnum.HIDDEN);
             commentaire = oldCommentaire;
-            commentaire.setUpdatedAt(new Date());
+            commentaire.setUpdatedAt(LocalDateTime.now());
             return commentaireRepository.save(commentaire);
         }
         else return null;
@@ -100,10 +101,10 @@ public class CommentaireServiceImpl implements CommentaireService {
             oldCommentaire.setCommentaire(commentaire.getCommentaire());
             commentaire = oldCommentaire;
         } else {
-            commentaire.setCreatedat(new Date());
+            commentaire.setCreatedat(LocalDateTime.now());
             commentaire.setStatus(StatusEnum.OK);
         }
-        commentaire.setUpdatedAt(new Date());
+        commentaire.setUpdatedAt(LocalDateTime.now());
         return commentaireRepository.save(commentaire);
     }
 
