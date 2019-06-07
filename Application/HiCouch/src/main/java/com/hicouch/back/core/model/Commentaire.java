@@ -4,6 +4,7 @@ import com.hicouch.back.core.enumeration.StatusEnum;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -38,7 +39,7 @@ public class Commentaire {
     @Column(name="createdat")
     private LocalDateTime createdat;
 
-    @LastModifiedBy
+    @LastModifiedDate
     @Column(name="updatedat")
     private LocalDateTime updatedAt;
 

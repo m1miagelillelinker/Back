@@ -62,13 +62,14 @@ public class CommentaireServiceImpl implements CommentaireService {
     public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException {
         try{
             if(commentaire.getId() != null) {
-                throw new DataProvidedException("l'idpair ne doit pas etre fournit pour l'ajout");
+                throw new DataProvidedException("l'id ne doit pas etre fournit pour l'ajout");
             }
+            logger.trace(commentaire.toString());
             return upsertCommentaire(commentaire);
         }catch (DataProvidedException e){
             logger.error(e.getMessage());
             e.printStackTrace();
-            throw new DataProvidedException("l'idpair ne doit pas etre fournit pour l'ajout");
+            throw new DataProvidedException("l'id ne doit pas etre fournit pour l'ajout");
         }catch (Exception e){
             logger.error(e.getMessage());
             e.printStackTrace();
@@ -105,6 +106,7 @@ public class CommentaireServiceImpl implements CommentaireService {
             commentaire.setStatus(StatusEnum.OK);
         }
         commentaire.setUpdatedAt(LocalDateTime.now());
+        logger.trace(commentaire.toString());
         return commentaireRepository.save(commentaire);
     }
 
