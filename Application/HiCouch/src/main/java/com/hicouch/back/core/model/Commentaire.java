@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Commentaire {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 
@@ -36,11 +36,11 @@ public class Commentaire {
     private int status;
 
     @CreatedDate
-    @Column(name="createdat")
+    @Column(name="createdat",columnDefinition="datetime")
     private LocalDateTime createdat;
 
     @LastModifiedDate
-    @Column(name="updatedat")
+    @Column(name="updatedat",columnDefinition="datetime")
     private LocalDateTime updatedAt;
 
     public Commentaire(String commentaire, int idUser, int idPair) {
