@@ -1,6 +1,9 @@
 package com.hicouch.back.core.model;
 
+import com.hicouch.back.core.enumeration.StatusEnum;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -8,39 +11,36 @@ import java.util.Date;
 public class Commentaire {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    Integer id;
+    private Integer id;
 
     @Column(name="Commentaire")
-    String commentaire;
+    private String commentaire;
 
     @Column(name="Note")
-    Integer note;
+    private Integer note = 0;
 
     @Column(name="iduser")
-    int idUser;
+    private int idUser;
 
     @Column(name="idpair")
-    int idPair;
+    private int idPair;
 
     @Column(name="status")
-    int status;
+    private int status;
 
     @Column(name="createdat")
-    Date createdat;
+    private Date createdat = new Date();
 
     @Column(name="updatedat")
-    Date updatedAt;
+    private Date updatedAt;
 
-    public Commentaire(String commentaire, Integer note, int idUser, int idPair, int status, Date createdat, Date updatedAt) {
+    public Commentaire(String commentaire, int idUser, int idPair) {
         this.commentaire = commentaire;
-        this.note = note;
         this.idUser = idUser;
         this.idPair = idPair;
-        this.status = status;
-        this.createdat = createdat;
-        this.updatedAt = updatedAt;
+        this.status = StatusEnum.TO_MODERATE;
     }
 
     public Commentaire(){}

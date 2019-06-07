@@ -1,5 +1,8 @@
 package com.hicouch.back.core.dto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ public class GoogleBooksDTO extends ProductDTOFromReferentiel {
     String year;
     String genre;
     String image;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public GoogleBooksDTO(String id, String title, String description, String author, String year, String genre, String image) {
         this.id = id;

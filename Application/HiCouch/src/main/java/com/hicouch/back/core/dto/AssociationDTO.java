@@ -5,26 +5,29 @@ import java.util.List;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.model.Vote;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AssociationDTO {
 
 	private Association association;
-	private ProductDTO product;
+	private ProductDTO productA;
+	private ProductDTO productB;
 	private Vote vote;
-	private List<Commentaire> commentaires;
 	private int note;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/**
-	 * @param dto
+	 * @param productA, productB
 	 * @param vote
 	 * @param commentaires
 	 */
-	public AssociationDTO(Association association, ProductDTO dto, Vote vote, List<Commentaire> commentaires, int note) {
+	public AssociationDTO(Association association, ProductDTO productA, ProductDTO productB, Vote vote, List<Commentaire> commentaires, int note) {
 		super();
 		this.association = association;
-		this.product = dto;
+		this.productA = productA;
+		this.productB = productB;
 		this.vote = vote;
-		this.commentaires = commentaires;
 		this.note = note;
 	}
 
@@ -38,8 +41,8 @@ public class AssociationDTO {
 	/**
 	 * @return the dto
 	 */
-	public ProductDTO getProduct() {
-		return product;
+	public ProductDTO getProductA() {
+		return productA;
 	}
 
 	/**
@@ -50,18 +53,11 @@ public class AssociationDTO {
 	}
 
 	/**
-	 * @return the commentaires
-	 */
-	public List<Commentaire> getCommentaires() {
-		return commentaires;
-	}
-
-	/**
 	 * @param dto
 	 *            the dto to set
 	 */
-	public void setProduct(ProductDTO dto) {
-		this.product = dto;
+	public void setProductA(ProductDTO dto) {
+		this.productA = dto;
 	}
 
 	/**
@@ -72,14 +68,14 @@ public class AssociationDTO {
 		this.vote = vote;
 	}
 
-	/**
-	 * @param commentaires
-	 *            the commentaires to set
-	 */
-	public void setCommentaires(List<Commentaire> commentaires) {
-		this.commentaires = commentaires;
+
+	public ProductDTO getProductB() {
+		return productB;
 	}
 
+	public void setProductB(ProductDTO productB) {
+		this.productB = productB;
+	}
 	/**
 	 * @return the note
 	 */
