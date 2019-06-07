@@ -27,7 +27,7 @@ public class ProduitController {
 
 
     @CrossOrigin
-    @GetMapping("/getFilmByIdFromReferentiel")
+        @GetMapping("/getFilmByIdFromReferentiel")
     @ResponseBody
     public ProductDTO getFilmByIdFromReferentiel(@RequestParam("filmId") String filmId) throws Exception {
         if(filmId == null || filmId.equals("")){
@@ -43,7 +43,7 @@ public class ProduitController {
         if(research == null || research.equals("")){
             throw new Exception();
         }
-        return produitService.getFilmsByTitleFromReferentiel(research);
+        return produitBusiness.getCompleteProducts(research,ProductTypeEnum.MOVIE);
     }
 
 
@@ -68,6 +68,16 @@ public class ProduitController {
     }
 
     @CrossOrigin
+    @GetMapping("/getBooksFromReferentiel")
+    @ResponseBody
+    public List<ProductDTO> getBooksFromReferentiel(@RequestParam("keyword")String keyword) throws Exception{
+        if(keyword == null || keyword.equals("")){
+            throw new Exception();
+        }
+        return produitBusiness.getCompleteProducts(keyword,ProductTypeEnum.BOOK);
+    }
+
+    @CrossOrigin
     @GetMapping("/getGameByIdFromReferentiel")
     @ResponseBody
     public ProductDTO getGameByIdFromReferentiel(@RequestParam("gameId")String gameId) throws Exception {
@@ -75,6 +85,17 @@ public class ProduitController {
             throw new Exception();
         }
         return produitBusiness.getCompleteProduct(gameId, ProductTypeEnum.GAME);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getGamesByReferentiel")
+    @ResponseBody
+    public List<ProductDTO> getGamesByReferentiel(@RequestParam("keyword")String keyword) throws Exception{
+        if(keyword == null || keyword.equals("")){
+            throw new Exception();
+        }
+
+        return produitBusiness.getCompleteProducts(keyword,ProductTypeEnum.GAME);
     }
 
 }

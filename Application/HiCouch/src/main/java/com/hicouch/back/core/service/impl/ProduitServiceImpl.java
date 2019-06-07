@@ -10,9 +10,11 @@ import com.hicouch.back.core.util.HttpBookRequest;
 import com.hicouch.back.core.util.HttpFilmRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.hicouch.back.core.util.HttpGamesRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +22,8 @@ public class ProduitServiceImpl implements ProduitService {
 
     private HttpBookRequest httpBookRequest;
     private HttpFilmRequest httpFilmRequest;
+    private HttpGamesRequest httpGamesRequest;
+
     private final ProduitRepository produitRepository;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -59,10 +63,54 @@ public class ProduitServiceImpl implements ProduitService {
         }
     }
 
-    // TODO : REQUEST L'API JEU VIDEO
     @Override
-    public ProductDTO getGameByIdFromReferentiel(String gameId) {
-        return null;
+    public List<ProductDTO> getBooksFromReferentiel(String keyword) throws ReferentielRequestException {
+        try{
+            httpBookRequest = new HttpBookRequest("https://www.googleapis.com/books/v1/volumes?q="+keyword);
+            return httpBookRequest.requestMultiple("GET");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ReferentielRequestException();
+        }
+    }
+
+    @Override
+    public List<ProductDTO> getProductsByKeyWordFromReferentiel(String keyword, String referentiel) throws Exception {
+        List<ProductDTO> listProduct = new ArrayList<>();
+        switch (referentiel) {
+            case ProductTypeEnum.BOOK:
+                listProduct = this.getBooksFromReferentiel(keyword);
+                break;
+            case ProductTypeEnum.SERIE:
+            case ProductTypeEnum.MOVIE:
+                listProduct =this.getFilmsByTitleFromReferentiel(keyword);
+                break;
+            case ProductTypeEnum.GAME:
+                listProduct = this.getGamesByIdFromReferentiel(keyword);
+                break;
+            default:
+                throw new Exception("No Referentiel Defined");
+        }
+        return listProduct;
+    }
+
+    @Override
+    public ProductDTO getGameByIdFromReferentiel(String gameId) throws ReferentielRequestException {
+        try{
+            httpGamesRequest = new HttpGamesRequest();
+            return httpGamesRequest.request(gameId);
+        }catch (Exception e){
+            throw new ReferentielRequestException();
+        }
+    }
+
+    public List<ProductDTO> getGamesByIdFromReferentiel(String keyword) throws ReferentielRequestException{
+        try{
+            httpGamesRequest = new HttpGamesRequest();
+            return httpGamesRequest.requestMultiple(keyword);
+        }catch (Exception e){
+            throw new ReferentielRequestException();
+        }
     }
 
     @Override
@@ -94,7 +142,8 @@ public class ProduitServiceImpl implements ProduitService {
 			result = this.getFilmByIdFromReferentiel(productId);
 			break;
 		case ProductTypeEnum.GAME:
-			throw new Exception("Game not implemented yet");
+		    result = this.getGameByIdFromReferentiel(productId);
+		    break;
 		default:
 			throw new Exception("No Referentiel Defined");
 		}
