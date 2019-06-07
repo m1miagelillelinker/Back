@@ -6,6 +6,8 @@ http://localhost:8080/commentaire/ByUserId/?userId=1
 http://localhost:8080/commentaire/ByAssoPairId/?pairId=3
 
 #new
+http://localhost:8080/commentaire/new
+Body type
 {
 	"commentaire":"blablabla",
 	"idUser":1,
@@ -14,8 +16,8 @@ http://localhost:8080/commentaire/ByAssoPairId/?pairId=3
 retourne le commentaire persisté
 
 les deux methodes 
-- http://localhost:8080/commentaire/hide/
-- http://localhost:8080/commentaire/update/
+- http://localhost:8080/commentaire/hide
+- http://localhost:8080/commentaire/update
 
 peuveut etre appelées avec un POST comme celui ci:
 {

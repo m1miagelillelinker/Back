@@ -20,14 +20,12 @@ import com.hicouch.back.core.service.VoteService;
 public class AssociationFactory {
 	
 	private VoteService voteService;
-	private CommentaireService commentaireService;
 	private ProduitBusiness produitBusiness;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	public AssociationFactory(VoteService voteService, CommentaireService commentaireService, ProduitBusiness produitBusiness) {
+	public AssociationFactory(VoteService voteService, ProduitBusiness produitBusiness) {
 		this.voteService = voteService;
-		this.commentaireService = commentaireService;
 		this.produitBusiness = produitBusiness;
 	}
 	

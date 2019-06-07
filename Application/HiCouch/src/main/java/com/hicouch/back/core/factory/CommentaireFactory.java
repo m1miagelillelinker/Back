@@ -20,16 +20,14 @@ public class CommentaireFactory {
 
     private UserService userService;
     private UserFactory userFactory;
-    private CommentaireService commentaireService;
     private AssociationService associationService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public CommentaireFactory(UserService userService, AssociationService associationService, UserFactory userFactory, CommentaireService commentaireService) {
+    public CommentaireFactory(UserService userService, AssociationService associationService, UserFactory userFactory) {
         super();
         this.userService        = userService;
         this.userFactory        = userFactory;
-        this.commentaireService = commentaireService;
         this.associationService = associationService;
     }
 
