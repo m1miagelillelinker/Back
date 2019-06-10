@@ -2,6 +2,7 @@ package com.hicouch.back.core.controller;
 
 
 import com.hicouch.back.core.business.UserBusiness;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,15 @@ public class UserController {
     @CrossOrigin
     @GetMapping("/get")
     @ResponseBody
-    public User getUserById(@RequestParam("userId") String userId) throws Exception {
+    public User getUserById(@RequestParam("userId") String userId) throws NumberFormatException, NoResultException {
         return  userService.getUserById(Integer.parseInt(userId));
+    }
+    
+    @CrossOrigin
+    @GetMapping("/current")
+    @ResponseBody
+    public User getCurrentUser() throws NoResultException {
+        return userService.getCurrentUser();
     }
 
 }
