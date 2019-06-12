@@ -6,5 +6,4 @@ public class TypeUser {
 	public static Integer MODERATOR = 1;
 	public static Integer ADMIN = 2;
 	
-
 }

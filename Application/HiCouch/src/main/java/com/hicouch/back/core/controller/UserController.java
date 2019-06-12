@@ -37,5 +37,12 @@ public class UserController {
     public User getCurrentUser() throws NoResultException {
         return userService.getCurrentUser();
     }
+    
+    @CrossOrigin
+    @PutMapping("/update")
+    @ResponseBody
+    public User updateCurrentUser(@RequestBody User user) throws NoResultException {
+        return userService.updateUser(user);
+    }
 
 }
