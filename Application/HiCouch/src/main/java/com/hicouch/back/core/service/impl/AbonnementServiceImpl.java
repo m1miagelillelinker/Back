@@ -26,12 +26,12 @@ public class AbonnementServiceImpl implements AbonnementService {
     
     @Override
     public List<Abonnement> getFollowersByFollows(int userId) {
-    	return abonnementRepository.findAllByFollower(userId);
+    	return abonnementRepository.findAllByFollows(userId);
     }
 
 	@Override
 	public List<Abonnement> getFollowsByFollower(int userId) {
-        return abonnementRepository.findAllByFollows(userId);
+        return abonnementRepository.findAllByFollower(userId);
 	}
 
 	@Override
