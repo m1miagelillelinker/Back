@@ -19,4 +19,6 @@ public interface CommentaireRepository extends CrudRepository<Commentaire,Intege
 	List<Commentaire> findAllByIdPair(int idpair);
 	
 	List<Commentaire> findAllByStatus(int status);
+
+    int countByIdUser(int id);
 }

@@ -30,6 +30,10 @@ public class Badge {
     @Column(name="updatedat")
     Date updatedAt;
 
+    //A quoi s'applique ce badge commentaire ou association?
+    @Column(name="applyon")
+    String applyOn;
+
     public Badge(){}
 
 
@@ -93,6 +97,14 @@ public class Badge {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getApplyOn() {
+        return applyOn;
+    }
+
+    public void setApplyOn(String applyOn) {
+        this.applyOn = applyOn;
     }
 
     @Override

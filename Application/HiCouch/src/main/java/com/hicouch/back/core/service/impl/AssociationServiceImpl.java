@@ -1,5 +1,6 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.repository.AssociationRepository;
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.exception.BusinessException;
@@ -70,7 +71,7 @@ public class AssociationServiceImpl implements AssociationService {
 	}
 
 	@Override
-	public Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB) throws BusinessException {
+	public Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB, Integer iduser) throws BusinessException {
 
 
 		//l'association existe deja? alors on retourne celle qui existe deja plutot qu'une erreur 500
@@ -84,23 +85,9 @@ public class AssociationServiceImpl implements AssociationService {
 		Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
 		int idPair = (Integer) q.getSingleResult();
 
-		Association asso = new Association();
-		asso.setIdproduitA(idProductA);
-		asso.setIdfournA(idfournA);
-		asso.setIdproduitB(idProductB);
-		asso.setIdfournB(idfournB);
-		asso.setIdPair(idPair);
-		asso.setCreatedat(maintenant);
-		asso.setUpdatedat(maintenant);
-
-		Association assoMirror = new Association();
-		assoMirror.setIdproduitA(idProductB);
-		assoMirror.setIdfournA(idfournB);
-		assoMirror.setIdproduitB(idProductA);
-		assoMirror.setIdfournB(idfournA);
-		assoMirror.setIdPair(idPair);
-		assoMirror.setCreatedat(maintenant);
-		assoMirror.setUpdatedat(maintenant);
+		//On crée deux associations symetriques
+		Association asso = new Association(idProductA, idfournA, idProductB, idfournB, idPair, iduser);
+		Association assoMirror = new Association(idProductB, idfournB, idProductA, idfournA, idPair, iduser);
 
 		try {
 			associationRepository.save(asso);
@@ -115,5 +102,10 @@ public class AssociationServiceImpl implements AssociationService {
 			throw new BusinessException();
 		}
 		return asso; //TODO Ne devrait'on pas retourner une ASSODTO?
+	}
+
+	@Override
+	public int countAssosByIdUser(int iduser) {
+		return associationRepository.countByIdUser(iduser);
 	}
 }
