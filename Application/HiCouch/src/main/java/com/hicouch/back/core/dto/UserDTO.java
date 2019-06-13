@@ -1,10 +1,12 @@
 package com.hicouch.back.core.dto;
 
+import com.hicouch.back.core.model.Badge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public class UserDTO {
 
@@ -17,9 +19,10 @@ public class UserDTO {
     private Integer idstatus;
     private String picture;
     private LocalDateTime lastlogin;
+    private List<Badge> badges;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public UserDTO(String firstName, String lastName, String email, Integer typeUser, String pseudo, Integer score, Integer idstatus, String picture, LocalDateTime lastlogin) {
+    public UserDTO(String firstName, String lastName, String email, Integer typeUser, String pseudo, Integer score, Integer idstatus, String picture, LocalDateTime lastlogin, List<Badge> badges) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -29,6 +32,7 @@ public class UserDTO {
         this.idstatus = idstatus;
         this.picture = picture;
         this.lastlogin = lastlogin;
+        this.badges = badges;
     }
 
     /**
@@ -109,4 +113,9 @@ public class UserDTO {
     public void setLastlogin(LocalDateTime lastlogin) {
         this.lastlogin = lastlogin;
     }
+
+    public List<Badge> getBadges() { return badges; }
+
+    public void setBadges(List<Badge> badges) { this.badges = badges;  }
+
 }
