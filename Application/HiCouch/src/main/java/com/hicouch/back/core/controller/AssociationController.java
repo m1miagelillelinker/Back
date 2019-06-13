@@ -4,6 +4,7 @@ import com.hicouch.back.core.business.AssociationBusiness;
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.model.Association;
+import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -48,11 +49,21 @@ public class AssociationController {
     @CrossOrigin
     @PutMapping("/create")
     @ResponseBody
-    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idfournA") String idfournA, @RequestParam("idProductB") String idProductB, @RequestParam("idfournB") String idfournB) throws BusinessException {
-        if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("")){
+    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idfournA") String idfournA, @RequestParam("idProductB") String idProductB, @RequestParam("idfournB") String idfournB, @RequestParam("iduser") Integer iduser) throws BusinessException {
+        if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("") || iduser.equals(0) ){
             throw new BusinessException();
         }
-        return associationService.createAssociation(idProductA,idfournA, idProductB, idfournB);
+        return associationService.createAssociation(idProductA,idfournA, idProductB, idfournB, iduser);
+    }
+
+    @CrossOrigin
+    @PostMapping("/createasso")
+    @ResponseBody
+    public Association createAssociationPost(@RequestBody Association asso) throws BusinessException {
+        if(asso.getIdproduitA() == null || asso.getIdproduitB() == null || asso.getIdfournA().equals("") || asso.getIdfournB().equals("") || asso.getIdUser()> 0 ){
+            throw new BusinessException();
+        }
+        return associationService.createAssociation(asso.getIdproduitA(),asso.getIdfournA(), asso.getIdproduitB(), asso.getIdfournB(), asso.getIdUser());
     }
 
     @CrossOrigin

@@ -22,4 +22,6 @@ public interface CommentaireService {
     Commentaire updateCommentaire(Commentaire commentaire) throws NoResultException;
 
     Commentaire upsertCommentaire(Commentaire commentaire) throws NoResultException;
+
+    int countCommentairesByIdUser(Integer iduser);
 }

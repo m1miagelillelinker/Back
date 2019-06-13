@@ -48,6 +48,9 @@ public class Association {
     @LastModifiedBy
     private String modificator;
 
+    @Column(name="iduser")
+    private Integer idUser;
+
     public Association(){}
 
     public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, int idPair, LocalDateTime createdat, LocalDateTime updatedat) {
@@ -60,12 +63,21 @@ public class Association {
         this.updatedat = updatedat;
     }
 
-    public Integer getId() {
-        return id;
+    public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, int idPair, Integer iduser) {
+        this.idproduitA = idproduitA;
+        this.idfournA = idfournA;
+        this.idproduitB = idproduitB;
+        this.idfournB = idfournB;
+        this.idPair = idPair;
+        this.createdat = LocalDateTime.now();
+        this.updatedat = LocalDateTime.now();
+        this.creator = iduser.toString();
+        this.modificator = iduser.toString();
+        this.idUser = iduser;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
     public String getIdproduitA() {
@@ -142,13 +154,26 @@ public class Association {
 		this.idfournB = idfournB;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Association [id=" + id + ", idproduitA=" + idproduitA + ", idfournA=" + idfournA + ", idproduitB="
-				+ idproduitB + ", idfournB=" + idfournB + ", idPair=" + idPair + ", createdat=" + createdat
-				+ ", updatedat=" + updatedat + "]";
-	}
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
+    }
+
+    @Override
+    public String toString() {
+        return "Association{" +
+                "id=" + id +
+                ", idproduitA='" + idproduitA + '\'' +
+                ", idfournA='" + idfournA + '\'' +
+                ", idproduitB='" + idproduitB + '\'' +
+                ", idfournB='" + idfournB + '\'' +
+                ", idPair=" + idPair +
+                ", createdat=" + createdat +
+                ", updatedat=" + updatedat +
+                ", idUser=" + idUser +
+                '}';
+    }
 }

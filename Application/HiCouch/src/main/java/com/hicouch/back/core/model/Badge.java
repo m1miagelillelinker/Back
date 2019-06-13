@@ -1,41 +1,43 @@
 package com.hicouch.back.core.model;
 
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name="badges")
-@EntityListeners(AuditingEntityListener.class)
 public class Badge {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     int id;
 
     @Column(name="badge")
     String description;
 
-    @CreatedDate
+    @Column(name="imgurl")
+    String imgUrl;
+
+    @Column(name="seuil")
+    private int seuil;
+
+    @Column(name="status")
+    private int status;
+
     @Column(name="createdat")
-    LocalDateTime createdAt;
+    Date createdAt;
 
-    @LastModifiedDate
     @Column(name="updatedat")
-    LocalDateTime updatedAt;
+    Date updatedAt;
 
-    @CreatedBy
-    private String creator;
+    //A quoi s'applique ce badge commentaire ou association?
+    @Column(name="applyon")
+    String applyOn;
 
     public Badge(){}
 
 
-    public Badge(String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Badge(String description, Date createdAt, Date updatedAt) {
         this.description = description;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -57,22 +59,53 @@ public class Badge {
         this.description = description;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public int getSeuil() {
+        return seuil;
+    }
+
+    public void setSeuil(int seuil) {
+        this.seuil = seuil;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getApplyOn() {
+        return applyOn;
+    }
+
+    public void setApplyOn(String applyOn) {
+        this.applyOn = applyOn;
+    }
 
     @Override
     public String toString() {

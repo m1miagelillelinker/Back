@@ -110,5 +110,10 @@ public class CommentaireServiceImpl implements CommentaireService {
         return commentaireRepository.save(commentaire);
     }
 
+    @Override
+    public int countCommentairesByIdUser(Integer iduser) {
+        return commentaireRepository.countByIdUser(iduser);
+    }
+
 
 }
