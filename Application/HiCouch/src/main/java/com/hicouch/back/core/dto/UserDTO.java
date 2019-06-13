@@ -11,7 +11,7 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private String typeUser;
+    private Integer typeUser;
     private String pseudo;
     private Integer score;
     private Integer idstatus;
@@ -19,7 +19,7 @@ public class UserDTO {
     private LocalDateTime lastlogin;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public UserDTO(String firstName, String lastName, String email, String typeUser, String pseudo, Integer score, Integer idstatus, String picture, LocalDateTime lastlogin) {
+    public UserDTO(String firstName, String lastName, String email, Integer typeUser, String pseudo, Integer score, Integer idstatus, String picture, LocalDateTime lastlogin) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -62,11 +62,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getTypeUser() {
+    public Integer getTypeUser() {
         return typeUser;
     }
 
-    public void setTypeUser(String typeUser) {
+    public void setTypeUser(Integer typeUser) {
         this.typeUser = typeUser;
     }
 

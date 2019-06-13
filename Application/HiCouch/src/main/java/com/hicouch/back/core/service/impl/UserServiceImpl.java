@@ -10,6 +10,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -23,8 +24,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-
     private final UserRepository userRepository;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -70,14 +69,13 @@ public class UserServiceImpl implements UserService {
 	
 	private User parseUser(JSONObject object) {
 		User u = new User();
-		u.setCreatedAt(new Date());
 		u.setEmail(object.getString("email"));
 		u.setIdAuth0(object.getString("user_id"));
 		u.setPseudo(object.getString("nickname"));
 		u.setPicture(object.getString("picture"));
 		u.setTypeUser(TypeUser.USER);
-		u.setCreatedAt(new Date());
-		u.setUpdatedAt(new Date());
+		u.setCreatedAt(LocalDateTime.now());
+		u.setUpdatedAt(LocalDateTime.now());
 		return u;
 	}
 	
@@ -121,7 +119,7 @@ public class UserServiceImpl implements UserService {
 		u.setEmail(user.getEmail());
 		u.setPicture(user.getPicture());
 		u.setPseudo(user.getPseudo());
-		u.setUpdatedAt(new Date());
+		u.setUpdatedAt(LocalDateTime.now());
 		return userRepository.save(u);
 	}
 }
