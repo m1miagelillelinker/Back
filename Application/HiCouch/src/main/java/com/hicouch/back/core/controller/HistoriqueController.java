@@ -38,7 +38,12 @@ public class HistoriqueController {
     @PostMapping("/addEvent")
     @ResponseBody
     public void addEventToMyHistorique(@RequestParam("Event") String event, @RequestParam("id") String id){
-        return historiqueService.addToHistorique(event,id);
+       historiqueService.addToHistorique(event,id);
     }
 
+    @CrossOrigin
+    @PostMapping("/createHistory")
+    public Historique createHistory(@RequestParam("id") String id){
+        return historiqueBusiness.createHistorique(id);
+    }
 }
