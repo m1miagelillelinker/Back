@@ -51,4 +51,9 @@ public class SignalementBusinessImpl implements SignalementBusiness {
 		
 		return signalementFactory.getSignalementDTO(signalement);
 	}
+
+	@Override
+	public boolean isCurrentUserModeratorOrAdmin() throws NoResultException {
+		return userService.isModeratorOrAdmin(userService.getCurrentUser());
+	}
 }
