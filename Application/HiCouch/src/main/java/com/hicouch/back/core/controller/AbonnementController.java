@@ -2,6 +2,7 @@ package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.AbonnementBusiness;
 import com.hicouch.back.core.model.Abonnement;
+import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.AbonnementService;
 
 import java.util.List;
@@ -34,23 +35,15 @@ public class AbonnementController {
     @CrossOrigin
     @GetMapping("/followers")
     @ResponseBody
-    public List<Abonnement> getFollowersById(@RequestParam("userId") int userId){
-        System.out.println(userId);
-
-        List<Abonnement> abonnements = abonnementService.getFollowersByFollows(userId);
-
-        return abonnements;
+    public List<User> getFollowersById(@RequestParam("userId") int userId){
+        return abonnementBusiness.getFollowersByFollows(userId);
     }
 
     @CrossOrigin
     @GetMapping("/follows")
     @ResponseBody
-    public List<Abonnement> getFollowsById(@RequestParam("userId") int userId){
-        System.out.println(userId);
-
-        List<Abonnement> abonnements = abonnementService.getFollowsByFollower(userId);
-
-        return abonnements;
+    public List<User> getFollowsById(@RequestParam("userId") int userId){
+        return abonnementBusiness.getFollowsByFollower(userId);
     }
 
     // post A follow B

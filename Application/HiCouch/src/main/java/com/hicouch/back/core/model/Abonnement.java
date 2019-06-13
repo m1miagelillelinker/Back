@@ -13,7 +13,7 @@ public class Abonnement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idabonnement")
+    @Column(name="id")
     int idabonnement;
 
     @Column(name="follower")
@@ -23,7 +23,7 @@ public class Abonnement {
     Integer follows;
 
     @CreatedDate
-    @Column(name="createat")
+    @Column(name="createdat")
     LocalDateTime createdat;
 
     @LastModifiedDate

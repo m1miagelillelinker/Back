@@ -1,9 +1,9 @@
 package com.hicouch.back.core.service.impl;
 
-
 import com.hicouch.back.core.repository.ProduitRepository;
 import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.enumeration.ProductTypeEnum;
+import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.exception.ReferentielRequestException;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.util.HttpBookRequest;
@@ -75,7 +75,7 @@ public class ProduitServiceImpl implements ProduitService {
     }
 
     @Override
-    public List<ProductDTO> getProductsByKeyWordFromReferentiel(String keyword, String referentiel) throws Exception {
+	public List<ProductDTO> getProductsByKeyWordFromReferentiel(String keyword, String referentiel) throws BusinessException {
         List<ProductDTO> listProduct = new ArrayList<>();
         switch (referentiel) {
             case ProductTypeEnum.BOOK:
@@ -89,7 +89,7 @@ public class ProduitServiceImpl implements ProduitService {
                 listProduct = this.getGamesByIdFromReferentiel(keyword);
                 break;
             default:
-                throw new Exception("No Referentiel Defined");
+			throw new BusinessException("No Referentiel Defined");
         }
         return listProduct;
     }
@@ -124,13 +124,14 @@ public class ProduitServiceImpl implements ProduitService {
         }
     }
 
-
-    /**
-     * TODO : refacto
-     * @throws Exception 
-     */
+	/**
+	 * TODO : refacto
+	 * 
+	 * @throws BusinessException
+	 * @throws Exception
+	 */
 	@Override
-	public ProductDTO getProductByIdFromReferentiel(String productId, String referentiel) throws Exception {
+	public ProductDTO getProductByIdFromReferentiel(String productId, String referentiel) throws BusinessException {
 		// TODO Auto-generated method stub
 		ProductDTO result = null;
 		switch (referentiel) {
@@ -145,10 +146,9 @@ public class ProduitServiceImpl implements ProduitService {
 		    result = this.getGameByIdFromReferentiel(productId);
 		    break;
 		default:
-			throw new Exception("No Referentiel Defined");
+			throw new BusinessException("No Referentiel Defined");
 		}
 		return result;
 	}
-
 
 }

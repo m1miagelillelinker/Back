@@ -4,6 +4,7 @@ import com.hicouch.back.core.business.ProduitBusiness;
 import com.hicouch.back.core.business.TagBusiness;
 import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.enumeration.ProductTypeEnum;
+import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.service.ProduitService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,13 @@ public class ProduitBusinessImpl implements ProduitBusiness {
 		this.tagBusiness = tagBusiness;
 	}
 
-	public ProductDTO getCompleteProduct(String idProduct, String referentiel) throws Exception {
+	public ProductDTO getCompleteProduct(String idProduct, String referentiel) throws BusinessException {
 		ProductDTO product = produitService.getProductByIdFromReferentiel(idProduct, referentiel);
 		product.setTags(tagBusiness.getAllTagByProduct(idProduct));
 		return product;
 	}
 
-	public List<ProductDTO> getCompleteProducts(String keyword,String referentiel)throws Exception{
+	public List<ProductDTO> getCompleteProducts(String keyword, String referentiel) throws BusinessException {
 	    List<ProductDTO> productDTOList = produitService.getProductsByKeyWordFromReferentiel(keyword,referentiel);
 	    for(ProductDTO productDTO : productDTOList){
 	        productDTO.setTags(tagBusiness.getAllTagByProduct(productDTO.getId()));
