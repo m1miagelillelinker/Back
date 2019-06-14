@@ -3,6 +3,8 @@ package com.hicouch.back.core.dto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hicouch.back.core.enumeration.ProductTypeEnum;
+
 public class OmdbDTO extends ProductDTOFromReferentiel {
 
 	String id;
@@ -41,7 +43,7 @@ public class OmdbDTO extends ProductDTOFromReferentiel {
 		productDTO.setCountry(this.getCountry());
 		productDTO.setDirector(this.getDirector());
 		productDTO.setYear(this.getYear());
-		productDTO.setType(this.getType());
+		productDTO.setType(ProductTypeEnum.MOVIE);
 
 		/**
 		 * TODO : gestion des tags + liste produit associé

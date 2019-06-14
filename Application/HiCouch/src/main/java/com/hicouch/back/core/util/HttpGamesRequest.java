@@ -128,7 +128,7 @@ public class HttpGamesRequest {
         }
 
         String duration = "null";
-        String type = ProductTypeEnum.BOOK;
+        String type = ProductTypeEnum.GAME;
 
         return new ProductDTO(id, title, description, country, director, year, genre, listProduits, image, duration, type);
     }

@@ -1,6 +1,7 @@
 package com.hicouch.back.core.util;
 
 import com.hicouch.back.core.dto.ProductDTO;
+import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import com.hicouch.back.core.dto.OmdbDTO;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -73,6 +74,7 @@ public class HttpFilmRequest extends HttpRequest {
         } catch (Exception e) {
             omdbDTO.setDuration(null);
         }
+        omdbDTO.setType(ProductTypeEnum.MOVIE);
 
         return omdbDTO.toProductDTO();
     }
