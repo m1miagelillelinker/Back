@@ -6,6 +6,7 @@ import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AssociationService {
     List<AssociationDTO> getAssociationsByIdProduct(String idAssociation) throws BusinessException;
@@ -18,7 +19,9 @@ public interface AssociationService {
 
     String deleteAssociation(int idAssociation) throws Exception;
 
-    Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB, Integer iduser) throws BusinessException;
-
     int countAssosByIdUser(int iduser);
+    
+    Optional<Association> getAssociationByProduitAAndB(String idProduitA, String idProduitB);
+    
+    Association saveAssociation(Association association);
 }

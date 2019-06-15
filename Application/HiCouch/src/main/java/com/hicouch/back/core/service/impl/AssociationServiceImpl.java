@@ -14,27 +14,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 @Service
 public class AssociationServiceImpl implements AssociationService {
 
 	private final AssociationRepository associationRepository;
-	private final EntityManager entityManager;
 	private final AssociationFactory associationFactory;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
 	@Autowired
-	public AssociationServiceImpl(AssociationRepository associationRepository, EntityManager entityManager, AssociationFactory associationFactory) {
+	public AssociationServiceImpl(AssociationRepository associationRepository, AssociationFactory associationFactory) {
 		this.associationRepository = associationRepository;
-		this.entityManager = entityManager;
 		this.associationFactory = associationFactory;
 	}
 
@@ -71,41 +66,17 @@ public class AssociationServiceImpl implements AssociationService {
 	}
 
 	@Override
-	public Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB, Integer iduser) throws BusinessException {
-
-
-		//l'association existe deja? alors on retourne celle qui existe deja plutot qu'une erreur 500
-		Optional<Association> assoExists = Optional.ofNullable(associationRepository.findByIdproduitAAndIdproduitB(idProductA, idProductB));
-		if ( assoExists.isPresent() ){
-			return assoExists.get();
-		}
-
-		LocalDateTime maintenant = LocalDateTime.now();
-
-		Query q = entityManager.createNativeQuery("SELECT NEXT VALUE FOR dbo.assocouple");
-		int idPair = (Integer) q.getSingleResult();
-
-		//On crée deux associations symetriques
-		Association asso = new Association(idProductA, idfournA, idProductB, idfournB, idPair, iduser);
-		Association assoMirror = new Association(idProductB, idfournB, idProductA, idfournA, idPair, iduser);
-
-		try {
-			associationRepository.save(asso);
-			associationRepository.save(assoMirror);
-		} catch (DataIntegrityViolationException e) {
-			e.printStackTrace();
-		} catch (ConstraintViolationException e) {
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new BusinessException();
-		}
-		return asso; //TODO Ne devrait'on pas retourner une ASSODTO?
+	public int countAssosByIdUser(int iduser) {
+		return associationRepository.countByIdUser(iduser);
 	}
 
 	@Override
-	public int countAssosByIdUser(int iduser) {
-		return associationRepository.countByIdUser(iduser);
+	public Optional<Association> getAssociationByProduitAAndB(String idProduitA, String idProduitB) {
+		return Optional.ofNullable(associationRepository.findByIdproduitAAndIdproduitB(idProduitA, idProduitB));
+	}
+
+	@Override
+	public Association saveAssociation(Association association) {
+		return associationRepository.save(association);
 	}
 }

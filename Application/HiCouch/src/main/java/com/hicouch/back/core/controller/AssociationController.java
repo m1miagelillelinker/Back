@@ -49,11 +49,11 @@ public class AssociationController {
     @CrossOrigin
     @PutMapping("/create")
     @ResponseBody
-    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idfournA") String idfournA, @RequestParam("idProductB") String idProductB, @RequestParam("idfournB") String idfournB, @RequestParam("iduser") Integer iduser) throws BusinessException {
-        if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("") || iduser.equals(0) ){
+    public Association createAssociation(@RequestParam("idProductA") String idProductA, @RequestParam("idfournA") String idfournA, @RequestParam("idProductB") String idProductB, @RequestParam("idfournB") String idfournB) throws BusinessException {
+        if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("")){
             throw new BusinessException();
         }
-        return associationService.createAssociation(idProductA,idfournA, idProductB, idfournB, iduser);
+        return associationBusiness.createOrGetAssociation(idProductA,idfournA, idProductB, idfournB);
     }
 
     @CrossOrigin
@@ -63,7 +63,7 @@ public class AssociationController {
         if(asso.getIdproduitA() == null || asso.getIdproduitB() == null || asso.getIdfournA().equals("") || asso.getIdfournB().equals("") || asso.getIdUser()> 0 ){
             throw new BusinessException();
         }
-        return associationService.createAssociation(asso.getIdproduitA(),asso.getIdfournA(), asso.getIdproduitB(), asso.getIdfournB(), asso.getIdUser());
+        return associationBusiness.createOrGetAssociation(asso.getIdproduitA(),asso.getIdfournA(), asso.getIdproduitB(), asso.getIdfournB());
     }
 
     @CrossOrigin
