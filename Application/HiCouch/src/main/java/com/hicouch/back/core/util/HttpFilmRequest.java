@@ -22,6 +22,12 @@ public class HttpFilmRequest extends HttpRequest {
         JSONObject jsonObject = new JSONObject(toString);
 
         try {
+            omdbDTO.setTitle(jsonObject.getString("Title"));
+        } catch (Exception e) {
+            omdbDTO.setTitle(null);
+        }
+        
+        try {
             omdbDTO.setId(jsonObject.getString("imdbID"));
         } catch (Exception e) {
             omdbDTO.setId(null);
