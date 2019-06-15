@@ -45,13 +45,13 @@ public class CommentaireController {
     @CrossOrigin
     @GetMapping("/ByAssoPairId")
     @ResponseBody
-    public List<Commentaire> getCommentaireByAssoPairId(@RequestParam("pairId") Integer pairId) throws Exception {
+    public List<CommentaireDTO> getCommentaireByAssoPairId(@RequestParam("pairId") Integer pairId) throws Exception {
         logger.trace("getCommentaireByAssoPairId:"+pairId);
-        return commentaireService.getCommentaireByAsso(pairId);
+        return commentaireFactory.convertCommentaires(commentaireService.getCommentaireByAsso(pairId));
     }
 
     @CrossOrigin
-    @PostMapping("/new")
+    @PutMapping("/new")
     @ResponseBody
     public Commentaire addCommentaire(@RequestBody Commentaire comm) throws Exception {
         logger.trace("addCommentaire:"+comm);
@@ -62,7 +62,7 @@ public class CommentaireController {
     }
 
     @CrossOrigin
-    @PostMapping("/hide")
+    @PutMapping("/hide")
     @ResponseBody
     public Commentaire hideCommentaire(@RequestBody Commentaire comm) throws Exception {
         logger.trace("hideCommentaire:"+comm);
@@ -73,7 +73,7 @@ public class CommentaireController {
     }
 
     @CrossOrigin
-    @PostMapping("/update")
+    @PutMapping("/update")
     @ResponseBody
     public Commentaire updateCommentaire(@RequestBody Commentaire comm) throws NoResultException {
         logger.trace("hideCommentaire:"+comm);

@@ -39,11 +39,11 @@ public class CommentaireFactory {
         commentaireDTO.setAssociation(associationService.getAssociationByIdPair(commentaire.getIdPair()));
         try {
             commentaireDTO.setAuteur(userFactory.getUserDTO(userService.getUserById(commentaire.getIdUser())));
+            commentaireDTO.setOwned(userService.getCurrentUser().getId() == commentaire.getIdUser());
         } catch (NoResultException e) {
             e.printStackTrace();
         }
         commentaireDTO.setCommentaire(commentaire);
-
 
 
         return commentaireDTO;

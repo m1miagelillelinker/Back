@@ -7,6 +7,7 @@ import com.hicouch.back.core.exception.DataProvidedException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.AssociationService;
 import com.hicouch.back.core.service.CommentaireService;
+import com.hicouch.back.core.service.UserService;
 import com.hicouch.back.core.service.impl.AssociationServiceImpl;
 import com.hicouch.back.core.service.impl.CommentaireServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,12 @@ public class CommentaireBusinessImpl implements CommentaireBusiness {
 
     private CommentaireService commentaireService;
     private AssociationService associationService;
+    private UserService userService;
 
     @Autowired
-    public CommentaireBusinessImpl(CommentaireService commentaireService, AssociationService associationService) {
+    public CommentaireBusinessImpl(CommentaireService commentaireService, AssociationService associationService, UserService userService) {
         super();
+        this.userService = userService;
         this.commentaireService = commentaireService;
         this.associationService = associationService;
     }
@@ -32,7 +35,7 @@ public class CommentaireBusinessImpl implements CommentaireBusiness {
         if ( ! associationService.checkIfIdPairExists(commentaire.getIdPair())){
             throw new BusinessException();
         }
-
+        commentaire.setIdUser(userService.getCurrentUser().getId());
         return commentaireService.addCommentaire(commentaire);
 
     }
