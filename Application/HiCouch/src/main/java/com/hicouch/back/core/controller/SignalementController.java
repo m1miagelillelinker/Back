@@ -29,6 +29,12 @@ public class SignalementController {
         this.signalementService = signalementService;
     }
 
+    /**
+     * Get a signalement by id
+     * @param signalementId the id of the signalement
+     * @return the signalement
+     * @throws NoResultException
+     */
     @CrossOrigin
     @GetMapping("/get")
     @ResponseBody
@@ -36,6 +42,11 @@ public class SignalementController {
     	return signalementService.getSignalementById(signalementId);
     }
 
+    /**
+     * Create a signalement
+     * @param signalement the signalement to create
+     * @return the created signalement
+     */
     @CrossOrigin
     @PutMapping("/newSignalement")
     @ResponseBody
@@ -43,6 +54,12 @@ public class SignalementController {
     	return signalementService.createSignalement(signalement);
     }
     
+    /**
+     * Get signalements made on comments
+     * @return a list of signalements
+     * @throws NoRightException
+     * @throws NoResultException
+     */
     @CrossOrigin
     @GetMapping("/toModerate/comment")
     @ResponseBody
@@ -53,6 +70,12 @@ public class SignalementController {
     	return signalementService.findAllSignalementsByTypeAndStatus(StatusEnum.TO_MODERATE, SignalementTypeEnum.COMMENTAIRE);
     }
     
+    /**
+     * Get signalements made on users
+     * @return a list of signalements
+     * @throws NoRightException
+     * @throws NoResultException
+     */
     @CrossOrigin
     @GetMapping("/toModerate/user")
     @ResponseBody
@@ -63,6 +86,13 @@ public class SignalementController {
     	return signalementService.findAllSignalementsByTypeAndStatus(StatusEnum.TO_MODERATE, SignalementTypeEnum.UTILISATEUR);
     }
     
+    /**
+     * Confirm a signalement
+     * @param signalementId the signalement to confirm
+     * @return the signalement
+     * @throws NoRightException
+     * @throws NoResultException
+     */
     @CrossOrigin
     @PutMapping("/confirmeSignalement")
     @ResponseBody
@@ -73,6 +103,13 @@ public class SignalementController {
     	return signalementBusiness.processSignalement(signalementId, StatusEnum.BLOCKED);
     }
     
+    /**
+     * Refuse a signalement
+     * @param signalementId the signalement to refuse
+     * @return the signalement
+     * @throws NoRightException
+     * @throws NoResultException
+     */
     @CrossOrigin
     @PutMapping("/refuseSignalement")
     @ResponseBody

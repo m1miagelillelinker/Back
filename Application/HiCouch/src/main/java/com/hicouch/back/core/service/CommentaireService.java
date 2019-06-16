@@ -15,7 +15,7 @@ public interface CommentaireService {
 	List<Commentaire> getAllCommentairesToModerate();
 	Commentaire setCommentaireStatus(int commentId, int status) throws NoResultException;
 
-    Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException;
+    Commentaire addCommentaire(Commentaire commentaire) throws BusinessException;
 
     Commentaire hideCommentaire(Commentaire commentaire) throws NoResultException;
 

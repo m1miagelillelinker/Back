@@ -31,7 +31,7 @@ public class CommentaireBusinessImpl implements CommentaireBusiness {
     }
 
     //TODO Faire en sorte que le SPAM ne soit pas possible (limiter le nombre de commentaires par minute par exemple
-    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException {
+    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException {
         if ( ! associationService.checkIfIdPairExists(commentaire.getIdPair())){
             throw new BusinessException();
         }

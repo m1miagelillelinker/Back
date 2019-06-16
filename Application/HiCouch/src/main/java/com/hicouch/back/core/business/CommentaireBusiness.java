@@ -6,5 +6,5 @@ import com.hicouch.back.core.model.Commentaire;
 
 public interface CommentaireBusiness {
 
-    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException;
+    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException;
 }

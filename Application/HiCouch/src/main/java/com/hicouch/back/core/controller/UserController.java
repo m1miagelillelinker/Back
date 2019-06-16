@@ -28,6 +28,13 @@ public class UserController {
         this.userFactory = userFactory;
     }
 
+    /**
+     * Get a user
+     * @param userId the id of the user
+     * @return a User
+     * @throws NumberFormatException
+     * @throws NoResultException
+     */
     @CrossOrigin
     @GetMapping("/get")
     @ResponseBody
@@ -35,6 +42,11 @@ public class UserController {
         return  userFactory.getUserDTO(userService.getUserById(Integer.parseInt(userId)));
     }
     
+    /**
+     * Get the connected user
+     * @return a user
+     * @throws NoResultException
+     */
     @CrossOrigin
     @GetMapping("/current")
     @ResponseBody
@@ -42,6 +54,12 @@ public class UserController {
         return userService.getCurrentUser();
     }
     
+    /**
+     * Update a user's infos
+     * @param user the user
+     * @return the user
+     * @throws NoResultException
+     */
     @CrossOrigin
     @PutMapping("/update")
     @ResponseBody

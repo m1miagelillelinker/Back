@@ -59,7 +59,7 @@ public class CommentaireServiceImpl implements CommentaireService {
 
     @Override
     // TODO : ajouter un vote de l'utilisateur
-    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException {
+    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException {
         try{
             if(commentaire.getId() != null) {
                 throw new DataProvidedException("l'id ne doit pas etre fournit pour l'ajout");

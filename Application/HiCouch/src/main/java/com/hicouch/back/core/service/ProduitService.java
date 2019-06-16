@@ -10,8 +10,6 @@ public interface ProduitService {
 
     ProductDTO getFilmByIdFromReferentiel(String filmId) throws ReferentielRequestException;
 
-    ProductDTO getFilmByTitleFromReferentiel(String title) throws ReferentielRequestException;
-
     ProductDTO getBookByIdFromReferentiel(String bookId) throws ReferentielRequestException;
 
     ProductDTO getGameByIdFromReferentiel(String gameId) throws ReferentielRequestException;

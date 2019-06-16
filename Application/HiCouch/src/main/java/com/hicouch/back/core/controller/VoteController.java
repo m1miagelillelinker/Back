@@ -51,6 +51,11 @@ public class VoteController{
        return voteService.getVotesByUser(userId);
     }
     
+    /**
+     * Get an association's vote
+     * @param assoId the id of the pair of products
+     * @return a list of votes
+     */
     @CrossOrigin
     @GetMapping("/AssoVote")
     @ResponseBody

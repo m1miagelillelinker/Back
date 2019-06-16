@@ -32,6 +32,11 @@ public class AbonnementController {
         this.abonnementService = abonnementService;
     }
 
+    /**
+     * Get the list of users following userId
+     * @param userId
+     * @return a list of users
+     */
     @CrossOrigin
     @GetMapping("/followers")
     @ResponseBody
@@ -39,6 +44,11 @@ public class AbonnementController {
         return abonnementBusiness.getFollowersByFollows(userId);
     }
 
+    /**
+     * Get the list of users that userId follow
+     * @param userId
+     * @return a list of users
+     */
     @CrossOrigin
     @GetMapping("/follows")
     @ResponseBody
@@ -47,6 +57,12 @@ public class AbonnementController {
     }
 
     // post A follow B
+    /**
+     * Create a subscription of follower to follows
+     * @param follower
+     * @param follows
+     * @return the subscription
+     */
     @CrossOrigin
     @PutMapping("/follow")
     @ResponseBody
@@ -55,6 +71,11 @@ public class AbonnementController {
     }
 
     // delete A follow B
+    /**
+     * Delete the subscription of follower to follow
+     * @param follower
+     * @param follows
+     */
     @CrossOrigin
     @DeleteMapping("/unfollow")
     @ResponseBody

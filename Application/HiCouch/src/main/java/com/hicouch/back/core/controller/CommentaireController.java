@@ -2,6 +2,7 @@ package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.CommentaireBusiness;
 import com.hicouch.back.core.dto.CommentaireDTO;
+import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.factory.CommentaireFactory;
 import com.hicouch.back.core.model.Commentaire;
@@ -34,26 +35,44 @@ public class CommentaireController {
         this.commentaireFactory  = commentaireFactory;
     }
 
+    /**
+     * Get a user's comments
+     * @param userId the id of the users
+     * @return a list of comment
+     * @throws BusinessException
+     */
     @CrossOrigin
     @GetMapping("/ByUserId")
     @ResponseBody
-    public List<CommentaireDTO> getCommentaireByUserId(@RequestParam("userId") Integer userId) throws Exception {
+    public List<CommentaireDTO> getCommentaireByUserId(@RequestParam("userId") Integer userId) throws BusinessException {
         logger.trace("getCommentaireByUserId:"+userId);
         return commentaireFactory.convertCommentaires(commentaireService.findAllByIdUser(userId));
     }
 
+    /**
+     * Get an association comments
+     * @param pairId the id of the pair of products
+     * @return a list of comments
+     * @throws BusinessException
+     */
     @CrossOrigin
     @GetMapping("/ByAssoPairId")
     @ResponseBody
-    public List<CommentaireDTO> getCommentaireByAssoPairId(@RequestParam("pairId") Integer pairId) throws Exception {
+    public List<CommentaireDTO> getCommentaireByAssoPairId(@RequestParam("pairId") Integer pairId) throws BusinessException {
         logger.trace("getCommentaireByAssoPairId:"+pairId);
         return commentaireFactory.convertCommentaires(commentaireService.getCommentaireByAsso(pairId));
     }
 
+    /**
+     * Create a comment
+     * @param comm the comment to create 
+     * @return the created comment
+     * @throws BusinessException
+     */
     @CrossOrigin
     @PutMapping("/new")
     @ResponseBody
-    public Commentaire addCommentaire(@RequestBody Commentaire comm) throws Exception {
+    public Commentaire addCommentaire(@RequestBody Commentaire comm) throws BusinessException {
         logger.trace("addCommentaire:"+comm);
         if( comm == null ){
             throw new InvalidParameterException();
@@ -61,10 +80,16 @@ public class CommentaireController {
         return commentaireBusiness.addCommentaire(comm);
     }
 
+    /**
+     * Hide a comment
+     * @param comm the comment to hide
+     * @return the comment
+     * @throws BusinessException
+     */
     @CrossOrigin
     @PutMapping("/hide")
     @ResponseBody
-    public Commentaire hideCommentaire(@RequestBody Commentaire comm) throws Exception {
+    public Commentaire hideCommentaire(@RequestBody Commentaire comm) throws BusinessException {
         logger.trace("hideCommentaire:"+comm);
         if(comm == null ){
         	throw new InvalidParameterException();
@@ -72,6 +97,12 @@ public class CommentaireController {
         return commentaireService.hideCommentaire(comm);
     }
 
+    /**
+     * Update a comment
+     * @param comm the comment to update
+     * @return the comment
+     * @throws NoResultException
+     */
     @CrossOrigin
     @PutMapping("/update")
     @ResponseBody

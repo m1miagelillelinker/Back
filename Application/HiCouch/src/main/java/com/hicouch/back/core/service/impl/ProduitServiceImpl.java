@@ -44,16 +44,6 @@ public class ProduitServiceImpl implements ProduitService {
     }
 
     @Override
-    public ProductDTO getFilmByTitleFromReferentiel(String title) throws ReferentielRequestException{
-        try{
-            httpFilmRequest = new HttpFilmRequest("http://www.omdbapi.com/?t="+title+"&apikey=9b0bebec");
-            return httpFilmRequest.request("GET");
-        }catch(Exception e){
-            throw new ReferentielRequestException("title : " + title);
-        }
-    }
-
-    @Override
     public ProductDTO getBookByIdFromReferentiel(String bookId) throws ReferentielRequestException {
         try{
             httpBookRequest = new HttpBookRequest("https://www.googleapis.com/books/v1/volumes?q=isbn:"+bookId);

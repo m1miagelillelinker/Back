@@ -27,6 +27,12 @@ public class BadgeController {
         this.badgeService = badgeService;
     }
 
+    /**
+     * Get a user's badges
+     * @param userId the id of the user
+     * @return a list of badges
+     * @throws Exception
+     */
     @CrossOrigin
     @GetMapping("/ByUserId")
     @ResponseBody
