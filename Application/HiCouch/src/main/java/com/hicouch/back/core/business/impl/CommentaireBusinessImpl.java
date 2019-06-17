@@ -41,8 +41,7 @@ public class CommentaireBusinessImpl implements CommentaireBusiness {
 
         Commentaire commentaire1 = commentaireService.addCommentaire(commentaire);
         historiqueService.addToHistorique("Commentaire : "+commentaire1.getCommentaire(), userService.getCurrentUser().getId());
-
-
+        return commentaire1;
     }
 
 
