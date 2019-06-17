@@ -19,4 +19,6 @@ public interface AssociationService {
 
 	Association createAssociation(String idProductA, String idfournA, String idProductB, String idfournB)
 			throws BusinessException;
+
+    List<Association> getAllUserAssociation(Integer id);
 }

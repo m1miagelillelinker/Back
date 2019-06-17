@@ -52,7 +52,8 @@ public class AssociationController {
         if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("")){
             throw new BusinessException();
         }
-        return associationService.createAssociation(idProductA,idfournA, idProductB, idfournB);
+        //return associationService.createAssociation(idProductA,idfournA, idProductB, idfournB);
+        return associationBusiness.createAssociation(idProductA,idfournA,idProductB,idfournB);
     }
 
     @CrossOrigin

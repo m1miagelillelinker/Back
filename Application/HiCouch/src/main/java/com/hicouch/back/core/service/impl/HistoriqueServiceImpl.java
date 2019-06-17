@@ -20,18 +20,26 @@ public class HistoriqueServiceImpl implements HistoriqueService {
 
 
     @Override
-    public List<Historique> getHistoriqueByIdUser(int id) {
-        return historiqueRepository.findAllByIdUser(id);
+    public Historique getHistoriqueByIdUser(int id) {
+        return historiqueRepository.findById(id).get();
     }
 
     @Override
-    public Historique createHistorique(int id, List<String> listevent,Date date,String pseudo) {
-        Historique historique = new Historique(id,listevent,date,pseudo);
+    public Historique createHistorique(int id, List<String> listevent,String pseudo) {
+        Historique historique = new Historique(id,pseudo,listevent);
         historiqueRepository.save(historique);
         return historique;
     }
 
+    @Override
+    public void addToHistorique(String event, int id) {
+        Historique historique = this.getHistoriqueByIdUser(id);
+        List<String> lvent = historique.getEvenements();
+        lvent.add(event);
 
+        historique.setEvenements(lvent);
+        historiqueRepository.save(historique);
+    }
 
 
 }

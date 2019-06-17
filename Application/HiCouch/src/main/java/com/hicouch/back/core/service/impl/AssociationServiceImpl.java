@@ -116,4 +116,9 @@ public class AssociationServiceImpl implements AssociationService {
 		}
 		return asso; //TODO Ne devrait'on pas retourner une ASSODTO?
 	}
+
+    @Override
+    public List<Association> getAllUserAssociation(Integer id) {
+        return associationRepository.findAllBycreator(Integer.toBinaryString(id));
+    }
 }

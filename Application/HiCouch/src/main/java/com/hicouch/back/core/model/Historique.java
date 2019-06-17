@@ -21,29 +21,13 @@ public class Historique {
     @Column(name = "evenements")
     private List<String> evenements;
 
-
-    @Column(name = "date")
-    private Date date;
-
-    public Historique(Integer idUser, List<String> evenement, Date date, String pseudo) {
-        this.idUser = idUser;
-        this.evenements = evenement;
-        this.date = date;
-        this.pseudo = pseudo;
-    }
-
     public Historique() {
     }
 
-    @Override
-    public String toString() {
-        return "Historique{" +
-                "id=" + id +
-                ", idUser=" + idUser +
-                ", pseudo='" + pseudo + '\'' +
-                ", evenements=" + evenements +
-                ", date=" + date +
-                '}';
+    public Historique(Integer idUser, String pseudo, List<String> evenements) {
+        this.idUser = idUser;
+        this.pseudo = pseudo;
+        this.evenements = evenements;
     }
 
     public Integer getId() {
@@ -78,11 +62,13 @@ public class Historique {
         this.evenements = evenements;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    @Override
+    public String toString() {
+        return "Historique{" +
+                "id=" + id +
+                ", idUser=" + idUser +
+                ", pseudo='" + pseudo + '\'' +
+                ", evenements=" + evenements +
+                '}';
     }
 }

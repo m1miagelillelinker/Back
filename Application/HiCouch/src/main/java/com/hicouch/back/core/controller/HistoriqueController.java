@@ -1,6 +1,7 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.HistoriqueBusiness;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Historique;
 import com.hicouch.back.core.service.HistoriqueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class HistoriqueController {
     @CrossOrigin
     @GetMapping("/{id}")
     @ResponseBody
-    public List<Historique> getHistoriqueById(@PathVariable("id") Integer id){
+    public Historique getHistoriqueById(@PathVariable("id") Integer id){
         if( id != null ){
             return historiqueService.getHistoriqueByIdUser(id);
         }
@@ -37,13 +38,13 @@ public class HistoriqueController {
     @CrossOrigin
     @PostMapping("/addEvent")
     @ResponseBody
-    public void addEventToMyHistorique(@RequestParam("Event") String event, @RequestParam("id") String id){
+    public void addEventToMyHistorique(@RequestParam("Event") String event, @RequestParam("id") int id){
        historiqueService.addToHistorique(event,id);
     }
 
     @CrossOrigin
     @PostMapping("/createHistory")
-    public Historique createHistory(@RequestParam("id") String id){
+    public Historique createHistory(@RequestParam("id") String id) throws NoResultException {
         return historiqueBusiness.createHistorique(id);
     }
 }
