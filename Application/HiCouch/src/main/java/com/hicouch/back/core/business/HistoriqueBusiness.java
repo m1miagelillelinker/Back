@@ -4,5 +4,4 @@ import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Historique;
 
 public interface HistoriqueBusiness {
-    Historique createHistorique(String id) throws NoResultException;
 }

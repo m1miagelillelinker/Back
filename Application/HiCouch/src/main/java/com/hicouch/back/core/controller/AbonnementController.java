@@ -67,7 +67,7 @@ public class AbonnementController {
     @PutMapping("/follow")
     @ResponseBody
     public Abonnement follow(@RequestParam("follower") Integer follower, @RequestParam("follows") Integer follows){
-        return abonnementService.follow(follower, follows);
+        return abonnementBusiness.follow(follower,follows);
     }
 
     // delete A follow B

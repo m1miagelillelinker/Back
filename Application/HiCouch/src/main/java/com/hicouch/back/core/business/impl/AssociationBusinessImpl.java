@@ -5,6 +5,7 @@ import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.AssociationService;
+import com.hicouch.back.core.service.HistoriqueService;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.service.UserService;
 

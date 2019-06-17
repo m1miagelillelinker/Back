@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface HistoriqueService {
-    List<Historique> getHistoriqueByIdUser(int id);
-    Historique createHistorique(int idUser,List<String> listevent, Date date,String pseudo);
+    Historique getHistoriqueByIdUser(int id);
+    Historique createHistorique(int idUser,List<String> listevent,String pseudo);
 
-    void addToHistorique(String event, String id);
+    void addToHistorique(String event, int id);
 }
