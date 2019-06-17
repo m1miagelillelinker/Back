@@ -4,11 +4,13 @@ import com.hicouch.back.core.business.HistoriqueBusiness;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Historique;
 import com.hicouch.back.core.service.HistoriqueService;
+import com.hicouch.back.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,11 +19,13 @@ public class HistoriqueController {
 
     private final HistoriqueBusiness historiqueBusiness;
     private final HistoriqueService historiqueService;
+    private final UserService userService;
 
     @Autowired
-    public HistoriqueController(HistoriqueBusiness historiqueBusiness, HistoriqueService historiqueService){
+    public HistoriqueController(HistoriqueBusiness historiqueBusiness, HistoriqueService historiqueService, UserService userService){
         this.historiqueBusiness = historiqueBusiness;
         this.historiqueService = historiqueService;
+        this.userService = userService;
     }
 
 
@@ -45,6 +49,6 @@ public class HistoriqueController {
     @CrossOrigin
     @PostMapping("/createHistory")
     public Historique createHistory(@RequestParam("id") String id) throws NoResultException {
-        return historiqueBusiness.createHistorique(id);
+        return historiqueService.createHistorique(id,new ArrayList<>(),userService.getCurrentUser().getPseudo());
     }
 }
