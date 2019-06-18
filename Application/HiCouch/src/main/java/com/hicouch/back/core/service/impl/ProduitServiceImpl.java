@@ -72,6 +72,7 @@ public class ProduitServiceImpl implements ProduitService {
                 listProduct = this.getBooksFromReferentiel(keyword);
                 break;
             case ProductTypeEnum.MOVIE:
+            case ProductTypeEnum.SERIE:
                 listProduct =this.getFilmsByTitleFromReferentiel(keyword);
                 break;
             case ProductTypeEnum.GAME:
@@ -128,6 +129,7 @@ public class ProduitServiceImpl implements ProduitService {
 			result = this.getBookByIdFromReferentiel(productId);
 			break;
 		case ProductTypeEnum.MOVIE:
+		case ProductTypeEnum.SERIE:
 			result = this.getFilmByIdFromReferentiel(productId);
 			break;
 		case ProductTypeEnum.GAME:

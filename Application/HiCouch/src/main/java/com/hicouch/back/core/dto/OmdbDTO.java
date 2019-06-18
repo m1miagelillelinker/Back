@@ -43,7 +43,7 @@ public class OmdbDTO extends ProductDTOFromReferentiel {
 		productDTO.setCountry(this.getCountry());
 		productDTO.setDirector(this.getDirector());
 		productDTO.setYear(this.getYear());
-		productDTO.setType(ProductTypeEnum.MOVIE);
+		productDTO.setType(this.getType());
 
 		/**
 		 * TODO : gestion des tags + liste produit associé

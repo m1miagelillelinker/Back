@@ -18,9 +18,9 @@ public class HttpFilmRequest extends HttpRequest {
     @Override
     protected ProductDTO convert(String toString) throws Exception {
         OmdbDTO omdbDTO = new OmdbDTO();
-
         JSONObject jsonObject = new JSONObject(toString);
-
+        // movie par défaut
+        omdbDTO.setType(ProductTypeEnum.MOVIE);
         try {
             omdbDTO.setTitle(jsonObject.getString("Title"));
         } catch (Exception e) {
@@ -34,7 +34,9 @@ public class HttpFilmRequest extends HttpRequest {
         }
 
         try {
-            omdbDTO.setType(jsonObject.getString("Type"));
+            if(jsonObject.getString("Type").equals("series")) {
+                omdbDTO.setType(ProductTypeEnum.SERIE);
+            }
         } catch (Exception e) {
             omdbDTO.setType(null);
         }
@@ -80,7 +82,7 @@ public class HttpFilmRequest extends HttpRequest {
         } catch (Exception e) {
             omdbDTO.setDuration(null);
         }
-        omdbDTO.setType(ProductTypeEnum.MOVIE);
+        
 
         return omdbDTO.toProductDTO();
     }
@@ -88,40 +90,12 @@ public class HttpFilmRequest extends HttpRequest {
     @Override
     protected List<ProductDTO> convertMultiple(String toString) throws Exception {
         List<ProductDTO> productDTOS = new ArrayList<>();
-        OmdbDTO omdbDTO = new OmdbDTO();
-        ProductDTO productDTO = new ProductDTO();
         try {
             JSONObject jsonObject = new JSONObject(toString);
             JSONArray jsonArray = jsonObject.getJSONArray("Search");
 
             for (Object jo : jsonArray) {
-                JSONObject film = new JSONObject(jo.toString());
-
-                try {
-                    omdbDTO.setTitle(film.getString("Title"));
-                } catch (Exception e) {
-                    omdbDTO.setTitle(null);
-                }
-
-                try {
-                    omdbDTO.setYear(film.getString("Year"));
-                } catch (Exception e) {
-                    omdbDTO.setYear(null);
-                }
-
-                try {
-                    omdbDTO.setId(film.getString("imdbID"));
-                } catch (Exception e) {
-                    omdbDTO.setId(null);
-                }
-
-                try {
-                    omdbDTO.setImage(film.getString("Poster"));
-                } catch (Exception e) {
-                    omdbDTO.setImage(null);
-                }
-
-                productDTOS.add(omdbDTO.toProductDTO());
+                productDTOS.add(convert(jo.toString()));
             }
             return productDTOS;
         } catch (Exception e) {
