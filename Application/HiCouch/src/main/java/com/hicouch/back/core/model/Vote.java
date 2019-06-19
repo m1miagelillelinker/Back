@@ -1,10 +1,13 @@
 package com.hicouch.back.core.model;
 
+import com.hicouch.back.core.enumeration.VoteTypeEnum;
+import org.hibernate.annotations.CollectionId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name="vote")
@@ -17,11 +20,17 @@ public class Vote {
     @Column(name="idpair")
     int idPair;
 
+    @Column(name = "idCommentaire")
+    int idCommentaire;
+
     @Column(name="vote")
     int vote;
 
     @Column(name="iduser")
     int idUser;
+
+    @Column(name = "type")
+    String type;
 
     @CreatedDate
     @Column(name="createdat")
@@ -33,12 +42,22 @@ public class Vote {
 
     public Vote(){}
 
-    public Vote(int idAssoc, int vote, int idUser, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.idPair = idAssoc;
+    public Vote(int id, int vote, int idUser, LocalDateTime createdAt, LocalDateTime updatedAt, String type) {
+        this.type = type;
+        this.idPair = type.equals(VoteTypeEnum.ASSOCIATION)?id:null;
+        this.idCommentaire = type.equals(VoteTypeEnum.COMMENTAIRE)?id:null;
         this.vote = vote;
         this.idUser = idUser;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Integer getId() {
@@ -89,13 +108,23 @@ public class Vote {
         this.updatedAt = updatedAt;
     }
 
+    public int getIdCommentaire() {
+        return idCommentaire;
+    }
+
+    public void setIdCommentaire(int idCommentaire) {
+        this.idCommentaire = idCommentaire;
+    }
+
     @Override
     public String toString() {
         return "Vote{" +
                 "id=" + id +
-                ", idAssoc=" + idPair +
+                ", idPair=" + idPair +
+                ", idCommentaire=" + idCommentaire +
                 ", vote=" + vote +
                 ", idUser=" + idUser +
+                ", type='" + type + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

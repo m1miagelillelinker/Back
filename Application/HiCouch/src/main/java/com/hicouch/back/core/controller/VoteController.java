@@ -62,4 +62,20 @@ public class VoteController{
     public List<Vote> getVotesByAssociation(@RequestParam("assoId") int assoId){
        return voteService.getVotesByAssociation(assoId);
     }
+
+    @CrossOrigin
+    @GetMapping("/CommentVote")
+    @ResponseBody
+    public List<Vote> getVotesByComment(@RequestParam("commentId") int commentId){
+        return voteService.getVotesByCommentId(commentId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/allCommentVoteById")
+    @ResponseBody
+    public List<Vote> getVotesCommentById(@RequestParam("userId") int userId){
+        return voteService.getCommentVotesByUser(userId);
+    }
+
+
 }
