@@ -16,16 +16,16 @@ public class Vote {
     Integer id;
 
     @Column(name="idpair")
-    int idPair;
+    Integer idPair;
 
     @Column(name = "idcommentaire")
-    int idCommentaire;
+    Integer idCommentaire;
 
     @Column(name="vote")
-    int vote;
+    Integer vote;
 
     @Column(name="iduser")
-    int idUser;
+    Integer idUser;
 
     @Column(name = "type")
     String type;
@@ -42,8 +42,12 @@ public class Vote {
 
     public Vote(int id, int vote, int idUser, LocalDateTime createdAt, LocalDateTime updatedAt, String type) {
         this.type = type;
-        this.idPair = VoteTypeEnum.ASSOCIATION.equals(type) ? id : null;
-        this.idCommentaire = VoteTypeEnum.COMMENTAIRE.equals(type) ? id : null;
+        if ( VoteTypeEnum.ASSOCIATION.equals(type) ) {
+        	this.idPair = id;
+        } else {
+        	this.idCommentaire = id;
+        }
+        
         this.vote = vote;
         this.idUser = idUser;
         this.createdAt = createdAt;
@@ -66,27 +70,27 @@ public class Vote {
         this.id = id;
     }
 
-    public int getIdPair() {
+    public Integer getIdPair() {
         return idPair;
     }
 
-    public void setIdPair(int idPair) {
+    public void setIdPair(Integer idPair) {
         this.idPair = idPair;
     }
 
-    public int getVote() {
+    public Integer getVote() {
         return vote;
     }
 
-    public void setVote(int vote) {
+    public void setVote(Integer vote) {
         this.vote = vote;
     }
 
-    public int getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
@@ -106,11 +110,11 @@ public class Vote {
         this.updatedAt = updatedAt;
     }
 
-    public int getIdCommentaire() {
+    public Integer getIdCommentaire() {
         return idCommentaire;
     }
 
-    public void setIdCommentaire(int idCommentaire) {
+    public void setIdCommentaire(Integer idCommentaire) {
         this.idCommentaire = idCommentaire;
     }
 
