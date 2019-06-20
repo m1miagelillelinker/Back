@@ -1,22 +1,18 @@
 package com.hicouch.back.core.factory;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.hicouch.back.core.business.ProduitBusiness;
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.exception.BusinessException;
-import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.model.Vote;
 import com.hicouch.back.core.service.UserService;
 import com.hicouch.back.core.service.VoteService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class AssociationFactory {

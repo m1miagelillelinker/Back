@@ -4,14 +4,12 @@ import com.hicouch.back.core.dto.CommentaireDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.AssociationService;
-import com.hicouch.back.core.service.CommentaireService;
 import com.hicouch.back.core.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

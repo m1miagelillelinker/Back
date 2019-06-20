@@ -6,14 +6,13 @@ import com.hicouch.back.core.factory.SignalementFactory;
 import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.repository.SignalementRepository;
 import com.hicouch.back.core.service.SignalementService;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SignalementServiceImpl implements SignalementService {

@@ -7,16 +7,13 @@ import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.AssociationService;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.service.UserService;
-
-import java.util.Optional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 @Service
 public class AssociationBusinessImpl implements AssociationBusiness {

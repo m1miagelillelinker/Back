@@ -1,9 +1,8 @@
 package com.hicouch.back.core.dto;
 
+import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.hicouch.back.core.enumeration.ProductTypeEnum;
 
 import java.util.ArrayList;
 import java.util.List;

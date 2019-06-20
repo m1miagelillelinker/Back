@@ -1,10 +1,10 @@
 package com.hicouch.back.core.service;
 
-import java.util.List;
-
 import com.hicouch.back.core.dto.SignalementDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Signalement;
+
+import java.util.List;
 
 public interface SignalementService {
 

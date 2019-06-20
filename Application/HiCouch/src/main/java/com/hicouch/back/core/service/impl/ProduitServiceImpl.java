@@ -1,16 +1,16 @@
 package com.hicouch.back.core.service.impl;
 
-import com.hicouch.back.core.repository.ProduitRepository;
 import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.exception.ReferentielRequestException;
+import com.hicouch.back.core.repository.ProduitRepository;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.util.HttpBookRequest;
 import com.hicouch.back.core.util.HttpFilmRequest;
+import com.hicouch.back.core.util.HttpGamesRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.hicouch.back.core.util.HttpGamesRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

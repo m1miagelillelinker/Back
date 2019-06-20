@@ -4,7 +4,6 @@ import com.hicouch.back.core.business.AssociationBusiness;
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.model.Association;
-import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

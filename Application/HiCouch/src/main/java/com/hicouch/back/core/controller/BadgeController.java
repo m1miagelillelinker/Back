@@ -1,7 +1,6 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.BadgeBusiness;
-import com.hicouch.back.core.dto.CommentaireDTO;
 import com.hicouch.back.core.model.Badge;
 import com.hicouch.back.core.service.BadgeService;
 import org.slf4j.Logger;

@@ -1,18 +1,16 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.model.User;
+import com.hicouch.back.core.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.hicouch.back.core.model.User;
-import com.hicouch.back.core.repository.UserRepository;
+import java.util.Optional;
 
 import static java.util.Collections.emptyList;
-
-import java.util.Optional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

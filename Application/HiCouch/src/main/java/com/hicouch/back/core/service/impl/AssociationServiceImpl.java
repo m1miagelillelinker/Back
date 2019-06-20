@@ -1,17 +1,14 @@
 package com.hicouch.back.core.service.impl;
 
-import com.hicouch.back.core.model.User;
-import com.hicouch.back.core.repository.AssociationRepository;
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.factory.AssociationFactory;
 import com.hicouch.back.core.model.Association;
+import com.hicouch.back.core.repository.AssociationRepository;
 import com.hicouch.back.core.service.AssociationService;
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

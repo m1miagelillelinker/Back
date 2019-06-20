@@ -1,7 +1,6 @@
 package com.hicouch.back.core.service;
 
 import com.hicouch.back.core.exception.BusinessException;
-import com.hicouch.back.core.exception.DataProvidedException;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 
