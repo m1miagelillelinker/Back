@@ -44,8 +44,8 @@ public class Vote {
 
     public Vote(int id, int vote, int idUser, LocalDateTime createdAt, LocalDateTime updatedAt, String type) {
         this.type = type;
-        this.idPair = type.equals(VoteTypeEnum.ASSOCIATION)?id:null;
-        this.idCommentaire = type.equals(VoteTypeEnum.COMMENTAIRE)?id:null;
+        this.idPair = VoteTypeEnum.ASSOCIATION.equals(type) ? id : null;
+        this.idCommentaire = VoteTypeEnum.COMMENTAIRE.equals(type) ? id : null;
         this.vote = vote;
         this.idUser = idUser;
         this.createdAt = createdAt;
