@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VoteService {
 	
-	Vote upsertVote(Vote vote);
+	Vote upsertVote(Vote vote) throws NoResultException;
 	
 	void deleteVote(Vote vote);
 	
@@ -18,6 +18,4 @@ public interface VoteService {
 	Vote getVoteByUserOnAsso(int userId, int associationId) throws NoResultException;
 
     List <Vote> getVotesByCommentId(int commentId);
-
-    List<Vote> getCommentVotesByUser(int userId);
 }

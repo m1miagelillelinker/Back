@@ -1,5 +1,6 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.enumeration.VoteTypeEnum;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Vote;
 import com.hicouch.back.core.repository.VoteRepository;
@@ -23,30 +24,35 @@ public class VoteServiceImpl implements VoteService {
     public VoteServiceImpl(VoteRepository voteRepository) {
         this.voteRepository = voteRepository;
     }
-	
-	@Override
-	public Vote upsertVote(Vote vote) {
-		if(vote.getId() != null) {
-			Optional<Vote> voteOpt = voteRepository.findById(vote.getId());
-			if(voteOpt.isPresent()) {
-				Vote voteOld = voteOpt.get();
-				voteOld.setVote(vote.getVote());
-				vote = voteOld;
-			}
-		} else {
-			vote.setCreatedAt(LocalDateTime.now());
-		}
-		
-		if(vote.getVote() == 0) {
-			voteRepository.delete(vote);
-			vote = null;
-		} else {
-			vote.setUpdatedAt(LocalDateTime.now());
-			voteRepository.save(vote);
-		}
-		
-		return vote;
-	}
+
+    @Override
+    public Vote upsertVote(Vote vote) throws NoResultException {
+        if(vote.getId() != null ){
+            Optional<Vote> voteOpt= voteRepository.findById(vote.getId());
+            if(voteOpt.isPresent()){
+                if(vote.getVote() == 0){
+                    voteRepository.delete(vote);
+                    return vote;
+                }else{
+                    Vote voteOld = voteOpt.get();
+                    voteOld.setVote(vote.getVote());
+                    vote = voteOld;
+                }
+            }else{
+                throw new NoResultException();
+            }
+        }else{
+            vote.setCreatedAt(LocalDateTime.now());
+        }
+
+        if( vote.getIdPair() != 0){
+            vote.setType(VoteTypeEnum.ASSOCIATION);
+        }else{
+            vote.setType(VoteTypeEnum.COMMENTAIRE);
+        }
+        vote.setUpdatedAt(LocalDateTime.now());
+        return vote;
+    }
 
 	@Override
 	public void deleteVote(Vote vote) {
@@ -71,10 +77,5 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public List<Vote> getVotesByCommentId(int commentId) {
         return voteRepository.findAllByIdCommentaire(commentId);
-    }
-
-    @Override
-    public List<Vote> getCommentVotesByUser(int userId) {
-        return voteRepository.findAllByIdUserAndIdCommentaireNotNull(userId);
     }
 }

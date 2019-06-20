@@ -62,13 +62,4 @@ public class VoteController{
     public List<Vote> getVotesByComment(@RequestParam("commentId") int commentId){
         return voteService.getVotesByCommentId(commentId);
     }
-
-    @CrossOrigin
-    @GetMapping("/allCommentVoteByIdUser")
-    @ResponseBody
-    public List<Vote> getVotesCommentByIdUser(@RequestParam("userId") int userId){
-        return voteService.getCommentVotesByUser(userId);
-    }
-
-
 }
