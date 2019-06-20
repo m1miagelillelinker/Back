@@ -35,10 +35,9 @@ public class Historique {
 
     public Historique() {}
 
-    public Historique(Integer id, Integer  idUser, String type, LocalDateTime createdAt) {
+    public Historique(Integer id, Integer  idUser, String type) {
         this.type = type;
         this.idUser = idUser;
-        this.createdAt = createdAt;
         this.idFollow = HistoriqueTypeEnum.ABONNEMENT.equals(type)  ? id : null;
         this.idAsso = HistoriqueTypeEnum.ASSOCIATION.equals(type)|| HistoriqueTypeEnum.COMMENTAIRE.equals(type) ? id : null;
     }
