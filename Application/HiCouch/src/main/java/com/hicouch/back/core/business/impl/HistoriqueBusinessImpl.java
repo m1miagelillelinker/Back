@@ -2,6 +2,7 @@ package com.hicouch.back.core.business.impl;
 
 import com.hicouch.back.core.business.AbonnementBusiness;
 import com.hicouch.back.core.business.HistoriqueBusiness;
+import com.hicouch.back.core.dto.HistoriqueDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.*;
 import com.hicouch.back.core.service.*;
@@ -30,5 +31,12 @@ public class HistoriqueBusinessImpl implements HistoriqueBusiness {
         this.badgeService = badgeService;
         this.associationService = associationService;
         this.commentaireService = commentaireService;
+    }
+
+
+    @Override
+    public List<Historique> getHistoriqueByIdUser(Integer id) {
+        //TODO: historique
+        return new ArrayList<>();
     }
 }

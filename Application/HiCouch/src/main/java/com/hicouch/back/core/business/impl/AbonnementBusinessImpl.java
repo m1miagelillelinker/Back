@@ -5,8 +5,10 @@ import com.hicouch.back.core.dto.UserDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.factory.UserFactory;
 import com.hicouch.back.core.model.Abonnement;
+import com.hicouch.back.core.model.Historique;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.AbonnementService;
+import com.hicouch.back.core.service.HistoriqueService;
 import com.hicouch.back.core.service.UserService;
 
 import java.util.List;
@@ -21,13 +23,14 @@ public class AbonnementBusinessImpl implements AbonnementBusiness {
 	private AbonnementService abonnementService;
 	private UserService userService;
 	private UserFactory userFactory;
+	private HistoriqueService historiqueService;
 
 	@Autowired
-	public AbonnementBusinessImpl(AbonnementService abonnementService, UserService userService,
-			UserFactory userFactory) {
+	public AbonnementBusinessImpl(AbonnementService abonnementService, UserService userService, UserFactory userFactory, HistoriqueService historiqueService) {
 		this.abonnementService = abonnementService;
 		this.userService = userService;
 		this.userFactory = userFactory;
+		this.historiqueService = historiqueService;
 	}
 
 	@Override
@@ -63,7 +66,11 @@ public class AbonnementBusinessImpl implements AbonnementBusiness {
 	}
 
 	@Override
-	public Abonnement follow(Integer follower, Integer follows) {
-		return abonnementService.follow(follower, follows);
+	public Abonnement follow(Integer follower, Integer follows) throws NoResultException {
+		Abonnement abonnement = abonnementService.follow(follower, follows);
+		User currentUser = userService.getCurrentUser();
+		//TODO: Historique
+		//historiqueService.createHistorique(currentUser.getId(),currentUser.getPseudo(),
+		return abonnement;
 	}
 }

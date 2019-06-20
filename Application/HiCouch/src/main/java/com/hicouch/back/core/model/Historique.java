@@ -1,6 +1,9 @@
 package com.hicouch.back.core.model;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -15,19 +18,28 @@ public class Historique {
     @Column(name = "idUser")
     private Integer idUser;
 
-    @Column(name = "pseudo")
-    private String pseudo;
+    @Column(name = "idFollow")
+    private Integer idFollow;
 
-    @Column(name = "evenements")
-    private List<String> evenements;
+    @Column(name = "idAsso")
+    private Integer idAsso;
 
-    public Historique() {
-    }
+    @Column(name = "type")
+    private String type;
 
-    public Historique(Integer idUser, String pseudo, List<String> evenements) {
+    @CreatedDate
+    @Column(name="createdat")
+    private LocalDateTime createdAt;
+
+
+    public Historique() {}
+
+    public Historique(Integer idUser, Integer idFollow, Integer idAsso, String type, LocalDateTime createdAt) {
         this.idUser = idUser;
-        this.pseudo = pseudo;
-        this.evenements = evenements;
+        this.idFollow = idFollow;
+        this.idAsso = idAsso;
+        this.type = type;
+        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -46,20 +58,36 @@ public class Historique {
         this.idUser = idUser;
     }
 
-    public String getPseudo() {
-        return pseudo;
+    public Integer getIdFollow() {
+        return idFollow;
     }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
+    public void setIdFollow(Integer idFollow) {
+        this.idFollow = idFollow;
     }
 
-    public List<String> getEvenements() {
-        return evenements;
+    public Integer getIdAsso() {
+        return idAsso;
     }
 
-    public void setEvenements(List<String> evenements) {
-        this.evenements = evenements;
+    public void setIdAsso(Integer idAsso) {
+        this.idAsso = idAsso;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
@@ -67,8 +95,10 @@ public class Historique {
         return "Historique{" +
                 "id=" + id +
                 ", idUser=" + idUser +
-                ", pseudo='" + pseudo + '\'' +
-                ", evenements=" + evenements +
+                ", idFollow=" + idFollow +
+                ", idAsso=" + idAsso +
+                ", type='" + type + '\'' +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }
