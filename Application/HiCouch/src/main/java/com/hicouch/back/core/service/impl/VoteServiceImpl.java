@@ -56,7 +56,7 @@ public class VoteServiceImpl implements VoteService {
 
 	@Override
 	public List<Vote> getVotesByUser(int userId) {
-		return voteRepository.findAllByIdUser(userId);
+		return voteRepository.findAllByIdUserAndIdCommentaireNotNull(userId);
 	}
 
 	@Override
@@ -68,4 +68,14 @@ public class VoteServiceImpl implements VoteService {
 	public Vote getVoteByUserOnAsso(int userId, int pairId) throws NoResultException {
 		return voteRepository.findOneByIdUserAndIdPair(userId, pairId).orElseThrow(NoResultException::new);
 	}
+
+    @Override
+    public List<Vote> getVotesByCommentId(int commentId) {
+        return voteRepository.findAllByIdCommentaire(commentId);
+    }
+
+    @Override
+    public List<Vote> getCommentVotesByUser(int userId) {
+        return voteRepository.findAllByIdUserAndIdCommentaireNotNull(userId);
+    }
 }

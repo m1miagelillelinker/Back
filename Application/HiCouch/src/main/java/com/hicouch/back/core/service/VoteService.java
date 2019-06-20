@@ -16,4 +16,8 @@ public interface VoteService {
 	List<Vote> getVotesByAssociation(int associationId);
 	
 	Vote getVoteByUserOnAsso(int userId, int associationId) throws NoResultException;
+
+    List <Vote> getVotesByCommentId(int commentId);
+
+    List<Vote> getCommentVotesByUser(int userId);
 }
