@@ -76,4 +76,5 @@ public class AssociationServiceImpl implements AssociationService {
 	public Association saveAssociation(Association association) {
 		return associationRepository.save(association);
 	}
+
 }

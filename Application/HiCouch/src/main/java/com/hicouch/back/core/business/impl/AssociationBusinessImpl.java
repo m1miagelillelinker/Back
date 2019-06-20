@@ -1,10 +1,13 @@
 package com.hicouch.back.core.business.impl;
 
 import com.hicouch.back.core.business.AssociationBusiness;
+import com.hicouch.back.core.enumeration.HistoriqueTypeEnum;
 import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.model.Association;
+import com.hicouch.back.core.model.Historique;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.AssociationService;
+import com.hicouch.back.core.service.HistoriqueService;
 import com.hicouch.back.core.service.ProduitService;
 import com.hicouch.back.core.service.UserService;
 import org.hibernate.exception.ConstraintViolationException;
@@ -22,13 +25,15 @@ public class AssociationBusinessImpl implements AssociationBusiness {
     private final ProduitService produitService;
     private final UserService userService;
 	private final EntityManager entityManager;
+	private final HistoriqueService historiqueService;
 
     @Autowired
-    public AssociationBusinessImpl(AssociationService associationService, ProduitService produitService, UserService userService, EntityManager entityManager) {
+    public AssociationBusinessImpl(AssociationService associationService, ProduitService produitService, UserService userService, EntityManager entityManager,HistoriqueService historiqueService) {
         this.associationService = associationService;
         this.produitService = produitService;
         this.userService = userService;
         this.entityManager = entityManager;
+        this.historiqueService = historiqueService;
     }
     
     @Override
@@ -58,6 +63,8 @@ public class AssociationBusinessImpl implements AssociationBusiness {
 			e.printStackTrace();
 			throw new BusinessException();
 		}
+
+		historiqueService.createHistorique(asso.getIdPair(),userService.getCurrentUser().getId(), HistoriqueTypeEnum.ASSOCIATION);
 		return asso;
     }
 
