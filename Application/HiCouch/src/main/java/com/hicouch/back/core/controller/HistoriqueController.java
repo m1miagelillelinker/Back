@@ -39,16 +39,4 @@ public class HistoriqueController {
         return null;
     }
 
-    @CrossOrigin
-    @PostMapping("/addEvent")
-    @ResponseBody
-    public void addEventToMyHistorique(@RequestParam("Event") String event, @RequestParam("id") int id){
-       historiqueService.addToHistorique(event,id);
-    }
-
-    @CrossOrigin
-    @PostMapping("/createHistory")
-    public Historique createHistory(@RequestParam("id") String id) throws NoResultException {
-        return historiqueService.createHistorique(id,new ArrayList<>(),userService.getCurrentUser().getPseudo());
-    }
 }

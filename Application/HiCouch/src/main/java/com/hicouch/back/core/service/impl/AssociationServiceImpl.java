@@ -80,8 +80,4 @@ public class AssociationServiceImpl implements AssociationService {
 		return associationRepository.save(association);
 	}
 
-    @Override
-    public List<Association> getAllUserAssociation(Integer id) {
-        return associationRepository.findAllBycreator(Integer.toBinaryString(id));
-    }
 }

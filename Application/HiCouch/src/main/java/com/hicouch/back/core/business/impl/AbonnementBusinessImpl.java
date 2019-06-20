@@ -61,4 +61,9 @@ public class AbonnementBusinessImpl implements AbonnementBusiness {
 			.filter((u) -> u != null)
 			.collect(Collectors.toList());
 	}
+
+	@Override
+	public Abonnement follow(Integer follower, Integer follows) {
+		return abonnementService.follow(follower, follows);
+	}
 }
