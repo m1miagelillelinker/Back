@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserDTO {
 
+    private Integer iduser;
     private String firstName;
     private String lastName;
     private String email;
@@ -21,7 +22,7 @@ public class UserDTO {
     private List<Badge> badges;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public UserDTO(String firstName, String lastName, String email, Integer typeUser, String pseudo, Integer score, Integer idstatus, String picture, LocalDateTime lastlogin, List<Badge> badges) {
+    public UserDTO(String firstName, String lastName, String email, Integer typeUser, String pseudo, Integer score, Integer idstatus, String picture, LocalDateTime lastlogin, List<Badge> badges, Integer iduser) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -32,6 +33,7 @@ public class UserDTO {
         this.picture = picture;
         this.lastlogin = lastlogin;
         this.badges = badges;
+        this.iduser = iduser;
     }
 
     /**
@@ -117,4 +119,11 @@ public class UserDTO {
 
     public void setBadges(List<Badge> badges) { this.badges = badges;  }
 
+    public Integer getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(Integer iduser) {
+        this.iduser = iduser;
+    }
 }
