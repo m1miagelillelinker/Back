@@ -4,6 +4,7 @@ import com.hicouch.back.core.business.ProduitBusiness;
 import com.hicouch.back.core.dto.AssociationDTO;
 import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.exception.BusinessException;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Association;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.model.Vote;
