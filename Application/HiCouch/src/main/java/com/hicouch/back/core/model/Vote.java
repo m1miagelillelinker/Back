@@ -20,7 +20,7 @@ public class Vote {
     @Column(name="idpair")
     int idPair;
 
-    @Column(name = "idCommentaire")
+    @Column(name = "idcommentaire")
     int idCommentaire;
 
     @Column(name="vote")

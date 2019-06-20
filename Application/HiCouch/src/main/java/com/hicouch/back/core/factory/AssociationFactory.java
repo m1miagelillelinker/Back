@@ -45,9 +45,13 @@ public class AssociationFactory {
 			ProductDTO productDTOB = produitBusiness.getCompleteProduct(association.getIdproduitB(), association.getIdfournB());
 			associationDTO.setProductA(productDTOA);
 			associationDTO.setProductB(productDTOB);
-			
-			Vote vote = voteService.getVoteByUserOnAsso(u.getId(), association.getId());
-			associationDTO.setVote(vote);
+
+			try{
+				Vote vote = voteService.getVoteByUserOnAsso(u.getId(), association.getId());
+				associationDTO.setVote(vote);
+			} catch (NoResultException e){
+				logger.info("No vote: " + e.getMessage());
+			}
 		} catch (BusinessException e) {
 			logger.warn("Erreur lors de la construction de l'association " + association.getId()
 				+ " avec l'utilisateur " + (u != null ? u.getId() : "Anonyme"));
