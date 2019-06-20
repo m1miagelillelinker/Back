@@ -24,5 +24,5 @@ public interface AssociationService {
     
     Association saveAssociation(Association association);
 
-    Association getAssociationByIdPairr(int idPair);
+    List<Association> getAssociationByIdPaire(int idPair);
 }
