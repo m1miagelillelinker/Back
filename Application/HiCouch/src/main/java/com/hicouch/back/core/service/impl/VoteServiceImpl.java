@@ -25,35 +25,32 @@ public class VoteServiceImpl implements VoteService {
         this.voteRepository = voteRepository;
     }
 
-    @Override
-    public Vote upsertVote(Vote vote) throws NoResultException {
-        if(vote.getId() != null ){
-            Optional<Vote> voteOpt= voteRepository.findById(vote.getId());
-            if(voteOpt.isPresent()){
-                if(vote.getVote() == 0){
-                    voteRepository.delete(vote);
-                    return vote;
-                }else{
-                    Vote voteOld = voteOpt.get();
-                    voteOld.setVote(vote.getVote());
-                    vote = voteOld;
-                }
-            }else{
-                throw new NoResultException();
-            }
-        }else{
-            vote.setCreatedAt(LocalDateTime.now());
-        }
+	@Override
+	public Vote upsertVote(Vote vote) throws NoResultException {
+		if (vote.getId() != null) {
+			// update
+			Vote voteOld = voteRepository.findById(vote.getId()).orElseThrow(NoResultException::new);
+			if (vote.getVote() == 0) {
+				voteRepository.delete(vote);
+				return vote;
+			} else {
+				voteOld.setVote(vote.getVote());
+				vote = voteOld;
+			}
+		} else {
+			//create
+			vote.setCreatedAt(LocalDateTime.now());
+			if (vote.getIdPair() != 0) {
+				vote.setType(VoteTypeEnum.ASSOCIATION);
+			} else {
+				vote.setType(VoteTypeEnum.COMMENTAIRE);
+			}
+		}
 
-        if( vote.getIdPair() != 0){
-            vote.setType(VoteTypeEnum.ASSOCIATION);
-        }else{
-            vote.setType(VoteTypeEnum.COMMENTAIRE);
-        }
-        vote.setUpdatedAt(LocalDateTime.now());
-        voteRepository.save(vote);
-        return vote;
-    }
+		vote.setUpdatedAt(LocalDateTime.now());
+		voteRepository.save(vote);
+		return vote;
+	}
 
 	@Override
 	public void deleteVote(Vote vote) {
