@@ -21,7 +21,7 @@ public class AssociationFactory {
 	private VoteService voteService;
 	private UserService userService;
 	private ProduitBusiness produitBusiness;
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(AssociationFactory.class);
 	
 	@Autowired
 	public AssociationFactory(VoteService voteService, UserService userService, ProduitBusiness produitBusiness) {

@@ -67,6 +67,11 @@ public class VoteServiceImpl implements VoteService {
 	public Vote getVoteByUserOnAsso(int userId, int pairId) throws NoResultException {
 		return voteRepository.findOneByIdUserAndIdPair(userId, pairId).orElseThrow(NoResultException::new);
 	}
+	
+	@Override
+	public Vote getVoteByUserOnComment(int userId, int commentId) throws NoResultException {
+		return voteRepository.findOneByIdUserAndIdCommentaire(userId, commentId).orElseThrow(NoResultException::new);
+	}
 
     @Override
     public List<Vote> getVotesByCommentId(int commentId) {
