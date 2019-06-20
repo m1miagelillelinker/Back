@@ -77,4 +77,8 @@ public class AssociationServiceImpl implements AssociationService {
 		return associationRepository.save(association);
 	}
 
+    @Override
+    public List<Association> getAssociationByIdPaire(int idPair) {
+        return associationRepository.findAllByIdPair(idPair);
+    }
 }

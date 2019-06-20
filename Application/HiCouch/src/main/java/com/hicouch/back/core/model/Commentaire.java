@@ -19,7 +19,7 @@ public class Commentaire {
     @Column(name="commentaire")
     private String commentaire;
 
-    @Column(name="Note")
+    @Column(name="note")
     private Integer note = 0;
 
     @Column(name="iduser")
