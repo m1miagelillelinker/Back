@@ -32,12 +32,4 @@ public class Application extends SpringBootServletInitializer {
             logger.info("HiCOUCH is READY !!!!!!!");
         };
     }
-
-    @Bean
-    CharacterEncodingFilter characterEncodingFilter() {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding("UTF-8");
-        filter.setForceEncoding(true);
-        return filter;
-    }
 }

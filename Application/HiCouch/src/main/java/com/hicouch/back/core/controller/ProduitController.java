@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/product" , produces = MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8" )
+@RequestMapping(value = "/product" , produces = MediaType.APPLICATION_JSON_VALUE )
 public class ProduitController {
 
     private final ProduitService produitService;
