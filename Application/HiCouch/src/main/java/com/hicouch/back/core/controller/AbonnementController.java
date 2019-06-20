@@ -1,6 +1,7 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.AbonnementBusiness;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Abonnement;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.AbonnementService;
@@ -66,7 +67,7 @@ public class AbonnementController {
     @CrossOrigin
     @PutMapping("/follow")
     @ResponseBody
-    public Abonnement follow(@RequestParam("follower") Integer follower, @RequestParam("follows") Integer follows){
+    public Abonnement follow(@RequestParam("follower") Integer follower, @RequestParam("follows") Integer follows) throws NoResultException {
         return abonnementBusiness.follow(follower,follows);
     }
 

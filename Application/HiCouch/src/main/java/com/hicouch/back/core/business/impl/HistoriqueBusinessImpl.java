@@ -35,7 +35,7 @@ public class HistoriqueBusinessImpl implements HistoriqueBusiness {
 
 
     @Override
-    public List<Historique> getHistoriqueByIdUser(Integer id) {
+    public List<HistoriqueDTO> getHistoriqueByIdUser(Integer id) {
         //TODO: historique
         return new ArrayList<>();
     }

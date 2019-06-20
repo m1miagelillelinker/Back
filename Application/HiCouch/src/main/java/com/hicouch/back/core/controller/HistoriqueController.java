@@ -34,17 +34,10 @@ public class HistoriqueController {
     @CrossOrigin
     @GetMapping("/{id}")
     @ResponseBody
-    public List<Historique> getHistoriqueById(@PathVariable("id") Integer id){
+    public List<HistoriqueDTO> getHistoriqueById(@PathVariable("id") Integer id){
         if( id != null ){
             return historiqueBusiness.getHistoriqueByIdUser(id);
         }
         return null;
-    }
-
-    @CrossOrigin
-    @GetMapping("/getFollowActivities")
-    @ResponseBody
-    public List<HistoriqueDTO> getFollowActivities(){
-            return historiqueBusiness.getFollowActivites();
     }
 }

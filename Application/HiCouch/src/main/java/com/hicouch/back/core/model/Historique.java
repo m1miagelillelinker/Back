@@ -1,5 +1,6 @@
 package com.hicouch.back.core.model;
 
+import com.hicouch.back.core.enumeration.HistoriqueTypeEnum;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -34,12 +35,12 @@ public class Historique {
 
     public Historique() {}
 
-    public Historique(Integer idUser, Integer idFollow, Integer idAsso, String type, LocalDateTime createdAt) {
-        this.idUser = idUser;
-        this.idFollow = idFollow;
-        this.idAsso = idAsso;
+    public Historique(Integer id, Integer  idUser, String type, LocalDateTime createdAt) {
         this.type = type;
+        this.idUser = idUser;
         this.createdAt = createdAt;
+        this.idFollow = HistoriqueTypeEnum.ABONNEMENT.equals(type)  ? id : null;
+        this.idAsso = HistoriqueTypeEnum.ASSOCIATION.equals(type)|| HistoriqueTypeEnum.COMMENTAIRE.equals(type) ? id : null;
     }
 
     public Integer getId() {

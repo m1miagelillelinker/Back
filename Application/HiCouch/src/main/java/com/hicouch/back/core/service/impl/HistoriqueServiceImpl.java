@@ -18,11 +18,9 @@ public class HistoriqueServiceImpl implements HistoriqueService {
         this.historiqueRepository = historiqueRepository;
     }
 
+
     @Override
-    public Historique createHistorique(int id, String pseudo, String evenement) {
-        //TODO: historique
-        Historique historique = new Historique();
-        historiqueRepository.save(historique);
-        return historique;
+    public Historique createHistorique(int id, String type) {
+        return null;
     }
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface HistoriqueService {
 
-    Historique createHistorique(int idUser,String pseudo,String evenement);
+    Historique createHistorique(int id,String type);
 }
