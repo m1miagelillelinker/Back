@@ -51,6 +51,7 @@ public class VoteServiceImpl implements VoteService {
             vote.setType(VoteTypeEnum.COMMENTAIRE);
         }
         vote.setUpdatedAt(LocalDateTime.now());
+        voteRepository.save(vote);
         return vote;
     }
 
