@@ -40,4 +40,5 @@ public class HistoriqueController {
         }
         return null;
     }
+
 }
