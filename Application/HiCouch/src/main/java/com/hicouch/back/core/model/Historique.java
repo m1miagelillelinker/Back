@@ -17,13 +17,13 @@ public class Historique {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "idUser")
+    @Column(name = "iduser")
     private Integer idUser;
 
-    @Column(name = "idFollow")
+    @Column(name = "idfollow")
     private Integer idFollow;
 
-    @Column(name = "idAsso")
+    @Column(name = "idasso")
     private Integer idAsso;
 
     @Column(name = "type")

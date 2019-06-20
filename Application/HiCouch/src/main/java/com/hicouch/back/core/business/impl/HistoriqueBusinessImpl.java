@@ -23,32 +23,33 @@ public class HistoriqueBusinessImpl implements HistoriqueBusiness {
     private HistoriqueFactory historiqueFactory;
 
     @Autowired
-    public HistoriqueBusinessImpl(HistoriqueService historiqueService, UserService userService, BadgeService badgeService,AbonnementService abonnementService){
+    public HistoriqueBusinessImpl(HistoriqueService historiqueService, UserService userService, BadgeService badgeService,AbonnementService abonnementService,HistoriqueFactory historiqueFactory){
         this.historiqueService = historiqueService;
         this.userService = userService;
         this.badgeService = badgeService;
         this.abonnementService = abonnementService;
+        this.historiqueFactory = historiqueFactory;
     }
 
     @Override
     public List<HistoriqueDTO> getHistoriqueByIdUser(Integer id) throws NoResultException {
         User user = userService.getCurrentUser();
 
-        if(id != 5){
+        if(id != user.getId()){
             return historiqueFactory.convertCommentaires( historiqueService.getHistoriquesByUserId(id));
         }else{
             List<Historique> historiqueList = new ArrayList<>();
-            //List<Abonnement> listabo = abonnementService.getFollowsByFollower(user.getId());
+            List<Abonnement> listabo = abonnementService.getFollowsByFollower(user.getId());
 
-            List<Abonnement> listabo = abonnementService.getFollowsByFollower(5);
-            listabo.stream()
-            .map((abonnement -> abonnement.getFollows())).map(historiqueService::getHistoriquesByUserId).map(historiqueList::addAll).collect(Collectors.toList());
+            if(listabo != null && !listabo.isEmpty()){
 
+                listabo.stream()
+                        .map((abonnement -> abonnement.getFollows())).map(historiqueService::getHistoriquesByUserId).map(historiqueList::addAll).collect(Collectors.toList());
+                historiqueList.sort((o1, o2) -> o2.getId() - o1.getId());
+                return historiqueFactory.convertCommentaires(historiqueList);
 
-            historiqueList.sort((o1, o2) -> o1.getId() - o2.getId());
-
-            historiqueList.forEach(h -> System.out.println(h));
-            return historiqueFactory.convertCommentaires(historiqueList);
+            }
         }
+        return null;
     }
 }

@@ -17,7 +17,9 @@ import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.model.Historique;
 import com.hicouch.back.core.service.AssociationService;
 import com.hicouch.back.core.service.UserService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class HistoriqueFactory {
 	
 	private UserService userService;
