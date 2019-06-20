@@ -1,8 +1,8 @@
 package com.hicouch.back.core.service;
 
-import java.util.List;
-
 import com.hicouch.back.core.model.TagProduit;
+
+import java.util.List;
 
 public interface TagProduitService {
 

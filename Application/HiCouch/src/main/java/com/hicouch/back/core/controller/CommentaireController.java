@@ -7,17 +7,15 @@ import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.factory.CommentaireFactory;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.service.CommentaireService;
-
-import java.security.InvalidParameterException;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.InvalidParameterException;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/commentaire" , produces = MediaType.APPLICATION_JSON_VALUE )

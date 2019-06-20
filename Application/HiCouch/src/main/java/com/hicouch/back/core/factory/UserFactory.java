@@ -2,13 +2,8 @@ package com.hicouch.back.core.factory;
 
 import com.hicouch.back.core.business.BadgeBusiness;
 import com.hicouch.back.core.dto.UserDTO;
-import com.hicouch.back.core.dto.UserDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
-import com.hicouch.back.core.repository.BadgeRepository;
-import com.hicouch.back.core.service.AssociationService;
-import com.hicouch.back.core.service.BadgeService;
-import com.hicouch.back.core.service.UserService;
 import com.hicouch.back.core.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

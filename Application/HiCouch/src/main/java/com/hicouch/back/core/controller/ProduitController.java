@@ -48,7 +48,7 @@ public class ProduitController {
      * @throws Exception
      */
     @CrossOrigin
-    @GetMapping("/getFilmsByTitleFromReferentiel")
+    @RequestMapping("/getFilmsByTitleFromReferentiel")
     @ResponseBody
     public List<ProductDTO> getFilmsByTitleFromReferentiel(@RequestParam("research") String research) throws Exception {
         if(research == null || research.equals("")){
@@ -80,9 +80,9 @@ public class ProduitController {
      * @throws Exception
      */
     @CrossOrigin
-    @GetMapping("/getBooksFromReferentiel")
+    @RequestMapping("/getBooksFromReferentiel")
     @ResponseBody
-    public List<ProductDTO> getBooksFromReferentiel(@RequestParam("keyword")String keyword) throws Exception{
+    public List<ProductDTO> getBooksByTitleFromReferentiel(@RequestParam("keyword")String keyword) throws Exception{
         if(keyword == null || keyword.equals("")){
             throw new Exception();
         }

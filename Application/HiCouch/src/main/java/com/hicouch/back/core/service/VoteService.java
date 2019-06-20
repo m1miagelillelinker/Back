@@ -1,9 +1,9 @@
 package com.hicouch.back.core.service;
 
-import java.util.List;
-
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Vote;
+
+import java.util.List;
 
 public interface VoteService {
 	

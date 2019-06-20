@@ -1,9 +1,9 @@
 package com.hicouch.back.core.service;
 
-import java.util.Optional;
-
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
+
+import java.util.Optional;
 
 public interface UserService {
     User getUserById(Integer userId) throws NoResultException;

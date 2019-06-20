@@ -3,10 +3,8 @@ package com.hicouch.back.core.business.impl;
 import com.hicouch.back.core.business.ProduitBusiness;
 import com.hicouch.back.core.business.TagBusiness;
 import com.hicouch.back.core.dto.ProductDTO;
-import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.service.ProduitService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

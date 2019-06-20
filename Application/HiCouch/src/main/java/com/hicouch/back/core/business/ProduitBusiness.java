@@ -1,7 +1,6 @@
 package com.hicouch.back.core.business;
 
 import com.hicouch.back.core.dto.ProductDTO;
-import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import com.hicouch.back.core.exception.BusinessException;
 
 import java.util.List;

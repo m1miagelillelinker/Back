@@ -1,8 +1,5 @@
 package com.hicouch.back.core.factory;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.hicouch.back.core.dto.SignalementDTO;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
@@ -10,6 +7,8 @@ import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.CommentaireService;
 import com.hicouch.back.core.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class SignalementFactory {

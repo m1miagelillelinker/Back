@@ -2,14 +2,13 @@ package com.hicouch.back.core.util;
 
 import com.hicouch.back.core.dto.ProductDTO;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public abstract class HttpRequest {
     HttpURLConnection connection;

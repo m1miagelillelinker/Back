@@ -1,11 +1,10 @@
 package com.hicouch.back.core.model;
 
-import javax.persistence.*;
-
 import com.hicouch.back.core.enumeration.SignalementTypeEnum;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity

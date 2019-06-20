@@ -1,25 +1,22 @@
 package com.hicouch.back.core.service.impl;
 
-import com.hicouch.back.core.dto.UserDTO;
-import com.hicouch.back.core.repository.UserRepository;
 import com.hicouch.back.core.enumeration.TypeUser;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
+import com.hicouch.back.core.repository.UserRepository;
 import com.hicouch.back.core.service.UserService;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Optional;
-
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {

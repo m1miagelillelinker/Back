@@ -1,17 +1,16 @@
 package com.hicouch.back.core.service.impl;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
+import com.hicouch.back.core.model.TagProduit;
+import com.hicouch.back.core.repository.TagProduitRepository;
+import com.hicouch.back.core.service.TagProduitService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hicouch.back.core.model.TagProduit;
-import com.hicouch.back.core.repository.TagProduitRepository;
-import com.hicouch.back.core.service.TagProduitService;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TagProduitServiceImpl implements TagProduitService {

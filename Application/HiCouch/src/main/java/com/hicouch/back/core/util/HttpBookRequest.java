@@ -1,6 +1,5 @@
 package com.hicouch.back.core.util;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hicouch.back.core.dto.GoogleBooksDTO;
 import com.hicouch.back.core.dto.ProductDTO;
 import org.json.JSONArray;
