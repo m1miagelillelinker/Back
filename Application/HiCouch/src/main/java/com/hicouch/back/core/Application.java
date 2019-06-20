@@ -1,16 +1,15 @@
 package com.hicouch.back.core;
 
-import java.util.Arrays;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
@@ -32,5 +31,13 @@ public class Application extends SpringBootServletInitializer {
         return args -> {
             logger.info("HiCOUCH is READY !!!!!!!");
         };
+    }
+
+    @Bean
+    CharacterEncodingFilter characterEncodingFilter() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        return filter;
     }
 }

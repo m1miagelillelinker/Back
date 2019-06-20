@@ -6,4 +6,18 @@
 
   <display-name>HiCouch Spring App</display-name>
 
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>com.hicouch.back.core.util.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<servlet-name>dispatcher</servlet-name>
+	</filter-mapping>
+
 </web-app>
