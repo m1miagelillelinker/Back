@@ -34,7 +34,7 @@ public class HistoriqueController {
     @CrossOrigin
     @GetMapping("/{id}")
     @ResponseBody
-    public List<HistoriqueDTO> getHistoriqueById(@PathVariable("id") Integer id){
+    public List<HistoriqueDTO> getHistoriqueById(@PathVariable("id") Integer id) throws NoResultException {
         if( id != null ){
             return historiqueBusiness.getHistoriqueByIdUser(id);
         }

@@ -24,4 +24,16 @@ public class HistoriqueServiceImpl implements HistoriqueService {
         historiqueRepository.save(historique);
         return historique;
     }
+
+    @Override
+    public List<Historique> getHistoriquesByUserId(int userId) {
+        return historiqueRepository.findAllByIdUser(userId);
+    }
+
+    @Override
+    public List<Historique> getHistoriquesByUserIdAndType(int userId, String type){
+        return historiqueRepository.findAllByIdUserAndType(userId,type);
+    }
+
+
 }

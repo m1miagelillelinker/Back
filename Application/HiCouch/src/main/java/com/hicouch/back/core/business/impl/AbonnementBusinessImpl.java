@@ -2,6 +2,7 @@ package com.hicouch.back.core.business.impl;
 
 import com.hicouch.back.core.business.AbonnementBusiness;
 import com.hicouch.back.core.dto.UserDTO;
+import com.hicouch.back.core.enumeration.HistoriqueTypeEnum;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.factory.UserFactory;
 import com.hicouch.back.core.model.Abonnement;
@@ -69,8 +70,7 @@ public class AbonnementBusinessImpl implements AbonnementBusiness {
 	public Abonnement follow(Integer follower, Integer follows) throws NoResultException {
 		Abonnement abonnement = abonnementService.follow(follower, follows);
 		User currentUser = userService.getCurrentUser();
-		//TODO: Historique
-		//historiqueService.createHistorique(currentUser.getId(),currentUser.getPseudo(),
+		historiqueService.createHistorique(abonnement.getIdabonnement(),currentUser.getId(), HistoriqueTypeEnum.ABONNEMENT);
 		return abonnement;
 	}
 }

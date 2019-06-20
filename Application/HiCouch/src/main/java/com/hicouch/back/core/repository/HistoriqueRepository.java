@@ -11,4 +11,6 @@ public interface HistoriqueRepository extends CrudRepository<Historique,Integer>
 
     List<Historique> findAllByIdUser(Integer id);
 
+    List<Historique> findAllByIdUserAndType(int idUser,String type);
+
 }

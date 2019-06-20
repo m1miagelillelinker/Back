@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 @Table(name="historique")
 public class Historique {
 
