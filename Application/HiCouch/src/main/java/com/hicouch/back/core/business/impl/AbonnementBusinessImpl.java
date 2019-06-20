@@ -69,7 +69,7 @@ public class AbonnementBusinessImpl implements AbonnementBusiness {
 	public Abonnement follow(Integer follower, Integer follows) throws NoResultException {
 		Abonnement abonnement = abonnementService.follow(follower, follows);
 		User currentUser = userService.getCurrentUser();
-		historiqueService.createHistorique(abonnement.getIdabonnement(),currentUser.getId(), HistoriqueTypeEnum.ABONNEMENT);
+		historiqueService.createHistorique(abonnement.getFollows(),currentUser.getId(), HistoriqueTypeEnum.ABONNEMENT);
 		return abonnement;
 	}
 }
