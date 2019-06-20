@@ -25,4 +25,5 @@ public interface AssociationRepository extends CrudRepository<Association,Intege
 
     int countByIdUser(int id);
 
+    Association findByIdPair(int idPair);
 }

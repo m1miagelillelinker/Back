@@ -16,10 +16,10 @@ public class Commentaire {
     @Column(name="id")
     private Integer id;
 
-    @Column(name="Commentaire")
+    @Column(name="commentaire")
     private String commentaire;
 
-    @Column(name="Note")
+    @Column(name="note")
     private Integer note = 0;
 
     @Column(name="iduser")

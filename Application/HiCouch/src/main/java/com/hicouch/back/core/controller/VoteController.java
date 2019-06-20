@@ -1,6 +1,7 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.VoteBusiness;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Vote;
 import com.hicouch.back.core.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class VoteController{
     @CrossOrigin
     @PutMapping("/vote")
     @ResponseBody
-    public Vote upsertVote(@RequestBody Vote vote){
-       return voteService.upsertVote(vote);
+    public Vote upsertVote(@RequestBody Vote vote) throws NoResultException {
+        return voteBusiness.upsertVote(vote);
     }
     
     @CrossOrigin

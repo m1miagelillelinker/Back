@@ -23,4 +23,6 @@ public interface AssociationService {
     Optional<Association> getAssociationByProduitAAndB(String idProduitA, String idProduitB);
     
     Association saveAssociation(Association association);
+
+    Association getAssociationByIdPairr(int idPair);
 }
