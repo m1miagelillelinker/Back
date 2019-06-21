@@ -66,10 +66,10 @@ public class UserServiceImpl implements UserService {
 	
 	private User parseUser(JSONObject object) {
 		User u = new User();
-		//u.setEmail(object.getString("email"));
+		u.setEmail(object.getString("email"));
 		u.setIdAuth0(object.getString("user_id"));
 		u.setPseudo(object.getString("nickname"));
-		//u.setPicture(object.getString("picture"));
+		u.setPicture(object.getString("picture"));
 		u.setTypeUser(TypeUser.USER);
 		u.setCreatedAt(LocalDateTime.now());
 		u.setUpdatedAt(LocalDateTime.now());
@@ -111,10 +111,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user) throws NoResultException {
-		// TODO Auto-generated method stub
 		User u = userRepository.findById(user.getId()).orElseThrow(NoResultException::new);
-		//u.setEmail(user.getEmail());
-		//u.setPicture(user.getPicture());
 		u.setPseudo(user.getPseudo());
 		u.setUpdatedAt(LocalDateTime.now());
 		return userRepository.save(u);
