@@ -57,8 +57,10 @@ public class AssociationBusinessImpl implements AssociationBusiness {
 			associationService.saveAssociation(assoMirror);
 		} catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
+			throw new BusinessException();
 		} catch (ConstraintViolationException e) {
 			e.printStackTrace();
+			throw new BusinessException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new BusinessException();

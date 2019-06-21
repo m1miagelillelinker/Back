@@ -1,5 +1,6 @@
 package com.hicouch.back.core.model;
 
+import com.hicouch.back.core.enumeration.StatusEnum;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -54,6 +55,9 @@ public class Association {
     @Column(name="iduser")
     private Integer idUser;
 
+    @Column(name = "status")
+    private Integer status;
+
     public Association(){}
 
     public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, int idPair, LocalDateTime createdat, LocalDateTime updatedat) {
@@ -73,6 +77,7 @@ public class Association {
         this.idproduitB = idproduitB;
         this.idfournB = idfournB;
         this.idPair = idPair;
+        this.status = StatusEnum.OK;
         this.createdat = LocalDateTime.now();
         this.updatedat = LocalDateTime.now();
         this.creator = iduser.toString();
@@ -117,7 +122,11 @@ public class Association {
         this.updatedat = updatedat;
     }
 
-	/**
+    public Integer getStatus() { return status;  }
+
+    public void setStatus(Integer status) { this.status = status; }
+
+    /**
 	 * @return the idPair
 	 */
 	public Integer getIdPair() {

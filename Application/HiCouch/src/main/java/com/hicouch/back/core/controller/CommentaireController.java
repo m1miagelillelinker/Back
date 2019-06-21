@@ -70,7 +70,7 @@ public class CommentaireController {
     @CrossOrigin
     @PutMapping("/new")
     @ResponseBody
-    public Commentaire addCommentaire(@RequestBody Commentaire comm) throws BusinessException {
+    public Commentaire addCommentaire(@RequestBody Commentaire comm) throws InvalidParameterException, BusinessException {
         logger.trace("addCommentaire:"+comm);
         if( comm == null ){
             throw new InvalidParameterException();

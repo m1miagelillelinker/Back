@@ -57,6 +57,7 @@ public class CommentaireServiceImpl implements CommentaireService {
     @Override
     // TODO : ajouter un vote de l'utilisateur
     public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException {
+        logger.trace("service.addCommentaire: "+commentaire.toString());
         try{
             if(commentaire.getId() != null) {
                 throw new DataProvidedException("l'id ne doit pas etre fournit pour l'ajout");
@@ -94,6 +95,7 @@ public class CommentaireServiceImpl implements CommentaireService {
 
     @Override
     public Commentaire upsertCommentaire(Commentaire commentaire) throws NoResultException {
+        logger.trace(commentaire.toString());
         if(commentaire.getId() != null) {
             Commentaire oldCommentaire = findById(commentaire.getId());
             oldCommentaire.setCommentaire(commentaire.getCommentaire());

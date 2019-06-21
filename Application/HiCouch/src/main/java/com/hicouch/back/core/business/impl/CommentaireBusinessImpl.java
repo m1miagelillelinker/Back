@@ -32,9 +32,11 @@ public class CommentaireBusinessImpl implements CommentaireBusiness {
 
     //TODO Faire en sorte que le SPAM ne soit pas possible (limiter le nombre de commentaires par minute par exemple
     public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException {
+
         if ( ! associationService.checkIfIdPairExists(commentaire.getIdPair())){
-            throw new BusinessException();
+            throw new BusinessException("ID PAIR doesn't exists");
         }
+        commentaire.setIdUser(userService.getCurrentUser().getId());
 
         Commentaire commentaire1 = commentaireService.addCommentaire(commentaire);
         historiqueService.createHistorique(commentaire1.getIdPair(),userService.getCurrentUser().getId(), HistoriqueTypeEnum.COMMENTAIRE);
