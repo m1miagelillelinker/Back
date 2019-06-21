@@ -38,7 +38,7 @@ public class UserFactory {
         userDTO.setPicture(user.getPicture());
         userDTO.setLastlogin(user.getLastlogin());
         userDTO.setBadges(badgeBusiness.getUserBadges(user.getId()));
-        userDTO.setIduser(user.getId());
+        userDTO.setId(user.getId());
         return userDTO;
     }
 }
