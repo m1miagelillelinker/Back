@@ -25,9 +25,14 @@ public class ProduitController {
         this.produitService = produitService;
     }
 
-
+    /**
+     * Get a film or a serie
+     * @param filmId the id of the film or serie
+     * @return a productDTO containing the film or serie
+     * @throws Exception
+     */
     @CrossOrigin
-        @GetMapping("/getFilmByIdFromReferentiel")
+    @GetMapping("/getFilmByIdFromReferentiel")
     @ResponseBody
     public ProductDTO getFilmByIdFromReferentiel(@RequestParam("filmId") String filmId) throws Exception {
         if(filmId == null || filmId.equals("")){
@@ -36,8 +41,14 @@ public class ProduitController {
         return produitBusiness.getCompleteProduct(filmId, ProductTypeEnum.MOVIE);
     }
 
+    /**
+     * Search a film or serie
+     * @param research the keywords to search
+     * @return a list of productDTO containing the films or series
+     * @throws Exception
+     */
     @CrossOrigin
-    @GetMapping("/getFilmsByTitleFromReferentiel")
+    @RequestMapping("/getFilmsByTitleFromReferentiel")
     @ResponseBody
     public List<ProductDTO> getFilmsByTitleFromReferentiel(@RequestParam("research") String research) throws Exception {
         if(research == null || research.equals("")){
@@ -46,17 +57,12 @@ public class ProduitController {
         return produitBusiness.getCompleteProducts(research,ProductTypeEnum.MOVIE);
     }
 
-
-    @CrossOrigin
-    @GetMapping("/getFilmByTitleFromReferentiel")
-    @ResponseBody
-    public ProductDTO getFilmByTitleFromReferentiel(@RequestParam("title")String title) throws Exception {
-        if(title == null || title.equals("")){
-            throw new Exception();
-        }
-        return produitService.getFilmByTitleFromReferentiel(title);
-    }
-
+    /**
+     * Get a book
+     * @param bookId the id of the book
+     * @return a productDTO containing the book
+     * @throws Exception
+     */
     @CrossOrigin
     @GetMapping("/getBookByIdFromReferentiel")
     @ResponseBody
@@ -67,16 +73,28 @@ public class ProduitController {
         return produitBusiness.getCompleteProduct(bookId, ProductTypeEnum.BOOK);
     }
 
+    /**
+     * Search a book
+     * @param keyword the keywords to search
+     * @return a list of productDTO containing the books
+     * @throws Exception
+     */
     @CrossOrigin
-    @GetMapping("/getBooksFromReferentiel")
+    @RequestMapping("/getBooksFromReferentiel")
     @ResponseBody
-    public List<ProductDTO> getBooksFromReferentiel(@RequestParam("keyword")String keyword) throws Exception{
+    public List<ProductDTO> getBooksByTitleFromReferentiel(@RequestParam("keyword")String keyword) throws Exception{
         if(keyword == null || keyword.equals("")){
             throw new Exception();
         }
         return produitBusiness.getCompleteProducts(keyword,ProductTypeEnum.BOOK);
     }
 
+    /**
+     * Get a game
+     * @param gameId the id of the game
+     * @return a productDTO containing the game
+     * @throws Exception
+     */
     @CrossOrigin
     @GetMapping("/getGameByIdFromReferentiel")
     @ResponseBody
@@ -87,6 +105,12 @@ public class ProduitController {
         return produitBusiness.getCompleteProduct(gameId, ProductTypeEnum.GAME);
     }
 
+    /**
+     * Search a game
+     * @param keyword the keywords to search
+     * @return a list of productDTO containing the games
+     * @throws Exception
+     */
     @CrossOrigin
     @GetMapping("/getGamesByReferentiel")
     @ResponseBody

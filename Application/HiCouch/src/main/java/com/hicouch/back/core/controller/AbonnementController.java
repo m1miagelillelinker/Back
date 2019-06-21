@@ -1,21 +1,16 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.AbonnementBusiness;
+import com.hicouch.back.core.exception.BusinessException;
 import com.hicouch.back.core.model.Abonnement;
+import com.hicouch.back.core.model.User;
 import com.hicouch.back.core.service.AbonnementService;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/abonnement" , produces = MediaType.APPLICATION_JSON_VALUE )
@@ -31,37 +26,50 @@ public class AbonnementController {
         this.abonnementService = abonnementService;
     }
 
+    /**
+     * Get the list of users following userId
+     * @param userId
+     * @return a list of users
+     */
     @CrossOrigin
     @GetMapping("/followers")
     @ResponseBody
-    public List<Abonnement> getFollowersById(@RequestParam("userId") int userId){
-        System.out.println(userId);
-
-        List<Abonnement> abonnements = abonnementService.getFollowersByFollows(userId);
-
-        return abonnements;
+    public List<User> getFollowersById(@RequestParam("userId") int userId){
+        return abonnementBusiness.getFollowersByFollows(userId);
     }
 
+    /**
+     * Get the list of users that userId follow
+     * @param userId
+     * @return a list of users
+     */
     @CrossOrigin
     @GetMapping("/follows")
     @ResponseBody
-    public List<Abonnement> getFollowsById(@RequestParam("userId") int userId){
-        System.out.println(userId);
-
-        List<Abonnement> abonnements = abonnementService.getFollowsByFollower(userId);
-
-        return abonnements;
+    public List<User> getFollowsById(@RequestParam("userId") int userId){
+        return abonnementBusiness.getFollowsByFollower(userId);
     }
 
     // post A follow B
+    /**
+     * Create a subscription of follower to follows
+     * @param follower
+     * @param follows
+     * @return the subscription
+     */
     @CrossOrigin
     @PutMapping("/follow")
     @ResponseBody
-    public Abonnement follow(@RequestParam("follower") Integer follower, @RequestParam("follows") Integer follows){
-        return abonnementService.follow(follower, follows);
+    public Abonnement follow(@RequestParam("follower") Integer follower, @RequestParam("follows") Integer follows) throws BusinessException {
+        return abonnementBusiness.follow(follower,follows);
     }
 
     // delete A follow B
+    /**
+     * Delete the subscription of follower to follow
+     * @param follower
+     * @param follows
+     */
     @CrossOrigin
     @DeleteMapping("/unfollow")
     @ResponseBody

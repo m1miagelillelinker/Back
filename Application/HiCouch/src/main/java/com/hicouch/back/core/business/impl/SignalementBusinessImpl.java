@@ -9,7 +9,6 @@ import com.hicouch.back.core.model.Signalement;
 import com.hicouch.back.core.service.CommentaireService;
 import com.hicouch.back.core.service.SignalementService;
 import com.hicouch.back.core.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +49,10 @@ public class SignalementBusinessImpl implements SignalementBusiness {
 		signalementService.setSignalementStatus(signalementId, status);
 		
 		return signalementFactory.getSignalementDTO(signalement);
+	}
+
+	@Override
+	public boolean isCurrentUserModeratorOrAdmin() throws NoResultException {
+		return userService.isModeratorOrAdmin(userService.getCurrentUser());
 	}
 }

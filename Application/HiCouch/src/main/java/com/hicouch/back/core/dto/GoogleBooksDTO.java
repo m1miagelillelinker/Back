@@ -1,5 +1,6 @@
 package com.hicouch.back.core.dto;
 
+import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +37,7 @@ public class GoogleBooksDTO extends ProductDTOFromReferentiel {
         productDTO.setCountry("FR");
         productDTO.setDirector(this.getAuthor());
         productDTO.setYear(this.getYear());
-        productDTO.setType("book");
+        productDTO.setType(ProductTypeEnum.BOOK);
         List<String> listTag = new ArrayList<>();
         listTag.add(this.getGenre());
         productDTO.setGenre(listTag);

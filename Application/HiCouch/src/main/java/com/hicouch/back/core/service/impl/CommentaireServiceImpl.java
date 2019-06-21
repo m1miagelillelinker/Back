@@ -7,15 +7,12 @@ import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.repository.CommentaireRepository;
 import com.hicouch.back.core.service.CommentaireService;
-
-import java.time.LocalDateTime;
-import java.util.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -59,7 +56,8 @@ public class CommentaireServiceImpl implements CommentaireService {
 
     @Override
     // TODO : ajouter un vote de l'utilisateur
-    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException, DataProvidedException {
+    public Commentaire addCommentaire(Commentaire commentaire) throws BusinessException {
+        logger.trace("service.addCommentaire: "+commentaire.toString());
         try{
             if(commentaire.getId() != null) {
                 throw new DataProvidedException("l'id ne doit pas etre fournit pour l'ajout");
@@ -97,6 +95,7 @@ public class CommentaireServiceImpl implements CommentaireService {
 
     @Override
     public Commentaire upsertCommentaire(Commentaire commentaire) throws NoResultException {
+        logger.trace(commentaire.toString());
         if(commentaire.getId() != null) {
             Commentaire oldCommentaire = findById(commentaire.getId());
             oldCommentaire.setCommentaire(commentaire.getCommentaire());
@@ -108,6 +107,11 @@ public class CommentaireServiceImpl implements CommentaireService {
         commentaire.setUpdatedAt(LocalDateTime.now());
         logger.trace(commentaire.toString());
         return commentaireRepository.save(commentaire);
+    }
+
+    @Override
+    public int countCommentairesByIdUser(Integer iduser) {
+        return commentaireRepository.countByIdUser(iduser);
     }
 
 

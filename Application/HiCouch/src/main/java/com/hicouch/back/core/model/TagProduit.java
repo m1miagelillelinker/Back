@@ -1,8 +1,7 @@
 package com.hicouch.back.core.model;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="tag_produit")

@@ -23,4 +23,7 @@ public interface AssociationRepository extends CrudRepository<Association,Intege
 
     Association findByIdproduitAAndIdproduitB(String idProduitA, String idProduitB);
 
+    int countByIdUser(int id);
+
+    List<Association> findAllByIdPair(int idPair);
 }

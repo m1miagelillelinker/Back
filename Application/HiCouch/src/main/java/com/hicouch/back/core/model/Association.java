@@ -1,5 +1,6 @@
 package com.hicouch.back.core.model;
 
+import com.hicouch.back.core.enumeration.StatusEnum;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -34,6 +35,9 @@ public class Association {
     @Column(name="idpair")
     Integer idPair;
 
+    @Column(name = "note")
+    Integer note;
+
     @CreatedDate
     @Column(name="createdat")
     LocalDateTime createdat;
@@ -48,6 +52,12 @@ public class Association {
     @LastModifiedBy
     private String modificator;
 
+    @Column(name="iduser")
+    private Integer idUser;
+
+    @Column(name = "status")
+    private Integer status;
+
     public Association(){}
 
     public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, int idPair, LocalDateTime createdat, LocalDateTime updatedat) {
@@ -58,14 +68,26 @@ public class Association {
         this.idPair = idPair;
         this.createdat = createdat;
         this.updatedat = updatedat;
+        this.note=0;
+    }
+
+    public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, int idPair, Integer iduser) {
+        this.idproduitA = idproduitA;
+        this.idfournA = idfournA;
+        this.idproduitB = idproduitB;
+        this.idfournB = idfournB;
+        this.idPair = idPair;
+        this.status = StatusEnum.OK;
+        this.createdat = LocalDateTime.now();
+        this.updatedat = LocalDateTime.now();
+        this.creator = iduser.toString();
+        this.modificator = iduser.toString();
+        this.idUser = iduser;
+        this.note = 0;
     }
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getIdproduitA() {
@@ -100,7 +122,11 @@ public class Association {
         this.updatedat = updatedat;
     }
 
-	/**
+    public Integer getStatus() { return status;  }
+
+    public void setStatus(Integer status) { this.status = status; }
+
+    /**
 	 * @return the idPair
 	 */
 	public Integer getIdPair() {
@@ -142,13 +168,37 @@ public class Association {
 		this.idfournB = idfournB;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Association [id=" + id + ", idproduitA=" + idproduitA + ", idfournA=" + idfournA + ", idproduitB="
-				+ idproduitB + ", idfournB=" + idfournB + ", idPair=" + idPair + ", createdat=" + createdat
-				+ ", updatedat=" + updatedat + "]";
-	}
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getNote() {
+        return note;
+    }
+
+    public void setNote(Integer note) {
+        this.note = note;
+    }
+
+    public Association(String idproduitA, String idfournA, String idproduitB, String idfournB, Integer idPair, Integer note, LocalDateTime createdat, LocalDateTime updatedat, String creator, String modificator, Integer idUser) {
+        this.idproduitA = idproduitA;
+        this.idfournA = idfournA;
+        this.idproduitB = idproduitB;
+        this.idfournB = idfournB;
+        this.idPair = idPair;
+        this.note = note;
+        this.createdat = createdat;
+        this.updatedat = updatedat;
+        this.creator = creator;
+        this.modificator = modificator;
+        this.idUser = idUser;
+    }
 }

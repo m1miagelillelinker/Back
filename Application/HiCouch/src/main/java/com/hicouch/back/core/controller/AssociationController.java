@@ -26,6 +26,12 @@ public class AssociationController {
     }
 
 
+    /**
+     * Get associations of a product
+     * @param idProduct
+     * @return a list of associations
+     * @throws Exception
+     */
     @CrossOrigin
     @GetMapping("/byProduct")
     @ResponseBody
@@ -36,15 +42,28 @@ public class AssociationController {
         return associationService.getAssociationsByIdProduct(idProduct);
     }
 
+    /**
+     * Get a list of recent associations
+     * @return a list of associations
+     * @throws Exception
+     */
     @CrossOrigin
     @GetMapping("/last")
     @ResponseBody
     public List<AssociationDTO> getTopLastAssociations() throws Exception {
-
         return associationService.getTopLastAssociations();
     }
 
-
+    /**
+     * Create an association between productA and productB
+     * Return the existing associations if it already exists
+     * @param idProductA id of product A
+     * @param idfournA type of product A
+     * @param idProductB id of product B
+     * @param idfournB type of product B
+     * @return the associations between product A and product B
+     * @throws BusinessException
+     */
     @CrossOrigin
     @PutMapping("/create")
     @ResponseBody
@@ -52,9 +71,32 @@ public class AssociationController {
         if(idProductA == null || idProductB == null || idProductA.equals("") || idProductB.equals("")){
             throw new BusinessException();
         }
-        return associationService.createAssociation(idProductA,idfournA, idProductB, idfournB);
+        return associationBusiness.createOrGetAssociation(idProductA,idfournA, idProductB, idfournB);
     }
 
+    /**
+     * Create the giving associations
+     * Return the existing associations if it already exists
+     * @param asso the associations
+     * @return the associations
+     * @throws BusinessException
+     */
+    @CrossOrigin
+    @PostMapping("/createasso")
+    @ResponseBody
+    public Association createAssociationPost(@RequestBody Association asso) throws BusinessException {
+        if(asso.getIdproduitA() == null || asso.getIdproduitB() == null || asso.getIdfournA().equals("") || asso.getIdfournB().equals("") || asso.getIdUser()> 0 ){
+            throw new BusinessException();
+        }
+        return associationBusiness.createOrGetAssociation(asso.getIdproduitA(),asso.getIdfournA(), asso.getIdproduitB(), asso.getIdfournB());
+    }
+
+    /**
+     * Delete an associations
+     * @param idAssociation the id of the association to delete
+     * @return 
+     * @throws Exception
+     */
     @CrossOrigin
     @DeleteMapping("/delete")
     @ResponseBody

@@ -1,14 +1,10 @@
 package com.hicouch.back.core.model;
 
 import com.hicouch.back.core.enumeration.StatusEnum;
-
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,10 +16,10 @@ public class Commentaire {
     @Column(name="id")
     private Integer id;
 
-    @Column(name="Commentaire")
+    @Column(name="commentaire")
     private String commentaire;
 
-    @Column(name="Note")
+    @Column(name="note")
     private Integer note = 0;
 
     @Column(name="iduser")

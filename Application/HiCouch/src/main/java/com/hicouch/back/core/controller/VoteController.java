@@ -1,21 +1,15 @@
 package com.hicouch.back.core.controller;
 
 import com.hicouch.back.core.business.VoteBusiness;
+import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Vote;
 import com.hicouch.back.core.service.VoteService;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/vote" , produces = MediaType.APPLICATION_JSON_VALUE )
@@ -33,8 +27,8 @@ public class VoteController{
     @CrossOrigin
     @PutMapping("/vote")
     @ResponseBody
-    public Vote upsertVote(@RequestBody Vote vote){
-       return voteService.upsertVote(vote);
+    public Vote upsertVote(@RequestBody Vote vote) throws NoResultException {
+        return voteBusiness.upsertVote(vote);
     }
     
     @CrossOrigin
@@ -51,10 +45,22 @@ public class VoteController{
        return voteService.getVotesByUser(userId);
     }
     
+    /**
+     * Get an association's vote
+     * @param assoId the id of the pair of products
+     * @return a list of votes
+     */
     @CrossOrigin
-    @GetMapping("/AssoVote")
+    @GetMapping("/assoVote")
     @ResponseBody
     public List<Vote> getVotesByAssociation(@RequestParam("assoId") int assoId){
        return voteService.getVotesByAssociation(assoId);
+    }
+
+    @CrossOrigin
+    @GetMapping("/commentVote")
+    @ResponseBody
+    public List<Vote> getVotesByComment(@RequestParam("commentId") int commentId){
+        return voteService.getVotesByCommentId(commentId);
     }
 }

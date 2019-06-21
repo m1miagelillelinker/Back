@@ -4,7 +4,6 @@ import com.hicouch.back.core.dto.ProductDTO;
 import com.hicouch.back.core.enumeration.ProductTypeEnum;
 import com.hicouch.back.core.exception.ReferentielRequestException;
 import com.hicouch.back.core.model.Association;
-import com.hicouch.back.core.model.Tag;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -128,7 +127,7 @@ public class HttpGamesRequest {
         }
 
         String duration = "null";
-        String type = ProductTypeEnum.BOOK;
+        String type = ProductTypeEnum.GAME;
 
         return new ProductDTO(id, title, description, country, director, year, genre, listProduits, image, duration, type);
     }

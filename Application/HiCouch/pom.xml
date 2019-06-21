@@ -16,6 +16,11 @@
     <name>HiCouch Spring App</name>
 
     <dependencies>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>auth0-spring-security-api</artifactId>
+			<version>1.1.0</version>
+		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -76,7 +81,7 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>2.1.5.RELEASE</version>
+            <version>[2.1.8,)</version>
         </dependency>
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>

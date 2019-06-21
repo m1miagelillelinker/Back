@@ -6,4 +6,6 @@ import com.hicouch.back.core.exception.NoResultException;
 public interface SignalementBusiness {
 	
 	SignalementDTO processSignalement(int signalementId,int status) throws NoResultException;
+	
+	boolean isCurrentUserModeratorOrAdmin() throws NoResultException;
 }
