@@ -40,7 +40,7 @@ public class VoteServiceImpl implements VoteService {
 		} else {
 			//create
 			vote.setCreatedAt(LocalDateTime.now());
-			if (vote.getIdPair() != 0) {
+			if (vote.getIdPair() != null) {
 				vote.setType(VoteTypeEnum.ASSOCIATION);
 			} else {
 				vote.setType(VoteTypeEnum.COMMENTAIRE);
