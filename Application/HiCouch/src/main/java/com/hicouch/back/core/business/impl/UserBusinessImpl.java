@@ -31,17 +31,17 @@ public class UserBusinessImpl implements UserBusiness {
 
 
     @Override
-    public User getUserById(int parseInt) throws NoResultException {
+    public User getUserById(int userId) throws NoResultException {
         User user;
         try {
-            user = userService.getUserById(parseInt);
+            user = userService.getUserById(userId);
         } catch (Exception e) {
             e.printStackTrace();
             throw new NoResultException();
         }
 
-        List<Association> associationList = associationService.getAssociationByIdPaire(parseInt);
-        List<Commentaire> commentaireList = commentaireService.findAllByIdUser(parseInt);
+        List<Association> associationList = associationService.getAllAssociationByIdUser(userId);
+        List<Commentaire> commentaireList = commentaireService.findAllByIdUser(userId);
 
         int score = 0;
 

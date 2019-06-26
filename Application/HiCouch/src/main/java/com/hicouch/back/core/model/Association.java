@@ -46,17 +46,18 @@ public class Association {
     @Column(name="updatedat")
     LocalDateTime updatedat;
 
+    @Column(name="iduser")
+    private Integer idUser;
+
+    @Column(name = "status")
+    private Integer status;
+
     @CreatedBy
     private String creator;
 
     @LastModifiedBy
     private String modificator;
 
-    @Column(name="iduser")
-    private Integer idUser;
-
-    @Column(name = "status")
-    private Integer status;
 
     public Association(){}
 
