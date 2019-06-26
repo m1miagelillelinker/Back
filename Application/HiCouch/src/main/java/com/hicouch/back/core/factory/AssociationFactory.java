@@ -44,7 +44,7 @@ public class AssociationFactory {
 			associationDTO.setProductB(productDTOB);
 
 			try{
-				Vote vote = voteService.getVoteByUserOnAsso(u.getId(), association.getId());
+				Vote vote = voteService.getVoteByUserOnAsso(u.getId(), association.getIdPair());
 				associationDTO.setVote(vote);
 			} catch (NoResultException e){
 				logger.info("No vote: " + e.getMessage());

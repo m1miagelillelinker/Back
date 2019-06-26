@@ -44,8 +44,13 @@ public class CommentaireFactory {
         	User u = userService.getCurrentUser();
             commentaireDTO.setAuteur(userFactory.getUserDTO(userService.getUserById(commentaire.getIdUser())));
             commentaireDTO.setOwned(u.getId() == commentaire.getIdUser());
-        	Vote vote = voteService.getVoteByUserOnComment(u.getId(), commentaire.getId());
-        	commentaireDTO.setVote(vote);
+            
+            try {
+            	Vote vote = voteService.getVoteByUserOnComment(u.getId(), commentaire.getId());
+            	commentaireDTO.setVote(vote);            	
+            } catch (NoResultException e) {
+            	logger.info("No vote from user "+u.getId()+" on comment " + commentaire.getId());
+            }
         } catch (NoResultException e) {
             e.printStackTrace();
         }
