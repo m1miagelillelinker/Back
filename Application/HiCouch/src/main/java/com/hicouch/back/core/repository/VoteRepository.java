@@ -14,8 +14,8 @@ public interface VoteRepository extends CrudRepository<Vote,Integer> {
 
 	List<Vote> findAllByIdPair(int associationId);
 
-	Optional<Vote> findOneByIdUserAndIdPair(int idUser, int idAsso);
-	Optional<Vote> findOneByIdUserAndIdCommentaire(int idUser, int idComment);
+	Optional<Vote> findFirstByIdUserAndIdPair(int idUser, int idAsso);
+	Optional<Vote> findFirstByIdUserAndIdCommentaire(int idUser, int idComment);
 
 	List<Vote> findAllByIdCommentaire(int idCommentaire);
 
