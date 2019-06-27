@@ -1,6 +1,7 @@
 package com.hicouch.back.core.factory;
 
 import com.hicouch.back.core.dto.CommentaireDTO;
+import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.Commentaire;
 import com.hicouch.back.core.model.User;
@@ -62,6 +63,6 @@ public class CommentaireFactory {
     }
 
     public List<CommentaireDTO> convertCommentaires(List<Commentaire> commentaires){
-        return commentaires.stream().map(this::getCommentaireDTO).collect(Collectors.toList());
+        return commentaires.stream().filter( c -> c.getStatus() == StatusEnum.OK ).map(this::getCommentaireDTO).collect(Collectors.toList());
     }
 }
