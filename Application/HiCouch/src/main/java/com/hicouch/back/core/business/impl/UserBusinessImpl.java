@@ -48,6 +48,7 @@ public class UserBusinessImpl implements UserBusiness {
         for(Association association : associationList){
             score += association.getNote();
         }
+        score = score/2;
 
         for(Commentaire commentaire : commentaireList){
             score += commentaire.getNote();

@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService {
 		u.setIdAuth0(object.getString("user_id"));
 		u.setPseudo(object.getString("nickname"));
 		u.setPicture(object.getString("picture"));
+		u.setScore(0);
 		u.setTypeUser(TypeUser.USER);
 		u.setCreatedAt(LocalDateTime.now());
 		u.setUpdatedAt(LocalDateTime.now());
