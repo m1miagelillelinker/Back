@@ -1,5 +1,6 @@
 package com.hicouch.back.core.service.impl;
 
+import com.hicouch.back.core.enumeration.StatusEnum;
 import com.hicouch.back.core.enumeration.TypeUser;
 import com.hicouch.back.core.exception.NoResultException;
 import com.hicouch.back.core.model.User;
@@ -71,6 +72,7 @@ public class UserServiceImpl implements UserService {
 		u.setPseudo(object.getString("nickname"));
 		u.setPicture(object.getString("picture"));
 		u.setScore(0);
+		u.setIdstatus(StatusEnum.OK);
 		u.setTypeUser(TypeUser.USER);
 		u.setCreatedAt(LocalDateTime.now());
 		u.setUpdatedAt(LocalDateTime.now());
