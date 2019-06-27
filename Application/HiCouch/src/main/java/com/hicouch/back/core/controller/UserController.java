@@ -39,7 +39,7 @@ public class UserController {
     @GetMapping("/get")
     @ResponseBody
     public UserDTO getUserById(@RequestParam("userId") String userId) throws NumberFormatException, NoResultException {
-        return  userFactory.getUserDTO(userService.getUserById(Integer.parseInt(userId)));
+        return  userFactory.getUserDTO(userBusiness.getUserById(Integer.parseInt(userId)));
     }
     
     /**

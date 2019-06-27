@@ -81,4 +81,9 @@ public class AssociationServiceImpl implements AssociationService {
     public List<Association> getAssociationByIdPaire(int idPair) {
         return associationRepository.findAllByIdPair(idPair);
     }
+
+    @Override
+    public List<Association> getAllAssociationByIdUser(int userId) {
+        return associationRepository.findAllByIdUser(userId);
+    }
 }
