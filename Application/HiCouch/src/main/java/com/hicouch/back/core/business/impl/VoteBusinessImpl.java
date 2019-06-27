@@ -31,9 +31,10 @@ public class VoteBusinessImpl implements VoteBusiness {
 
     @Override
     public Vote upsertVote(Vote vote) throws NoResultException {
-        Vote oldVote = null;
+        Integer oldVote = 0;
         if (vote.getId() != null) {
-            oldVote = voteService.getVoteById(vote.getId());
+            oldVote = voteService.getVoteById(vote.getId()).getVote();
+        
         }
 
         Vote v = voteService.upsertVote(vote);
@@ -41,17 +42,14 @@ public class VoteBusinessImpl implements VoteBusiness {
             List<Association> associations = associationService.getAssociationByIdPaire(vote.getIdPair());
             for (Association association : associations) {
                 association.setNote(association.getNote() + v.getVote());
-                if (oldVote != null && oldVote.getVote() != null) {
-                    association.setNote(association.getNote() - oldVote.getVote());
-                }
+                association.setNote(association.getNote() - oldVote);
                 associationService.saveAssociation(association);
             }
         } else {
             Commentaire commentaire = commentaireService.findById(v.getIdCommentaire());
             commentaire.setNote(commentaire.getNote() + v.getVote());
-            if (oldVote != null && oldVote.getVote() != null) {
-                commentaire.setNote(commentaire.getNote() - oldVote.getVote());
-            }
+            commentaire.setNote(commentaire.getNote() - oldVote);
+            
             commentaireService.updateCommentaire(commentaire);
         }
         return v;
