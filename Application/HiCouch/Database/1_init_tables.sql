@@ -12,12 +12,14 @@ DROP TABLE IF EXISTS [badges]
 DROP TABLE IF EXISTS [fournisseurs]
 DROP TABLE IF EXISTS [tag]
 DROP TABLE IF EXISTS [status]
+DROP TABLE IF EXISTS [historique]
 
 --Création de la sequence pour les abonnements
 drop SEQUENCE IF EXISTS assocouple;
 create SEQUENCE assocouple AS int;
 ALTER SEQUENCE assocouple RESTART WITH 0;
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='utilisateur' and xtype='U')
 CREATE TABLE [utilisateur] (
 	Id integer NOT NULL IDENTITY,
 	firstname varchar(250),
@@ -26,13 +28,13 @@ CREATE TABLE [utilisateur] (
 	email varchar(250) NOT NULL,
 	typeuser integer,
 	pseudo varchar(250),
-	score integer,
+	score integer DEFAULT 0,
 	password varchar(64),
 	idstatus integer ,
 	picture text ,
-	createdat datetime,
-	updatedat datetime,
-	lastlogin datetime,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
+	lastlogin datetime NULL DEFAULT GETDATE(),
 	loginscount integer ,
 	idauth0 varchar(50) ,
   CONSTRAINT [PK_UTILISATEUR] PRIMARY KEY CLUSTERED
@@ -40,10 +42,11 @@ CREATE TABLE [utilisateur] (
   [Id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
 CREATE UNIQUE INDEX [utilisateur_email] ON [utilisateur] ([email]);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='fournisseurs' and xtype='U')
 CREATE TABLE [fournisseurs] (
   [id] tinyint NOT NULL IDENTITY PRIMARY KEY,
   [libelle] varchar(20) NOT NULL,
@@ -53,34 +56,40 @@ CREATE TABLE [fournisseurs] (
   [type] varchar(20) NOT NULL
 );
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='produit' and xtype='U')
 CREATE TABLE [produit] (
 	id integer NOT NULL IDENTITY,
 	idProduit varchar(20) NOT NULL UNIQUE,
 	name varchar(250) NOT NULL,
-	createdat datetime,
-	updatedat datetime,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
   CONSTRAINT [PK_PRODUIT] PRIMARY KEY CLUSTERED
   (
   [idProduit] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='commentaire' and xtype='U')
 CREATE TABLE [commentaire] (
 	id integer NOT NULL IDENTITY,
 	Commentaire varchar(250),
-	Note integer,
+	Note integer DEFAULT 0,
 	iduser integer NOT NULL,
 	idpair integer NOT NULL,
 	status integer NOT NULL,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
+	creator varchar(20) NULL,
+	modificator varchar(20) NULL,
   CONSTRAINT [PK_COMMENTAIRE] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
+
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='association' and xtype='U')
 CREATE TABLE [association] (
 	id integer NOT NULL IDENTITY,
 	--idfournA tinyint NOT NULL,
@@ -90,127 +99,161 @@ CREATE TABLE [association] (
 	idfournB varchar(20) NOT NULL,
 	idproduitB varchar(20) NOT NULL,
 	idpair integer NOT NULL,
+	note integer NOT NULL DEFAULT 0,
 	status integer NOT NULL,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
-	creator varchar(20) NOT NULL,
-	modificator varchar(20) NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
+	creator varchar(20) NULL,
+	modificator varchar(20) NOT NULL,
+	iduser integer NOT NULL,
   CONSTRAINT [PK_ASSOCIATION] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 -- Ajout d'une contrainte d'unicité sur le couple produitA et produitB
 CREATE UNIQUE INDEX [association_idproduitA_idproduitB] ON [association] ([idproduitA], [idproduitB]);
 
 --ajout d'un index sur l'attribut idpair qui sera present dans 3 tables differentes
 CREATE INDEX [IDX_association_idpair] ON [association] ([idpair]);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='vote' and xtype='U')
 CREATE TABLE [vote] (
 	id integer NOT NULL IDENTITY,
-	idpair integer NOT NULL,
+	idpair integer,
+	idcommentaire integer,
 	vote integer,
+	type varchar(20) NOT NULL,
 	iduser integer NOT NULL,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
+	creator varchar(20) NULL,
   CONSTRAINT [PK_VOTE] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='historique' and xtype='U')
+CREATE TABLE [historique] (
+	id integer NOT NULL IDENTITY,
+	iduser integer NOT NULL,
+	idfollow integer NULL,
+	idasso integer NULL,
+	type varchar(20) NOT NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	creator varchar(20) NULL,
+  CONSTRAINT [PK_HISTORIQUE] PRIMARY KEY CLUSTERED
+  (
+  [id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+);
+
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='tag_produit' and xtype='U')
 CREATE TABLE [tag_produit] (
 	id integer NOT NULL IDENTITY,
 	idproduit varchar(20) NOT NULL,
 	idtag integer NOT NULL,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
   CONSTRAINT [PK_TAG_PRODUIT] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='tag' and xtype='U')
 CREATE TABLE [tag] (
 	id integer NOT NULL IDENTITY,
 	value varchar(250),
 	status integer NOT NULL,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
   CONSTRAINT [PK_TAG] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='status' and xtype='U')
 CREATE TABLE [status] (
 	id integer NOT NULL IDENTITY,
 	libelle varchar(250),
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
   CONSTRAINT [PK_STATUS] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='badges_user' and xtype='U')
 CREATE TABLE [badges_user] (
 	id integer NOT NULL IDENTITY,
 	iduser integer NOT NULL UNIQUE,
 	idbadge integer NOT NULL UNIQUE,
-	dateunlock datetime NOT NULL,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	dateunlock datetime NULL DEFAULT GETDATE(),
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
   CONSTRAINT [PK_BADGES_USER] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='abonnement' and xtype='U')
 CREATE TABLE [abonnement] (
 	id integer NOT NULL IDENTITY,
 	follower integer NOT NULL,
 	follows integer NOT NULL,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
   CONSTRAINT [PK_ABONNEMENT] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='badges' and xtype='U')
 CREATE TABLE [badges] (
 	id integer NOT NULL IDENTITY,
 	badge varchar(250),
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	imgUrl varchar(250),
+	seuil integer NOT NULL,
+	status integer NOT NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
+    applyOn varchar(50) NULL,
   CONSTRAINT [PK_BADGES] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='user_association' and xtype='U')
 CREATE TABLE [user_association] (
 	id integer NOT NULL IDENTITY,
 	iduser integer NOT NULL,
 	idpair integer NOT NULL,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
   CONSTRAINT [PK_USER_ASSOCIATION] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+);
 
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='signalement' and xtype='U')
 CREATE TABLE [signalement] (
 	id integer NOT NULL IDENTITY,
 	typeSignalement varchar(20) CHECK (typeSignalement IN('utilisateur', 'comment')),
@@ -220,13 +263,15 @@ CREATE TABLE [signalement] (
 	iduser integer NOT NULL,
 	status integer NOT NULL,
 	moderatorId integer,
-	createdat datetime NOT NULL,
-	updatedat datetime NULL,
+	createdat datetime NULL DEFAULT GETDATE(),
+	updatedat datetime NULL DEFAULT GETDATE(),
+	creator varchar(20) NULL,
+	modificator varchar(20) NULL,
   CONSTRAINT [PK_SIGNALEMENT] PRIMARY KEY CLUSTERED
   (
   [id] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
-)
+);
 
 --status
 
@@ -262,6 +307,8 @@ ALTER TABLE [association] CHECK CONSTRAINT [association_status]
 --fin status
 
 --badges
+ALTER TABLE [badges] drop CONSTRAINT IF EXISTS [badges_fk1];
+ALTER TABLE [badges] WITH CHECK ADD CONSTRAINT [badges_fk1]  FOREIGN KEY ([status]) REFERENCES [dbo].[status] ([id]);
 
 ALTER TABLE [badges_user] drop CONSTRAINT IF EXISTS [badges_user_fk1];
 
@@ -295,9 +342,6 @@ ON UPDATE NO ACTION
 ALTER TABLE [user_association] CHECK CONSTRAINT [user_association_fk1]
 */
 
-ALTER TABLE association drop CONSTRAINT IF EXISTS DTdefaut ;
-ALTER TABLE association ADD CONSTRAINT DTdefaut DEFAULT GETUTCDATE() FOR updatedat;
-
 --fin association
 
 --tag
@@ -323,8 +367,9 @@ ALTER TABLE [signalement] CHECK CONSTRAINT [signalement_fk1]
 
 
 
---utilisateur
+--drop contraintes
 ALTER TABLE [commentaire] drop CONSTRAINT IF EXISTS [commentaire_fk0];
+ALTER TABLE [commentaire] drop CONSTRAINT IF EXISTS [commentaire_fk1];
 ALTER TABLE [vote] drop CONSTRAINT IF EXISTS [vote_fk1];
 ALTER TABLE [badges_user] drop CONSTRAINT IF EXISTS [badges_user_fk0];
 ALTER TABLE [abonnement] drop CONSTRAINT IF EXISTS [abonnement_fk0];
@@ -338,6 +383,12 @@ ALTER TABLE [commentaire] WITH CHECK ADD CONSTRAINT [commentaire_fk0] FOREIGN KE
 ON UPDATE NO ACTION
 
 ALTER TABLE [commentaire] CHECK CONSTRAINT [commentaire_fk0]
+
+ALTER TABLE [commentaire] WITH CHECK ADD CONSTRAINT [commentaire_fk1] FOREIGN KEY ([status]) REFERENCES [status]([id])
+ON UPDATE NO ACTION
+
+ALTER TABLE [commentaire] CHECK CONSTRAINT [commentaire_fk1]
+
 
 ALTER TABLE [vote] WITH CHECK ADD CONSTRAINT [vote_fk1] FOREIGN KEY ([iduser]) REFERENCES [utilisateur]([Id])
 ON UPDATE NO ACTION
@@ -404,4 +455,6 @@ ALTER TABLE [tag_produit] drop CONSTRAINT IF EXISTS [tag_produit_fk0];
 -- ALTER TABLE [association] ADD FOREIGN KEY ([idfournB]) REFERENCES [fournisseurs] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION
 
 --fin fournisseur
+
+CREATE UNIQUE INDEX [commentaire_iduser_Commentaire] ON [dbo].[commentaire] ([iduser], [Commentaire]);
 
