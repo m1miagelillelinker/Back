@@ -28,7 +28,7 @@ public class ProduitBusinessImpl implements ProduitBusiness {
 
 	public ProductDTO getCompleteProduct(String idProduct, String referentiel) throws BusinessException {
 		ProductDTO product = produitService.getProductByIdFromReferentiel(idProduct, referentiel);
-		product.setTags(tagBusiness.getAllTagByProduct(idProduct));
+		if(product != null) product.setTags(tagBusiness.getAllTagByProduct(idProduct));
 		return product;
 	}
 
