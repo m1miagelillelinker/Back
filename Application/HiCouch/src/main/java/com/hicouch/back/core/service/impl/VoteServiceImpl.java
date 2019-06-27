@@ -81,4 +81,8 @@ public class VoteServiceImpl implements VoteService {
     public List<Vote> getVotesByCommentId(int commentId) {
         return voteRepository.findAllByIdCommentaire(commentId);
     }
+
+    public Vote getVoteById(int voteId) {
+        return voteRepository.findById(voteId).get();
+    }
 }

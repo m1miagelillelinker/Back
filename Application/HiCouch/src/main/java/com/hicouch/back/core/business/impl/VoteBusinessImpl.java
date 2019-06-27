@@ -31,16 +31,27 @@ public class VoteBusinessImpl implements VoteBusiness {
 
     @Override
     public Vote upsertVote(Vote vote) throws NoResultException {
+        Vote oldVote = null;
+        if (vote.getId() != null) {
+            oldVote = voteService.getVoteById(vote.getId());
+        }
+
         Vote v = voteService.upsertVote(vote);
-        if(v.getIdPair() != null){
+        if (v.getIdPair() != null) {
             List<Association> associations = associationService.getAssociationByIdPaire(vote.getIdPair());
-            for(Association association : associations) {
-            	association.setNote(association.getNote()+v.getVote());
+            for (Association association : associations) {
+                association.setNote(association.getNote() + v.getVote());
+                if (oldVote != null && oldVote.getVote() != null) {
+                    association.setNote(association.getNote() - oldVote.getVote());
+                }
                 associationService.saveAssociation(association);
             }
-        }else{
+        } else {
             Commentaire commentaire = commentaireService.findById(v.getIdCommentaire());
-            commentaire.setNote(commentaire.getNote()+v.getVote());
+            commentaire.setNote(commentaire.getNote() + v.getVote());
+            if (oldVote != null && oldVote.getVote() != null) {
+                commentaire.setNote(commentaire.getNote() - oldVote.getVote());
+            }
             commentaireService.updateCommentaire(commentaire);
         }
         return v;
